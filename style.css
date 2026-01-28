@@ -872,6 +872,54 @@ section {
     z-index: 999;
 }
 
+/* Story Section Layout */
+.about-story-section {
+    padding-bottom: 8rem;
+}
+
+.story-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.story-block {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.quote-card {
+    position: relative;
+    padding: 3rem;
+    background: rgba(255, 107, 43, 0.05);
+    border: 1px solid rgba(255, 107, 43, 0.1);
+    border-radius: 2.5rem;
+    overflow: hidden;
+}
+
+.quote-card::before {
+    content: '"';
+    position: absolute;
+    top: -1rem;
+    left: 2rem;
+    font-size: 8rem;
+    font-family: 'Outfit', sans-serif;
+    color: var(--accent-primary);
+    opacity: 0.1;
+    font-weight: 800;
+}
+
+.story-text {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+}
+
+.story-highlight {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
 
 /* Modal Styles */
 .modal {
