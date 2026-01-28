@@ -5,7 +5,7 @@
     "main": "index.html",
     "scripts": {
         "start": "npx live-server .",
-        "deploy": "vercel --prod"
+        "deploy": "npx vercel --prod"
     },
     "keywords": [],
     "author": "Cyryl Bitangcol",

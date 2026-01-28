@@ -287,6 +287,7 @@ a {
 .hero-section .container {
     position: relative;
     z-index: 2;
+    display: grid;
     grid-template-columns: 1.2fr 0.8fr;
     gap: 4rem;
     align-items: center;
@@ -877,7 +878,7 @@ section {
 }
 
 .story-container {
-    max-width: 900px;
+    width: 100%;
     margin: 0 auto;
 }
 
