@@ -1,0 +1,16 @@
+{
+    "name": "personalsite-cyryl",
+    "version": "1.0.0",
+    "description": "Cyryl Bitangcol Personal Portfolio with Glassmorphism Design",
+    "main": "index.html",
+    "scripts": {
+        "start": "npx live-server .",
+        "deploy": "vercel --prod"
+    },
+    "keywords": [],
+    "author": "Cyryl Bitangcol",
+    "license": "ISC",
+    "devDependencies": {
+        "vercel": "latest"
+    }
+}
