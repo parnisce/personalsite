@@ -542,6 +542,17 @@ section {
     font-weight: 800;
     font-size: 0.9rem;
     color: var(--accent-primary);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-family: inherit;
+    transition: var(--transition);
+}
+
+.view-project:hover {
+    gap: 0.75rem;
+    color: white;
 }
 
 /* Services */
@@ -812,6 +823,90 @@ section {
     z-index: 999;
 }
 
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.modal-container {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    max-height: 90vh;
+    padding: 3rem;
+    border-radius: 3rem;
+    z-index: 2;
+    overflow-y: auto;
+}
+
+.close-modal {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 3rem;
+    height: 3rem;
+    padding: 0;
+}
+
+.tech-stack-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.tech-badge {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    padding: 0.4rem 1rem;
+    border-radius: 1rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.modal-header .section-title {
+    font-size: 2.5rem;
+    text-align: left;
+    margin-bottom: 0;
+}
+
+.modal-body .section-desc {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+    .modal-container {
+        padding: 2rem;
+        border-radius: 2rem;
+    }
+
+    .modal-header .section-title {
+        font-size: 2rem;
+    }
+}
 
 /* Micro-animations */
 .animate-in {

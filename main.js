@@ -131,6 +131,57 @@ document.querySelectorAll('.glass-card, .section-header, .hero-content, .hero-ca
     observer.observe(el);
 });
 
+// Project Modal Logic
+const modal = document.getElementById('project-modal');
+const closeModalBtn = modal.querySelector('.close-modal');
+const modalOverlay = modal.querySelector('.modal-overlay');
+const projectBtns = document.querySelectorAll('.view-project-btn');
+
+const openModal = (projectCard) => {
+    const title = projectCard.getAttribute('data-title');
+    const desc = projectCard.getAttribute('data-desc');
+    const tech = projectCard.getAttribute('data-tech').split(',');
+    const link = projectCard.getAttribute('data-link');
+
+    document.getElementById('modal-title').textContent = title;
+    document.getElementById('modal-description').textContent = desc;
+    document.getElementById('modal-link').setAttribute('href', link);
+
+    const techStackWrap = document.getElementById('modal-tech-stack');
+    techStackWrap.innerHTML = '';
+    tech.forEach(item => {
+        const badge = document.createElement('span');
+        badge.className = 'tech-badge';
+        badge.textContent = item.trim();
+        techStackWrap.appendChild(badge);
+    });
+
+    modal.classList.add('active');
+    body.style.overflow = 'hidden'; // Prevent scrolling
+};
+
+const closeModal = () => {
+    modal.classList.remove('active');
+    body.style.overflow = 'auto';
+};
+
+projectBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const projectCard = btn.closest('.project-card');
+        openModal(projectCard);
+    });
+});
+
+closeModalBtn.addEventListener('click', closeModal);
+modalOverlay.addEventListener('click', closeModal);
+
+// Close on Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeModal();
+    }
+});
+
 // Form Submission
 const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
