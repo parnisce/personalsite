@@ -1,0 +1,264 @@
+/* About Page Specific Styles */
+
+.about-section .container {
+    position: relative;
+    z-index: 2;
+    /* Grid removed per user request */
+    display: block;
+    gap: 4rem;
+    align-items: center;
+}
+
+.about-content-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+/* About Page Social Grid */
+.social-icon-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+    width: 100%;
+}
+
+.social-icon-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem 1rem;
+    border-radius: 2rem;
+    transition: var(--transition);
+    text-decoration: none;
+    color: var(--text-primary);
+}
+
+.social-icon-card i {
+    width: 2.5rem;
+    height: 2.5rem;
+    color: var(--accent-primary);
+    transition: var(--transition);
+}
+
+.social-icon-card span {
+    font-weight: 800;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.social-icon-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent-primary);
+}
+
+.social-icon-card:hover i {
+    transform: scale(1.2);
+}
+
+/* Timeline Styles */
+.timeline-section {
+    padding-bottom: 8rem;
+}
+
+.timeline-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    position: relative;
+    margin-top: 4rem;
+}
+
+.timeline-column-title {
+    font-size: 2.25rem;
+    margin-bottom: 3.5rem;
+    color: var(--text-primary);
+    position: relative;
+}
+
+.timeline-items {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    position: relative;
+}
+
+/* The vertical line */
+.timeline-items::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--accent-primary), transparent);
+    opacity: 0.2;
+}
+
+/* Position line for left column (Education) */
+.timeline-column:first-child .timeline-items::before {
+    right: -3rem;
+}
+
+/* Position line for right column (Work History) */
+.timeline-column:last-child .timeline-items::before {
+    left: -3rem;
+}
+
+.timeline-item {
+    position: relative;
+}
+
+.timeline-card {
+    padding: 2.5rem;
+    border-radius: 2.5rem;
+    transition: var(--transition);
+}
+
+.timeline-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-primary);
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Connector Dot */
+.timeline-dot {
+    position: absolute;
+    top: 2.5rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    background: var(--bg-primary);
+    border: 3px solid var(--accent-primary);
+    border-radius: 50%;
+    z-index: 2;
+    box-shadow: 0 0 15px var(--accent-primary);
+}
+
+.timeline-column:first-child .timeline-dot {
+    right: -3.65rem;
+}
+
+.timeline-column:last-child .timeline-dot {
+    left: -3.65rem;
+}
+
+.timeline-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+    gap: 1rem;
+}
+
+.timeline-title {
+    font-size: 1.4rem;
+    font-weight: 800;
+}
+
+.timeline-date {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    padding: 0.4rem 1rem;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+.timeline-subtitle {
+    display: block;
+    color: var(--accent-primary);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.timeline-desc {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+/* Story Section Layout */
+.about-story-section {
+    padding-bottom: 8rem;
+}
+
+.story-container {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.story-block {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.quote-card {
+    position: relative;
+    padding: 3rem;
+    background: rgba(255, 107, 43, 0.05);
+    border: 1px solid rgba(255, 107, 43, 0.1);
+    border-radius: 2.5rem;
+    overflow: hidden;
+}
+
+.quote-card::before {
+    content: '"';
+    position: absolute;
+    top: -1rem;
+    left: 2rem;
+    font-size: 8rem;
+    font-family: 'Outfit', sans-serif;
+    color: var(--accent-primary);
+    opacity: 0.1;
+    font-weight: 800;
+}
+
+.story-text {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+}
+
+.story-highlight {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+@media (max-width: 1024px) {
+    .social-icon-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .timeline-grid {
+        grid-template-columns: 1fr;
+        gap: 8rem;
+    }
+
+    .timeline-column:first-child .timeline-items::before,
+    .timeline-column:last-child .timeline-items::before {
+        left: -3rem;
+        right: auto;
+    }
+
+    .timeline-column:first-child .timeline-dot,
+    .timeline-column:last-child .timeline-dot {
+        left: -3.65rem;
+        right: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .social-icon-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
