@@ -20,11 +20,33 @@ themeToggle.addEventListener('click', () => {
         localStorage.setItem('theme', 'dark-mode');
     }
     // Refresh icons if needed
+    lucide.createIcons();
+});
+
+// Mobile Menu Toggle
+const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+const mobileMenuIcon = mobileMenuBtn.querySelector('i');
+
+mobileMenuBtn.addEventListener('click', () => {
+    body.classList.toggle('mobile-menu-active');
+    const isActive = body.classList.contains('mobile-menu-active');
+    mobileMenuIcon.setAttribute('data-lucide', isActive ? 'x' : 'menu');
+    lucide.createIcons();
+});
+
+// Close menu on link click
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+        body.classList.remove('mobile-menu-active');
+        mobileMenuIcon.setAttribute('data-lucide', 'menu');
+        lucide.createIcons();
+    });
 });
 
 // Navigation Scroll Effect
 window.addEventListener('scroll', () => {
     const nav = document.querySelector('.glass-nav');
+    if (!nav) return;
     if (window.scrollY > 50) {
         nav.style.top = '1rem';
         nav.style.background = 'rgba(255, 255, 255, 0.05)';
@@ -39,34 +61,35 @@ window.addEventListener('scroll', () => {
 // Custom Cursor Logic
 const cursor = document.querySelector('.cursor');
 const follower = document.querySelector('.cursor-follower');
-const links = document.querySelectorAll('a, button, input, textarea, .glass-card');
+const interactiveElements = document.querySelectorAll('a, button, input, textarea, .glass-card, .project-card');
 
-document.addEventListener('mousemove', (e) => {
-    const x = e.clientX;
-    const y = e.clientY;
+if (cursor && follower) {
+    document.addEventListener('mousemove', (e) => {
+        const x = e.clientX;
+        const y = e.clientY;
 
-    // Smoothly follow
-    cursor.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-    follower.style.transform = `translate3d(${x - 12}px, ${y - 12}px, 0)`;
-});
-
-// Cursor Hover Effects
-links.forEach(link => {
-    link.addEventListener('mouseenter', () => {
-        cursor.style.transform += ' scale(2.5)';
-        cursor.style.backgroundColor = 'white';
-        follower.style.transform += ' scale(1.5)';
-        follower.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+        // Smoothly follow
+        cursor.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+        follower.style.transform = `translate3d(${x - 12}px, ${y - 12}px, 0)`;
     });
 
-    link.addEventListener('mouseleave', () => {
-        cursor.style.transform = cursor.style.transform.replace(' scale(2.5)', '');
-        cursor.style.backgroundColor = 'var(--accent-primary)';
-        follower.style.transform = follower.style.transform.replace(' scale(1.5)', '');
-        follower.style.backgroundColor = 'rgba(255, 107, 43, 0.2)';
-    });
-});
+    // Cursor Hover Effects
+    interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            cursor.style.transform += ' scale(2.5)';
+            cursor.style.backgroundColor = 'white';
+            follower.style.transform += ' scale(1.5)';
+            follower.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+        });
 
+        el.addEventListener('mouseleave', () => {
+            cursor.style.transform = cursor.style.transform.replace(' scale(2.5)', '');
+            cursor.style.backgroundColor = 'var(--accent-primary)';
+            follower.style.transform = follower.style.transform.replace(' scale(1.5)', '');
+            follower.style.backgroundColor = 'rgba(255, 107, 43, 0.2)';
+        });
+    });
+}
 
 // Active Link Tracking
 const sections = document.querySelectorAll('section');
@@ -76,7 +99,6 @@ window.addEventListener('scroll', () => {
     let current = '';
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
         if (window.scrollY >= (sectionTop - 200)) {
             current = section.getAttribute('id');
         }
@@ -105,7 +127,7 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-document.querySelectorAll('.glass-card, .section-header, .hero-content, .hero-card-wrap').forEach(el => {
+document.querySelectorAll('.glass-card, .section-header, .hero-content, .hero-card-wrap, .project-card').forEach(el => {
     observer.observe(el);
 });
 
@@ -115,8 +137,9 @@ if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const submitBtn = contactForm.querySelector('.submit-btn');
-        const originalText = submitBtn.innerHTML;
+        if (!submitBtn) return;
 
+        const originalText = submitBtn.innerHTML;
         submitBtn.innerHTML = 'Sending...';
         submitBtn.disabled = true;
 
