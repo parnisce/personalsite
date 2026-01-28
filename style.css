@@ -409,7 +409,7 @@ a {
 
 .skill-tags {
     display: grid;
-    grid-template-cols: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 0.75rem;
 }
 
@@ -630,7 +630,7 @@ section {
 
 .contact-grid {
     display: grid;
-    grid-template-cols: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 4rem;
 }
 
@@ -642,7 +642,7 @@ section {
 
 .form-row {
     display: grid;
-    grid-template-cols: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 1rem;
 }
 
@@ -678,16 +678,65 @@ section {
     gap: 2rem;
 }
 
-.social-link {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-weight: 800;
-    color: var(--text-secondary);
-}
-
 .social-link:hover {
     color: var(--text-primary);
+}
+
+/* About Page Social Grid */
+.social-icon-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+    width: 100%;
+}
+
+.social-icon-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem 1rem;
+    border-radius: 2rem;
+    transition: var(--transition);
+    text-decoration: none;
+    color: var(--text-primary);
+}
+
+.social-icon-card i {
+    width: 2.5rem;
+    height: 2.5rem;
+    color: var(--accent-primary);
+    transition: var(--transition);
+}
+
+.social-icon-card span {
+    font-weight: 800;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.social-icon-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent-primary);
+}
+
+.social-icon-card:hover i {
+    transform: scale(1.2);
+}
+
+@media (max-width: 768px) {
+    .social-icon-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .social-icon-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 /* Footer */
@@ -733,7 +782,7 @@ section {
     }
 
     .contact-grid {
-        grid-template-cols: 1fr;
+        grid-template-columns: 1fr;
     }
 
     .contact-card {
@@ -794,7 +843,7 @@ section {
     }
 
     .form-row {
-        grid-template-cols: 1fr;
+        grid-template-columns: 1fr;
     }
 
     .footer-wrap {
