@@ -1,12 +1,14 @@
 /* About Page Specific Styles */
 
+.about-hero {
+    padding-top: 10rem;
+    min-height: auto;
+}
+
 .about-section .container {
     position: relative;
     z-index: 2;
-    /* Grid removed per user request */
     display: block;
-    gap: 4rem;
-    align-items: center;
 }
 
 .about-content-wrap {
@@ -17,13 +19,43 @@
     width: 100%;
 }
 
+.centered-tag {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.about-title {
+    font-size: 5rem;
+    line-height: 1.1;
+    margin-bottom: 3rem;
+    width: 100%;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.about-text-content {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.hero-story {
+    font-size: 1.5rem;
+    max-width: 100%;
+    line-height: 1.6;
+}
+
 /* About Page Social Grid */
 .social-icon-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 1.5rem;
-    margin-top: 3rem;
+    margin-top: 4rem;
     width: 100%;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .social-icon-card {
@@ -31,8 +63,8 @@
     flex-direction: column;
     align-items: center;
     gap: 1rem;
-    padding: 2rem 1rem;
-    border-radius: 2rem;
+    padding: 2.5rem 1rem;
+    border-radius: 2.5rem;
     transition: var(--transition);
     text-decoration: none;
     color: var(--text-primary);
@@ -54,17 +86,13 @@
 
 .social-icon-card:hover {
     transform: translateY(-10px);
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--card-hover);
     border-color: var(--accent-primary);
-}
-
-.social-icon-card:hover i {
-    transform: scale(1.2);
 }
 
 /* Timeline Styles */
 .timeline-section {
-    padding-bottom: 8rem;
+    padding: 8rem 0;
 }
 
 .timeline-grid {
@@ -123,7 +151,7 @@
 .timeline-card:hover {
     transform: translateY(-5px);
     border-color: var(--accent-primary);
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--card-hover);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
 
@@ -162,7 +190,7 @@
 }
 
 .timeline-date {
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--glass-bg);
     border: 1px solid var(--glass-border);
     padding: 0.4rem 1rem;
     border-radius: 1rem;
@@ -200,6 +228,7 @@
     display: flex;
     flex-direction: column;
     gap: 2.5rem;
+    width: 100%;
 }
 
 .quote-card {
@@ -209,6 +238,10 @@
     border: 1px solid rgba(255, 107, 43, 0.1);
     border-radius: 2.5rem;
     overflow: hidden;
+}
+
+.large-quote {
+    font-size: 1.5rem;
 }
 
 .quote-card::before {
@@ -234,9 +267,17 @@
     font-weight: 600;
 }
 
+/* Responsive Styles for About Page */
+@media (max-width: 1200px) {
+    .about-title {
+        font-size: 4rem;
+    }
+}
+
 @media (max-width: 1024px) {
     .social-icon-grid {
         grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
     }
 
     .timeline-grid {
@@ -257,8 +298,79 @@
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
+    .about-hero {
+        padding-top: 8rem;
+    }
+
+    .about-title {
+        font-size: 2.75rem;
+        margin-bottom: 2rem;
+    }
+
+    .hero-story {
+        font-size: 1.15rem;
+    }
+
     .social-icon-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .timeline-column-title {
+        font-size: 1.75rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .timeline-header {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .timeline-card {
+        padding: 1.5rem;
+    }
+
+    .quote-card {
+        padding: 2rem;
+    }
+
+    .large-quote {
+        font-size: 1.2rem;
+    }
+
+    .story-text {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-title {
+        font-size: 2.25rem;
+    }
+
+    .social-icon-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .social-icon-card {
+        padding: 1.5rem;
+    }
+
+    .timeline-items::before {
+        left: -1.5rem;
+    }
+
+    .timeline-dot {
+        left: -2.15rem;
+    }
+
+    .timeline-column:first-child .timeline-items::before,
+    .timeline-column:last-child .timeline-items::before {
+        left: -1.5rem;
+    }
+
+    .timeline-column:first-child .timeline-dot,
+    .timeline-column:last-child .timeline-dot {
+        left: -2.15rem;
     }
 }
