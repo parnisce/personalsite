@@ -694,6 +694,12 @@ section {
     gap: 2rem;
 }
 
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 .social-link:hover {
     color: var(--text-primary);
 }
