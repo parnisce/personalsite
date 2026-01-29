@@ -470,6 +470,8 @@ section {
     margin: 0 auto;
 }
 
+
+
 /* Projects Grid */
 .projects-grid {
     display: grid;
@@ -723,6 +725,10 @@ section {
 .footer-links {
     display: flex;
     gap: 2rem;
+}
+
+p.text-gray-300.mt-4 {
+    margin-bottom: 30px;
 }
 
 /* Theme Toggle Icons */
