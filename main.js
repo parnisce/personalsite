@@ -131,6 +131,37 @@ document.querySelectorAll('.glass-card, .section-header, .hero-content, .hero-ca
     observer.observe(el);
 });
 
+// Project Filtering Logic
+const filterBtns = document.querySelectorAll('.filter-btn');
+const projectCards = document.querySelectorAll('.project-grid .project-card, .projects-grid .project-card'); // Supporting both naming conventions if any
+
+filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        // Update active button
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filterValue = btn.getAttribute('data-filter');
+
+        projectCards.forEach(card => {
+            const categories = card.getAttribute('data-category') ? card.getAttribute('data-category').split(' ') : [];
+
+            if (filterValue === 'all' || categories.includes(filterValue)) {
+                card.classList.remove('hidden');
+                setTimeout(() => {
+                    card.classList.remove('fade-out');
+                }, 10);
+            } else {
+                card.classList.add('fade-out');
+                setTimeout(() => {
+                    card.classList.add('hidden');
+                }, 400);
+            }
+        });
+    });
+});
+
+
 // Project Modal Logic
 const modal = document.getElementById('project-modal');
 const closeModalBtn = modal.querySelector('.close-modal');

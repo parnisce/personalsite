@@ -117,9 +117,19 @@
                         creative portfolio experiences.</p>
                 </div>
 
+                <div class="filter-container">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="wordpress">WordPress</button>
+                    <button class="filter-btn" data-filter="ecommerce">E-Commerce</button>
+                    <button class="filter-btn" data-filter="backend">Backend</button>
+                    <button class="filter-btn" data-filter="frontend">Frontend</button>
+                    <button class="filter-btn" data-filter="figma">Figma</button>
+                </div>
+
                 <div class="projects-grid">
                     <!-- Project 1 -->
-                    <div class="project-card glass-card h-full" data-title="UPCA Dashboard"
+                    <div class="project-card glass-card h-full" data-category="backend frontend"
+                        data-title="UPCA Dashboard"
                         data-desc="UPCA Dashboard is a premium real estate media management portal. It allows media agencies to manage orders, properties, and assets in one place with real-time status tracking and automated delivery workflows. Built with a focus on speed and user experience for high-volume operations."
                         data-tech="React, TypeScript, Supabase, Tailwind CSS, Lucide Icons"
                         data-link="https://upcadashboard.vercel.app">
@@ -142,7 +152,8 @@
                     </div>
 
                     <!-- Project 2 -->
-                    <div class="project-card glass-card h-full" data-title="Luxe Commerce"
+                    <div class="project-card glass-card h-full" data-category="ecommerce frontend"
+                        data-title="Luxe Commerce"
                         data-desc="A high-end e-commerce experience designed for luxury brands. Featuring smooth animations, premium typography, and an optimized checkout flow. Integrated with Stripe for secure payments and Shopify as a headless backend for robust content management."
                         data-tech="Next.js, Shopify API, Stripe, Framer Motion, CSS Modules" data-link="#">
                         <div class="project-preview">
@@ -164,7 +175,7 @@
                     </div>
 
                     <!-- Project 3 -->
-                    <div class="project-card glass-card h-full" data-title="EdgeCore API"
+                    <div class="project-card glass-card h-full" data-category="backend" data-title="EdgeCore API"
                         data-desc="EdgeCore is a highly scalable backend architecture built to handle real-time data processing for enterprise analytics. It features a distributed architecture, optimized database queries, and strong security layers for sensitive data management."
                         data-tech="Go (Golang), PostgreSQL, Redis, Docker, Kubernetes, gRPC" data-link="#">
                         <div class="project-preview">
@@ -186,7 +197,8 @@
                     </div>
 
                     <!-- Project 4 -->
-                    <div class="project-card glass-card h-full" data-title="Habit Tracker"
+                    <div class="project-card glass-card h-full" data-category="frontend figma"
+                        data-title="Habit Tracker"
                         data-desc="A beautiful daily habit streak tracker built with glassmorphism design principles. Users can track their progress, set reminders, and visualize their streaks with interactive charts and calendars. Designed for mobile-first experience."
                         data-tech="React, Vite, CSS Grid/Flexbox, LocalStorage API" data-link="#">
                         <div class="project-preview">
@@ -207,28 +219,30 @@
                     </div>
 
                     <!-- Project 5 -->
-                    <div class="project-card glass-card h-full" data-title="Portfolio Engine"
-                        data-desc="A dynamic portfolio generator for creative professionals. Allows users to create stunning, animated portfolio sites without writing code. Features multiple premium themes and high-performance server-side rendering."
-                        data-tech="React, Next.js, Framer Motion, Vercel Functions" data-link="#">
+                    <div class="project-card glass-card h-full" data-category="wordpress ecommerce"
+                        data-title="WP Luxury Shop"
+                        data-desc="A custom WordPress e-commerce site built with WooCommerce. Features a bespoke theme, custom product builders, and advanced inventory synchronization across multiple warehouses."
+                        data-tech="WordPress, PHP, WooCommerce, MySQL, JavaScript" data-link="#">
                         <div class="project-preview">
                             <div class="preview-overlay overlay-2"></div>
-                            <img src="https://images.unsplash.com/photo-1487014679447-9f8336841d58?auto=format&fit=crop&w=800&q=80"
-                                alt="Portfolio Project" class="project-img">
+                            <img src="https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?auto=format&fit=crop&w=800&q=80"
+                                alt="WordPress Project" class="project-img">
                             <div class="project-badges">
-                                <span class="proj-badge">Next.js</span>
-                                <span class="proj-badge">UI/UX</span>
+                                <span class="proj-badge">WordPress</span>
+                                <span class="proj-badge">PHP</span>
+                                <span class="proj-badge">Woo</span>
                             </div>
                         </div>
                         <div class="project-info">
-                            <h3>Portfolio Engine</h3>
-                            <p>Dynamic engine for generating high-performance portfolio websites.</p>
+                            <h3>WP Luxury Shop</h3>
+                            <p>Custom WooCommerce solution for high-end boutique stores.</p>
                             <button class="view-project-btn view-project">View Project <i
                                     data-lucide="arrow-right"></i></button>
                         </div>
                     </div>
 
                     <!-- Project 6 -->
-                    <div class="project-card glass-card h-full" data-title="Cloud Archive"
+                    <div class="project-card glass-card h-full" data-category="backend" data-title="Cloud Archive"
                         data-desc="A secure cloud storage and file sharing platform. Optimized for fast uploads, end-to-end encryption, and collaborative workspace features. Built with a robust microservices architecture."
                         data-tech="Go, AWS S3, MongoDB, RabbitMQ, JWT Auth" data-link="#">
                         <div class="project-preview">
@@ -243,6 +257,27 @@
                         <div class="project-info">
                             <h3>Cloud Archive</h3>
                             <p>Secure cloud infrastructure for storage and collaboration.</p>
+                            <button class="view-project-btn view-project">View Project <i
+                                    data-lucide="arrow-right"></i></button>
+                        </div>
+                    </div>
+                    <!-- Project 7 -->
+                    <div class="project-card glass-card h-full" data-category="frontend figma"
+                        data-title="Portfolio Engine"
+                        data-desc="A dynamic portfolio generator for creative professionals. Allows users to create stunning, animated portfolio sites without writing code. Features multiple premium themes and high-performance server-side rendering."
+                        data-tech="React, Next.js, Framer Motion, Vercel Functions" data-link="#">
+                        <div class="project-preview">
+                            <div class="preview-overlay overlay-2"></div>
+                            <img src="https://images.unsplash.com/photo-1487014679447-9f8336841d58?auto=format&fit=crop&w=800&q=80"
+                                alt="Portfolio Project" class="project-img">
+                            <div class="project-badges">
+                                <span class="proj-badge">Next.js</span>
+                                <span class="proj-badge">UI/UX</span>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3>Portfolio Engine</h3>
+                            <p>Dynamic engine for generating high-performance portfolio websites.</p>
                             <button class="view-project-btn view-project">View Project <i
                                     data-lucide="arrow-right"></i></button>
                         </div>
