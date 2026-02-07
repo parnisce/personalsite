@@ -71,6 +71,7 @@ function showDashboard() {
 }
 
 // Login Handler
+// Login Handler
 loginForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -78,15 +79,29 @@ loginForm.addEventListener('submit', async (e) => {
     const password = document.getElementById('login-password').value;
 
     authError.classList.remove('show');
+    authError.textContent = 'Logging in...';
+    authError.classList.add('show');
 
     try {
+        console.log('Attempting login with:', email);
         const response = await fetch(`${API_BASE}/auth?action=login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password })
         });
 
-        const data = await response.json();
+        console.log('Response status:', response.status);
+
+        let data;
+        const text = await response.text(); // Get raw text first
+        try {
+            data = JSON.parse(text);
+        } catch (err) {
+            console.error('Failed to parse JSON:', text);
+            throw new Error(`Server returned non-JSON response: ${response.status}`);
+        }
+
+        console.log('Response data:', data);
 
         if (data.success && data.token) {
             // Save token
@@ -95,12 +110,16 @@ loginForm.addEventListener('submit', async (e) => {
             showDashboard();
             loadProjects();
         } else {
-            authError.textContent = data.error || 'Login failed';
+            const msg = data.message || data.error || 'Login failed';
+            authError.textContent = msg;
             authError.classList.add('show');
+            alert('Login Failed: ' + msg); // Fallback
         }
     } catch (error) {
-        authError.textContent = 'Network error. Please try again.';
+        console.error('Login Error:', error);
+        authError.textContent = 'Network error: ' + error.message;
         authError.classList.add('show');
+        alert('Login Error: ' + error.message);
     }
 });
 
