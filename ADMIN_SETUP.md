@@ -1,86 +1,64 @@
-# Admin Panel Setup Guide (Hostinger / MySQL)
+# Admin Panel Setup Guide (Vercel + Remote MySQL)
 
 ## 🎯 Overview
 
-Your personal portfolio admin panel now uses a **custom PHP API** connected to your Hostinger MySQL database.
+Your personal portfolio uses **Vercel Serverless Functions (Node.js)** to connect to your **Hostinger MySQL database**.
 
 ## 🚀 Quick Start Guide
 
 ### Step 1: Database Setup (phpMyAdmin)
 
-1. Log in to your Hostinger Handle / phpMyAdmin (`srv1518.hstgr.io`).
+1. Log in to your Hostinger Handle / phpMyAdmin.
 2. Select your database `u323771957_cyrylprojectdb`.
 3. Click the **SQL** tab.
-4. Copy the contents of `admin/MYSQL_SETUP.sql`.
-5. Paste into the query box and click **Go**.
-   - This creates the `projects` and `admin_users` tables.
+4. Run the SQL from `admin/MYSQL_SETUP.sql`.
 
-### Step 2: Upload Files
+### Step 2: Enable Remote MySQL (CRITICAL)
 
-Upload the entire `personalsite` folder to your `public_html` directory on Hostinger using File Manager or FTP (FileZilla).
+Since Vercel is external to Hostinger, you must allow connection.
 
-Ensure the structure looks like this on the server:
-```
-public_html/
-├── api/
-│   ├── config.php
-│   ├── auth.php
-│   ├── projects.php
-│   └── setup_user.php
-├── admin/
-│   ├── index.html
-│   ├── admin.js
-│   └── admin.css
-├── index.html
-├── db-loader.js
-└── ... (other assets)
-```
+1. Go to **Hostinger Dashboard** > **Databases** > **Remote MySQL**.
+2. Create a new Remote MySQL connection:
+   - **IP (IPv4) or %**: Enter `%` (This allows any IP, which is required for Vercel as their IPs change).
+   - **Database**: Select your database.
+   - Click **Create**.
+3. *Note: Using `%` affects security. Ensure you have a strong database password.*
 
-### Step 3: Create Admin User
+### Step 3: Deploy to Vercel
 
-1. In your browser, visit: `https://your-domain.com/api/setup_user.php`
-2. Enter your desired **Admin Email** and **Password**.
-3. Click **Create User**.
-4. **IMPORTANT**: Once successful, go to File Manager and **DELETE `api/setup_user.php`** immediately for security.
+1. Push your code to GitHub.
+2. Vercel will auto-deploy.
 
-### Step 4: Login to Admin Panel
+### Step 4: Configure Vercel Environment Variables
 
-1. Go to `https://your-domain.com/admin/`.
-2. Login with the improved credentials.
-3. You can now manage your projects!
+1. Go to your **Vercel Dashboard** > **Settings** > **Environment Variables**.
+2. Add these variables (using the values from your Hostinger DB):
+   - `DB_HOST`: `srv1518.hstgr.io`
+   - `DB_USER`: `u323771957_cyrylprousr`
+   - `DB_PASSWORD`: `yourpassword` (The one you provided earlier)
+   - `DB_NAME`: `u323771957_cyrylprojectdb`
+   - `ADMIN_EMAIL`: `admin@example.com` (Your desired admin email)
+   - `ADMIN_PASSWORD`: `securepassword` (Your desired admin login password)
 
-## 🔧 Configuration
+### Step 5: Test the Admin Panel
 
-Your database credentials are hardcoded in `api/config.php`. If you change your database password later, update this file:
+1. Go to `https://your-site.vercel.app/admin/`.
+2. Login with the `ADMIN_EMAIL` and `ADMIN_PASSWORD` you set in Vercel.
 
-```php
-define('DB_HOST', 'srv1518.hstgr.io');
-define('DB_USER', 'u323771957_cyrylprousr');
-define('DB_PASS', 'yourpassword'); // UPDATE THIS IF NEEDED
-define('DB_NAME', 'u323771957_cyrylprojectdb');
-```
+## 🔧 Local Development
 
-## 📝 API Endpoints
-
-The frontend communicates with these PHP endpoints:
-
-- `GET /api/projects.php`: Fetch all projects (Public)
-- `POST /api/projects.php`: Create new project (Admin only)
-- `PUT /api/projects.php`: Update project (Admin only)
-- `DELETE /api/projects.php`: Delete project (Admin only)
-- `POST /api/auth.php`: Login/Logout
+To run this locally, you need to set up environment variables or rely on the fallbacks in `api/db.js`.
+Ensure you have run `npm install` to get the `mysql2` driver.
 
 ## 🐛 Troubleshooting
 
-### "Database connection failed"
-- Check `api/config.php` credentials.
-- Ensure the user `u323771957_cyrylprousr` has privileges on the database.
-- Check if `srv1518.hstgr.io` is the correct host (sometimes it's `localhost` if the script runs on the same server). Try changing `DB_HOST` to `'localhost'` in `api/config.php` if the external host fails.
+### "Database connection failed" (Endpoint Timeout)
+- Did you enable **Remote MySQL** on Hostinger with `%`?
+- Double check `DB_HOST` and `DB_PASSWORD`.
 
-### "404 Not Found" on API calls
-- Ensure the `api` folder is uploaded correctly relative to `admin` and `index.html`.
-- Check file permissions (folders 755, files 644).
+### "500 Server Error"
+- Check Vercel Logs (Dashboard > Deployments > Logs).
+- Most likely a missing environment variable.
 
-### Admin Login fails loop
-- Ensure PHP sessions are working on your server.
-- Clear browser cookies/cache.
+### "404 Not Found" on API
+- Ensure `vercel.json` is present and committed.

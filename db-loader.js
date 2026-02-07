@@ -1,6 +1,6 @@
-// Load projects from PHP API
+// Load projects from Vercel API
 // Access the API relative to the current path
-const API_URL = 'api/projects.php';
+const API_URL = '/api/projects';
 
 async function loadProjectsFromDatabase() {
     try {

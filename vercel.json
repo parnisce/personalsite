@@ -1,4 +1,25 @@
 {
-    "cleanUrls": true,
-    "trailingSlash": true
+    "rewrites": [
+        {
+            "source": "/api/projects",
+            "destination": "/api/projects.js"
+        },
+        {
+            "source": "/api/auth",
+            "destination": "/api/auth.js"
+        },
+        {
+            "source": "/admin(.*)",
+            "destination": "/admin/index.html"
+        },
+        {
+            "source": "/(.*)",
+            "destination": "/index.html"
+        }
+    ],
+    "env": {
+        "DB_HOST": "srv1518.hstgr.io",
+        "DB_USER": "u323771957_cyrylprousr",
+        "DB_NAME": "u323771957_cyrylprojectdb"
+    }
 }

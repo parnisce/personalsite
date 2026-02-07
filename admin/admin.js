@@ -14,9 +14,8 @@ const projectsTableBody = document.getElementById('projects-table-body');
 const emptyState = document.getElementById('empty-state');
 const searchInput = document.getElementById('search-projects');
 
-// Access the API relative to the current path (assuming /admin is sibling to /api)
-// If admin is at /admin/index.html, API is at ../api/
-const API_BASE = '../api';
+// Access the API relative to the current path
+const API_BASE = '/api';
 
 let currentUser = null;
 let allProjects = [];
@@ -29,7 +28,7 @@ checkAuth();
 
 async function checkAuth() {
     try {
-        const response = await fetch(`${API_BASE}/auth.php?action=check`);
+        const response = await fetch(`${API_BASE}/auth?action=check`);
         const data = await response.json();
 
         if (data.authenticated) {
@@ -66,7 +65,7 @@ loginForm.addEventListener('submit', async (e) => {
     authError.classList.remove('show');
 
     try {
-        const response = await fetch(`${API_BASE}/auth.php?action=login`, {
+        const response = await fetch(`${API_BASE}/auth?action=login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password })
@@ -90,7 +89,7 @@ loginForm.addEventListener('submit', async (e) => {
 
 // Logout Handler
 logoutBtn.addEventListener('click', async () => {
-    await fetch(`${API_BASE}/auth.php?action=logout`, { method: 'POST' });
+    await fetch(`${API_BASE}/auth?action=logout`, { method: 'POST' });
     currentUser = null;
     showLogin();
 });
@@ -98,7 +97,7 @@ logoutBtn.addEventListener('click', async () => {
 // Load Projects
 async function loadProjects() {
     try {
-        const response = await fetch(`${API_BASE}/projects.php`);
+        const response = await fetch(`${API_BASE}/projects`);
         const data = await response.json();
 
         if (Array.isArray(data)) {
@@ -217,7 +216,7 @@ async function deleteProject(id) {
     }
 
     try {
-        const response = await fetch(`${API_BASE}/projects.php?id=${id}`, {
+        const response = await fetch(`${API_BASE}/projects?id=${id}`, {
             method: 'DELETE'
         });
 
@@ -254,7 +253,7 @@ projectForm.addEventListener('submit', async (e) => {
         // Update existing project
         projectData.id = projectId;
         try {
-            const response = await fetch(`${API_BASE}/projects.php`, {
+            const response = await fetch(`${API_BASE}/projects`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(projectData)
@@ -269,7 +268,7 @@ projectForm.addEventListener('submit', async (e) => {
     } else {
         // Create new project
         try {
-            const response = await fetch(`${API_BASE}/projects.php`, {
+            const response = await fetch(`${API_BASE}/projects`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(projectData)
