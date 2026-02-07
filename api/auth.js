@@ -1,5 +1,7 @@
 // api/auth.js
-export default async function handler(req, res) {
+const query = require('./db.js');
+
+module.exports = async function handler(req, res) {
     // CORS headers
     res.setHeader('Access-Control-Allow-Credentials', true);
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -30,6 +32,7 @@ export default async function handler(req, res) {
 
     if (req.method === 'POST') {
         const { action } = req.query;
+        // Handle body parsing if needed (Vercel usually does this automatically)
         const { email, password } = req.body || {};
 
         if (action === 'login') {
@@ -53,4 +56,4 @@ export default async function handler(req, res) {
     }
 
     res.status(405).json({ error: 'Method not allowed' });
-}
+};

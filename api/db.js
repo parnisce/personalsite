@@ -1,5 +1,5 @@
 // api/db.js
-import mysql from 'mysql2/promise';
+const mysql = require('mysql2/promise');
 
 // Use environment variables for sensitive data
 // OR fallback to hardcoded (less secure, but works for your personal site)
@@ -14,7 +14,7 @@ const pool = mysql.createPool({
     queueLimit: 0
 });
 
-export default async function query(sql, params) {
+module.exports = async function query(sql, params) {
     const [rows, fields] = await pool.execute(sql, params);
     return rows;
-}
+};
