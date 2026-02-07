@@ -9,7 +9,19 @@
             "destination": "/api/auth.js"
         },
         {
-            "source": "/admin((?!.*\\..*).*)",
+            "source": "/api/test",
+            "destination": "/api/test.js"
+        },
+        {
+            "source": "/admin",
+            "destination": "/admin/index.html"
+        },
+        {
+            "source": "/admin/",
+            "destination": "/admin/index.html"
+        },
+        {
+            "source": "/admin/((?!.*\\..*).*)",
             "destination": "/admin/index.html"
         },
         {
