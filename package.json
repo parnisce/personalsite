@@ -14,6 +14,7 @@
         "vercel": "latest"
     },
     "dependencies": {
+        "bcryptjs": "^3.0.3",
         "dotenv": "^17.2.4",
         "mysql2": "^3.16.3"
     }

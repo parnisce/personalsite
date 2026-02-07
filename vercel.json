@@ -13,8 +13,28 @@
             "destination": "/api/test.js"
         },
         {
+            "source": "/api/create_admin",
+            "destination": "/api/create_admin.js"
+        },
+        {
             "source": "/admin",
             "destination": "/admin/index.html"
+        },
+        {
+            "source": "/admin/",
+            "destination": "/admin/index.html"
+        },
+        {
+            "source": "/(.*\\.(css|js|png|jpg|jpeg|gif|svg|ico|json|map))",
+            "destination": "/$1"
+        },
+        {
+            "source": "/admin/(.*)",
+            "destination": "/admin/index.html"
+        },
+        {
+            "source": "/(.*)",
+            "destination": "/index.html"
         }
     ],
     "env": {
