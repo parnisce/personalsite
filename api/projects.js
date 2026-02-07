@@ -6,7 +6,7 @@ export default async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Credentials', true);
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
-    res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
+    res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Authorization');
 
     if (req.method === 'OPTIONS') {
         res.status(200).end();
@@ -20,10 +20,18 @@ export default async function handler(req, res) {
             return;
         }
 
+        // --- AUTHENTICATION CHECK ---
+        const authHeader = req.headers.authorization;
+        const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'yourpassword';
+
+        if (!authHeader || authHeader !== `Bearer ${ADMIN_PASSWORD}`) {
+            return res.status(401).json({ error: 'Unauthorized: Invalid or missing token' });
+        }
+        // -----------------------------
+
         if (req.method === 'POST') {
             const { title, short_description, description, tech_stack, image_url, link, category, badges } = req.body;
 
-            // Basic validation
             if (!title) return res.status(400).json({ error: 'Title is required' });
 
             const result = await query(

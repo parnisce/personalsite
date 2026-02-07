@@ -3,6 +3,7 @@
     "version": "1.0.0",
     "description": "Cyryl Bitangcol Personal Portfolio with Glassmorphism Design",
     "main": "index.html",
+    "type": "module",
     "scripts": {
         "start": "npx live-server .",
         "deploy": "npx vercel --prod"

@@ -23,12 +23,27 @@ let allProjects = [];
 // Initialize Lucide icons
 lucide.createIcons();
 
+// --- AUTHENTICATION LOGIC ---
+
+// Get token from storage
+const getToken = () => localStorage.getItem('adminToken');
+
+// API Wrapper fetch function
+async function authFetch(url, options = {}) {
+    const token = getToken();
+    const headers = options.headers || {};
+    if (token) {
+        headers['Authorization'] = `Bearer ${token}`; // Send token!
+    }
+    return fetch(url, { ...options, headers });
+}
+
 // Check if user is already logged in
 checkAuth();
 
 async function checkAuth() {
     try {
-        const response = await fetch(`${API_BASE}/auth?action=check`);
+        const response = await authFetch(`${API_BASE}/auth?action=check`);
         const data = await response.json();
 
         if (data.authenticated) {
@@ -73,7 +88,9 @@ loginForm.addEventListener('submit', async (e) => {
 
         const data = await response.json();
 
-        if (data.success) {
+        if (data.success && data.token) {
+            // Save token
+            localStorage.setItem('adminToken', data.token);
             currentUser = data.user;
             showDashboard();
             loadProjects();
@@ -89,7 +106,7 @@ loginForm.addEventListener('submit', async (e) => {
 
 // Logout Handler
 logoutBtn.addEventListener('click', async () => {
-    await fetch(`${API_BASE}/auth?action=logout`, { method: 'POST' });
+    localStorage.removeItem('adminToken'); // Clear token
     currentUser = null;
     showLogin();
 });
@@ -187,13 +204,8 @@ addProjectBtn.addEventListener('click', () => {
 
 // Edit Project
 function editProject(id) {
-    // Determine if ID is string or number (MySQL IDs are usually numbers)
     const project = allProjects.find(p => p.id == id);
-
-    if (!project) {
-        console.error('Project not found');
-        return;
-    }
+    if (!project) return;
 
     document.getElementById('modal-title').textContent = 'Edit Project';
     document.getElementById('project-id').value = project.id;
@@ -209,14 +221,14 @@ function editProject(id) {
     openModal();
 }
 
-// Delete Project
+// Delete Project (Protected)
 async function deleteProject(id) {
     if (!confirm('Are you sure you want to delete this project?')) {
         return;
     }
 
     try {
-        const response = await fetch(`${API_BASE}/projects?id=${id}`, {
+        const response = await authFetch(`${API_BASE}/projects?id=${id}`, {
             method: 'DELETE'
         });
 
@@ -225,7 +237,7 @@ async function deleteProject(id) {
         if (data.success) {
             loadProjects();
         } else {
-            alert('Failed to delete project: ' + (data.error || 'Unknown error'));
+            alert('Failed to delete project: ' + (data.error || 'Authenication failed or unknown error'));
         }
     } catch (error) {
         console.error('Error deleting project:', error);
@@ -233,7 +245,7 @@ async function deleteProject(id) {
     }
 }
 
-// Save Project
+// Save Project (Protected)
 projectForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -249,41 +261,27 @@ projectForm.addEventListener('submit', async (e) => {
         badges: document.getElementById('project-badges').value
     };
 
-    if (projectId) {
-        // Update existing project
-        projectData.id = projectId;
-        try {
-            const response = await fetch(`${API_BASE}/projects`, {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(projectData)
-            });
-            const data = await response.json();
-            if (!data.success) throw new Error(data.error);
-        } catch (error) {
-            console.error('Error updating project:', error);
-            alert('Failed to update project');
-            return;
-        }
-    } else {
-        // Create new project
-        try {
-            const response = await fetch(`${API_BASE}/projects`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(projectData)
-            });
-            const data = await response.json();
-            if (!data.success) throw new Error(data.error);
-        } catch (error) {
-            console.error('Error saving project:', error);
-            alert('Failed to save project');
-            return;
-        }
-    }
+    const url = `${API_BASE}/projects`;
+    const method = projectId ? 'PUT' : 'POST';
+    if (projectId) projectData.id = projectId;
 
-    closeModal();
-    loadProjects();
+    try {
+        const response = await authFetch(url, {
+            method: method,
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(projectData)
+        });
+
+        const data = await response.json();
+        if (!data.success) throw new Error(data.error);
+
+        closeModal();
+        loadProjects();
+
+    } catch (error) {
+        console.error('Error saving project:', error);
+        alert('Failed to save project: ' + error.message);
+    }
 });
 
 // Modal Controls
