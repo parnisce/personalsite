@@ -1,22 +1,6 @@
 {
     "rewrites": [
         {
-            "source": "/api/projects",
-            "destination": "/api/projects.js"
-        },
-        {
-            "source": "/api/auth",
-            "destination": "/api/auth.js"
-        },
-        {
-            "source": "/api/test",
-            "destination": "/api/test.js"
-        },
-        {
-            "source": "/api/create_admin",
-            "destination": "/api/create_admin.js"
-        },
-        {
             "source": "/admin",
             "destination": "/admin/index.html"
         },
@@ -33,7 +17,7 @@
             "destination": "/admin/index.html"
         },
         {
-            "source": "/(.*)",
+            "source": "/((?!api/|admin/|.*\\..*).*)",
             "destination": "/index.html"
         }
     ],
