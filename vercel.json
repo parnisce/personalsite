@@ -17,11 +17,6 @@
             "destination": "/index.html"
         }
     ],
-    "functions": {
-        "api/*.js": {
-            "runtime": "nodejs18.x"
-        }
-    },
     "env": {
         "DB_HOST": "srv1518.hstgr.io",
         "DB_USER": "u323771957_cyrylprousr",
