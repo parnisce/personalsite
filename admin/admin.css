@@ -404,3 +404,17 @@
 .light-mode .projects-table tbody tr:hover {
     background: rgba(0, 0, 0, 0.02);
 }
+
+/* Cursor Fix */
+body {
+    cursor: default !important;
+}
+
+button,
+a,
+input,
+textarea,
+.glass-card,
+.project-card {
+    cursor: pointer !important;
+}
