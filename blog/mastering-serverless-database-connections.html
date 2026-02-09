@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering Serverless Database Connections | Blog | Cyryl Bitangcol</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../main.css">
+    <link rel="stylesheet" href="../blog.css">
+</head>
+
+<body class="dark-mode">
+    <nav class="glass-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="/" class="logo-text">Cyryl<span class="accent-text">.Bitangcol</span></a>
+            </div>
+            <div class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/blog/" class="nav-link active">Blog</a>
+                <a href="/about/" class="nav-link">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <article class="post-header">
+            <div class="container">
+                <a href="/blog/" class="back-to-blog"><i data-lucide="arrow-left"></i> Back to Blog</a>
+                <div class="post-meta-detailed">
+                    <span>Feb 05, 2026</span>
+                    <span>•</span>
+                    <span>Development</span>
+                    <span>•</span>
+                    <span>8 min read</span>
+                </div>
+                <h1 class="post-title-large">Mastering <span class="gradient-text">Serverless Database</span>
+                    Connections</h1>
+                <div class="post-hero-image"
+                    style="background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80');">
+                </div>
+
+                <div class="post-container-narrow post-body">
+                    <p>Connecting to a persistent database from a serverless function presents unique challenges. Unlike
+                        traditional servers, serverless functions are ephemeral—they spin up, execute, and disappear.
+                    </p>
+
+                    <h2>The Connection Exhaustion Problem</h2>
+                    <p>Because serverless functions can scale rapidly, you might find your database overwhelmed with
+                        thousands of simultaneous connections. Traditional connection pooling doesn't work the same way
+                        in a stateless environment.</p>
+
+                    <blockquote>
+                        "Scaling your application is easy; scaling your database is where the real work begins."
+                    </blockquote>
+
+                    <p>To solve this, we use strategies like connection reuse within the same execution context, using
+                        external connection proxies (like Prisma Accelerate or AWS RDS Proxy), or carefully managing the
+                        pool size to prevent exhaustion.</p>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer class="glass-footer">
+        <div class="container">
+            <div class="footer-wrap">
+                <p>&copy; 2026 Cyryl Bitangcol. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="../main.js"></script>
+</body>
+
+</html>
