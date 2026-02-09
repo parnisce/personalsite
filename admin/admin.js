@@ -4,41 +4,50 @@ const adminDashboard = document.getElementById('admin-dashboard');
 const loginForm = document.getElementById('login-form');
 const authError = document.getElementById('auth-error');
 const logoutBtn = document.getElementById('logout-btn');
+
+// Projects Elements
 const addProjectBtn = document.getElementById('add-project-btn');
 const projectModal = document.getElementById('project-modal');
 const projectForm = document.getElementById('project-form');
-const closeModalBtn = projectModal.querySelector('.close-modal');
-const cancelBtn = projectModal.querySelector('.cancel-btn');
-const modalOverlay = projectModal.querySelector('.modal-overlay');
 const projectsTableBody = document.getElementById('projects-table-body');
 const emptyState = document.getElementById('empty-state');
 const searchInput = document.getElementById('search-projects');
 
-// Access the API relative to the current path
+// Blog Elements
+const addBlogBtn = document.getElementById('add-blog-btn');
+const blogModal = document.getElementById('blog-modal');
+const blogForm = document.getElementById('blog-form');
+const blogTableBody = document.getElementById('blog-table-body');
+const blogEmptyState = document.getElementById('blog-empty-state');
+const blogSearchInput = document.getElementById('search-blog');
+
+// Tabs
+const tabBtns = document.querySelectorAll('.admin-tab');
+const tabContents = document.querySelectorAll('.tab-content');
+
+// API relative path
 const API_BASE = '/api';
 
 let currentUser = null;
 let allProjects = [];
+let allBlogPosts = [];
 
 // Initialize Lucide icons
 lucide.createIcons();
 
 // --- AUTHENTICATION LOGIC ---
 
-// Get token from storage
 const getToken = () => localStorage.getItem('adminToken');
 
-// API Wrapper fetch function
 async function authFetch(url, options = {}) {
     const token = getToken();
     const headers = options.headers || {};
     if (token) {
-        headers['Authorization'] = `Bearer ${token}`; // Send token!
+        headers['Authorization'] = `Bearer ${token}`;
     }
     return fetch(url, { ...options, headers });
 }
 
-// Check if user is already logged in
 checkAuth();
 
 async function checkAuth() {
@@ -49,7 +58,7 @@ async function checkAuth() {
         if (data.authenticated) {
             currentUser = data.user;
             showDashboard();
-            loadProjects();
+            loadAllData();
         } else {
             showLogin();
         }
@@ -70,11 +79,14 @@ function showDashboard() {
     lucide.createIcons();
 }
 
-// Login Handler
+function loadAllData() {
+    loadProjects();
+    loadBlogPosts();
+}
+
 // Login Handler
 loginForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-
     const email = document.getElementById('login-email').value;
     const password = document.getElementById('login-password').value;
 
@@ -83,193 +95,139 @@ loginForm.addEventListener('submit', async (e) => {
     authError.classList.add('show');
 
     try {
-        console.log('Attempting login with:', email);
         const response = await fetch(`${API_BASE}/auth?action=login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password })
         });
 
-        console.log('Response status:', response.status);
-
-        let data;
-        const text = await response.text(); // Get raw text first
-        try {
-            data = JSON.parse(text);
-        } catch (err) {
-            console.error('Failed to parse JSON:', text);
-            throw new Error(`Server returned non-JSON response: ${response.status}`);
-        }
-
-        console.log('Response data:', data);
+        const data = await response.json();
 
         if (data.success && data.token) {
-            // Save token
             localStorage.setItem('adminToken', data.token);
             currentUser = data.user;
             showDashboard();
-            loadProjects();
+            loadAllData();
         } else {
-            const msg = data.message || data.error || 'Login failed';
-            authError.textContent = msg;
+            authError.textContent = data.message || data.error || 'Login failed';
             authError.classList.add('show');
-            alert('Login Failed: ' + msg); // Fallback
         }
     } catch (error) {
         console.error('Login Error:', error);
         authError.textContent = 'Network error: ' + error.message;
         authError.classList.add('show');
-        alert('Login Error: ' + error.message);
     }
 });
 
-// Logout Handler
-logoutBtn.addEventListener('click', async () => {
-    localStorage.removeItem('adminToken'); // Clear token
+logoutBtn.addEventListener('click', () => {
+    localStorage.removeItem('adminToken');
     currentUser = null;
     showLogin();
 });
 
-// Load Projects
+// --- TAB SWITCHING ---
+tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const tab = btn.dataset.tab;
+        tabBtns.forEach(b => b.classList.remove('active'));
+        tabContents.forEach(c => c.classList.remove('active'));
+
+        btn.classList.add('active');
+        document.getElementById(`${tab}-section`).classList.add('active');
+        lucide.createIcons();
+    });
+});
+
+// --- PROJECTS MANAGEMENT ---
+
 async function loadProjects() {
     try {
         const response = await fetch(`${API_BASE}/projects`);
         const data = await response.json();
-
         if (Array.isArray(data)) {
             allProjects = data;
             renderProjects(allProjects);
-        } else {
-            console.error('Error loading projects:', data.error);
         }
     } catch (error) {
-        console.error('Network error loading projects:', error);
+        console.error('Error loading projects:', error);
     }
 }
 
-// Render Projects
 function renderProjects(projects) {
     if (projects.length === 0) {
         projectsTableBody.innerHTML = '';
         emptyState.style.display = 'block';
-        lucide.createIcons();
-        return;
+    } else {
+        emptyState.style.display = 'none';
+        projectsTableBody.innerHTML = projects.map(project => `
+            <tr>
+                <td><strong>${project.title}</strong></td>
+                <td>
+                    <div class="category-badges">
+                        ${(project.category || '').split(' ').map(cat => `<span class="category-badge">${cat}</span>`).join('')}
+                    </div>
+                </td>
+                <td class="tech-list">${project.tech_stack}</td>
+                <td><a href="${project.link}" target="_blank" class="project-link">View <i data-lucide="external-link"></i></a></td>
+                <td>
+                    <div class="table-actions-cell">
+                        <button class="icon-btn-small edit-project-btn" data-id="${project.id}"><i data-lucide="edit"></i></button>
+                        <button class="icon-btn-small delete delete-project-btn" data-id="${project.id}"><i data-lucide="trash-2"></i></button>
+                    </div>
+                </td>
+            </tr>
+        `).join('');
     }
-
-    emptyState.style.display = 'none';
-
-    projectsTableBody.innerHTML = projects.map(project => `
-        <tr data-id="${project.id}">
-            <td><strong>${project.title}</strong></td>
-            <td>
-                <div class="category-badges">
-                    ${(project.category || '').split(' ').map(cat =>
-        `<span class="category-badge">${cat}</span>`
-    ).join('')}
-                </div>
-            </td>
-            <td class="tech-list">${project.tech_stack}</td>
-            <td>
-                <a href="${project.link}" target="_blank" class="project-link">
-                    <span>View</span>
-                    <i data-lucide="external-link"></i>
-                </a>
-            </td>
-            <td>
-                <div class="table-actions-cell">
-                    <button class="icon-btn-small edit-btn" data-id="${project.id}" title="Edit">
-                        <i data-lucide="edit"></i>
-                    </button>
-                    <button class="icon-btn-small delete delete-btn" data-id="${project.id}" title="Delete">
-                        <i data-lucide="trash-2"></i>
-                    </button>
-                </div>
-            </td>
-        </tr>
-    `).join('');
-
     lucide.createIcons();
-
-    // Attach event listeners
-    document.querySelectorAll('.edit-btn').forEach(btn => {
-        btn.addEventListener('click', () => editProject(btn.dataset.id));
-    });
-
-    document.querySelectorAll('.delete-btn').forEach(btn => {
-        btn.addEventListener('click', () => deleteProject(btn.dataset.id));
-    });
+    attachProjectEvents();
 }
 
-// Search Projects
+function attachProjectEvents() {
+    document.querySelectorAll('.edit-project-btn').forEach(btn => btn.addEventListener('click', () => editProject(btn.dataset.id)));
+    document.querySelectorAll('.delete-project-btn').forEach(btn => btn.addEventListener('click', () => deleteProject(btn.dataset.id)));
+}
+
 searchInput.addEventListener('input', (e) => {
-    const searchTerm = e.target.value.toLowerCase();
-
-    const filtered = allProjects.filter(project =>
-        (project.title || '').toLowerCase().includes(searchTerm) ||
-        (project.category || '').toLowerCase().includes(searchTerm) ||
-        (project.tech_stack || '').toLowerCase().includes(searchTerm)
-    );
-
+    const term = e.target.value.toLowerCase();
+    const filtered = allProjects.filter(p => p.title.toLowerCase().includes(term) || (p.category || '').toLowerCase().includes(term));
     renderProjects(filtered);
 });
 
-// Open Modal for New Project
 addProjectBtn.addEventListener('click', () => {
     document.getElementById('modal-title').textContent = 'Add New Project';
     projectForm.reset();
     document.getElementById('project-id').value = '';
-    openModal();
+    openModal(projectModal);
 });
 
-// Edit Project
 function editProject(id) {
-    const project = allProjects.find(p => p.id == id);
-    if (!project) return;
-
+    const p = allProjects.find(item => item.id == id);
+    if (!p) return;
     document.getElementById('modal-title').textContent = 'Edit Project';
-    document.getElementById('project-id').value = project.id;
-    document.getElementById('project-title').value = project.title;
-    document.getElementById('project-link').value = project.link;
-    document.getElementById('project-short-desc').value = project.short_description;
-    document.getElementById('project-description').value = project.description;
-    document.getElementById('project-tech').value = project.tech_stack;
-    document.getElementById('project-image').value = project.image_url;
-    document.getElementById('project-category').value = project.category;
-    document.getElementById('project-badges').value = project.badges;
-
-    openModal();
+    document.getElementById('project-id').value = p.id;
+    document.getElementById('project-title').value = p.title;
+    document.getElementById('project-link').value = p.link;
+    document.getElementById('project-short-desc').value = p.short_description;
+    document.getElementById('project-description').value = p.description;
+    document.getElementById('project-tech').value = p.tech_stack;
+    document.getElementById('project-image').value = p.image_url;
+    document.getElementById('project-category').value = p.category;
+    document.getElementById('project-badges').value = p.badges;
+    openModal(projectModal);
 }
 
-// Delete Project (Protected)
 async function deleteProject(id) {
-    if (!confirm('Are you sure you want to delete this project?')) {
-        return;
-    }
-
+    if (!confirm('Delete this project?')) return;
     try {
-        const response = await authFetch(`${API_BASE}/projects?id=${id}`, {
-            method: 'DELETE'
-        });
-
-        const data = await response.json();
-
-        if (data.success) {
-            loadProjects();
-        } else {
-            alert('Failed to delete project: ' + (data.error || 'Authenication failed or unknown error'));
-        }
-    } catch (error) {
-        console.error('Error deleting project:', error);
-        alert('Network error while deleting');
-    }
+        const response = await authFetch(`${API_BASE}/projects?id=${id}`, { method: 'DELETE' });
+        if ((await response.json()).success) loadProjects();
+    } catch (e) { alert('Error deleting project'); }
 }
 
-// Save Project (Protected)
 projectForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-
-    const projectId = document.getElementById('project-id').value;
-    const projectData = {
+    const id = document.getElementById('project-id').value;
+    const data = {
         title: document.getElementById('project-title').value,
         link: document.getElementById('project-link').value,
         short_description: document.getElementById('project-short-desc').value,
@@ -279,48 +237,155 @@ projectForm.addEventListener('submit', async (e) => {
         category: document.getElementById('project-category').value,
         badges: document.getElementById('project-badges').value
     };
-
-    const url = `${API_BASE}/projects`;
-    const method = projectId ? 'PUT' : 'POST';
-    if (projectId) projectData.id = projectId;
-
+    if (id) data.id = id;
     try {
-        const response = await authFetch(url, {
-            method: method,
+        const res = await authFetch(`${API_BASE}/projects`, {
+            method: id ? 'PUT' : 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(projectData)
+            body: JSON.stringify(data)
         });
-
-        const data = await response.json();
-        if (!data.success) throw new Error(data.error);
-
-        closeModal();
-        loadProjects();
-
-    } catch (error) {
-        console.error('Error saving project:', error);
-        alert('Failed to save project: ' + error.message);
-    }
+        if ((await res.json()).success) {
+            closeModal(projectModal);
+            loadProjects();
+        }
+    } catch (e) { alert('Error saving project'); }
 });
 
-// Modal Controls
-function openModal() {
-    projectModal.classList.add('active');
+// --- BLOG MANAGEMENT ---
+
+async function loadBlogPosts() {
+    try {
+        const response = await fetch(`${API_BASE}/blog`);
+        const data = await response.json();
+        if (Array.isArray(data)) {
+            allBlogPosts = data;
+            renderBlogPosts(allBlogPosts);
+        }
+    } catch (error) {
+        console.error('Error loading blog posts:', error);
+    }
+}
+
+function renderBlogPosts(posts) {
+    if (posts.length === 0) {
+        blogTableBody.innerHTML = '';
+        blogEmptyState.style.display = 'block';
+    } else {
+        blogEmptyState.style.display = 'none';
+        blogTableBody.innerHTML = posts.map(post => `
+            <tr>
+                <td><strong>${post.title}</strong></td>
+                <td><code>${post.slug}</code></td>
+                <td><span class="category-badge">${post.category || 'Uncategorized'}</span></td>
+                <td>${new Date(post.published_at).toLocaleDateString()}</td>
+                <td>
+                    <div class="table-actions-cell">
+                        <button class="icon-btn-small edit-blog-btn" data-id="${post.id}"><i data-lucide="edit"></i></button>
+                        <button class="icon-btn-small delete delete-blog-btn" data-id="${post.id}"><i data-lucide="trash-2"></i></button>
+                    </div>
+                </td>
+            </tr>
+        `).join('');
+    }
+    lucide.createIcons();
+    attachBlogEvents();
+}
+
+function attachBlogEvents() {
+    document.querySelectorAll('.edit-blog-btn').forEach(btn => btn.addEventListener('click', () => editBlogPost(btn.dataset.id)));
+    document.querySelectorAll('.delete-blog-btn').forEach(btn => btn.addEventListener('click', () => deleteBlogPost(btn.dataset.id)));
+}
+
+blogSearchInput.addEventListener('input', (e) => {
+    const term = e.target.value.toLowerCase();
+    const filtered = allBlogPosts.filter(p => p.title.toLowerCase().includes(term) || (p.category || '').toLowerCase().includes(term));
+    renderBlogPosts(filtered);
+});
+
+addBlogBtn.addEventListener('click', () => {
+    document.getElementById('blog-modal-title').textContent = 'Add New Blog Post';
+    blogForm.reset();
+    document.getElementById('blog-id').value = '';
+    openModal(blogModal);
+});
+
+function editBlogPost(id) {
+    const p = allBlogPosts.find(item => item.id == id);
+    if (!p) return;
+    document.getElementById('blog-modal-title').textContent = 'Edit Blog Post';
+    document.getElementById('blog-id').value = p.id;
+    document.getElementById('blog-title').value = p.title;
+    document.getElementById('blog-slug').value = p.slug;
+    document.getElementById('blog-excerpt').value = p.excerpt;
+    document.getElementById('blog-content').value = p.content;
+    document.getElementById('blog-category').value = p.category;
+    document.getElementById('blog-image').value = p.image_url;
+    openModal(blogModal);
+}
+
+async function deleteBlogPost(id) {
+    if (!confirm('Delete this blog post?')) return;
+    try {
+        const response = await authFetch(`${API_BASE}/blog?id=${id}`, { method: 'DELETE' });
+        if ((await response.json()).success) loadBlogPosts();
+    } catch (e) { alert('Error deleting blog post'); }
+}
+
+blogForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const id = document.getElementById('blog-id').value;
+    const data = {
+        title: document.getElementById('blog-title').value,
+        slug: document.getElementById('blog-slug').value,
+        excerpt: document.getElementById('blog-excerpt').value,
+        content: document.getElementById('blog-content').value,
+        category: document.getElementById('blog-category').value,
+        image_url: document.getElementById('blog-image').value
+    };
+    if (id) data.id = id;
+    try {
+        const res = await authFetch(`${API_BASE}/blog`, {
+            method: id ? 'PUT' : 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+        if ((await res.json()).success) {
+            closeModal(blogModal);
+            loadBlogPosts();
+        }
+    } catch (e) { alert('Error saving blog post'); }
+});
+
+// --- MODAL CONTROLS ---
+
+function openModal(modal) {
+    modal.classList.add('active');
     document.body.style.overflow = 'hidden';
     lucide.createIcons();
 }
 
-function closeModal() {
-    projectModal.classList.remove('active');
+function closeModal(modal) {
+    modal.classList.remove('active');
     document.body.style.overflow = 'auto';
 }
 
-closeModalBtn.addEventListener('click', closeModal);
-cancelBtn.addEventListener('click', closeModal);
-modalOverlay.addEventListener('click', closeModal);
+document.querySelectorAll('.close-modal, .cancel-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        closeModal(projectModal);
+        closeModal(blogModal);
+    });
+});
+
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', () => {
+        closeModal(projectModal);
+        closeModal(blogModal);
+    });
+});
 
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && projectModal.classList.contains('active')) {
-        closeModal();
+    if (e.key === 'Escape') {
+        closeModal(projectModal);
+        closeModal(blogModal);
     }
 });

@@ -71,46 +71,104 @@
 
         <main class="admin-main">
             <div class="container">
-                <!-- Header -->
-                <div class="admin-header">
-                    <div>
-                        <h1 class="admin-title">Project Management</h1>
-                        <p class="admin-subtitle">Add, edit, and manage your portfolio projects</p>
-                    </div>
-                    <button id="add-project-btn" class="primary-btn">
-                        <i data-lucide="plus"></i>
-                        Add New Project
+                <!-- Tabs -->
+                <div class="admin-tabs">
+                    <button class="admin-tab active" data-tab="projects">
+                        <i data-lucide="folder"></i>
+                        Projects
+                    </button>
+                    <button class="admin-tab" data-tab="blog">
+                        <i data-lucide="book-open"></i>
+                        Blog Posts
                     </button>
                 </div>
 
-                <!-- Projects Table -->
-                <div class="projects-table-container glass-card">
-                    <div class="table-header">
-                        <h2>All Projects</h2>
-                        <div class="table-actions">
-                            <input type="text" id="search-projects" placeholder="Search projects..."
-                                class="search-input">
+                <!-- Projects Section -->
+                <div id="projects-section" class="tab-content active">
+                    <div class="admin-header">
+                        <div>
+                            <h1 class="admin-title">Project Management</h1>
+                            <p class="admin-subtitle">Add, edit, and manage your portfolio projects</p>
+                        </div>
+                        <button id="add-project-btn" class="primary-btn">
+                            <i data-lucide="plus"></i>
+                            Add New Project
+                        </button>
+                    </div>
+
+                    <!-- Projects Table -->
+                    <div class="projects-table-container glass-card">
+                        <div class="table-header">
+                            <h2>All Projects</h2>
+                            <div class="table-actions">
+                                <input type="text" id="search-projects" placeholder="Search projects..."
+                                    class="search-input">
+                            </div>
+                        </div>
+                        <div class="table-wrapper">
+                            <table class="projects-table">
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Category</th>
+                                        <th>Tech Stack</th>
+                                        <th>Link</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="projects-table-body">
+                                    <!-- Projects will be loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="empty-state" class="empty-state" style="display: none;">
+                            <i data-lucide="folder-open"></i>
+                            <p>No projects found</p>
                         </div>
                     </div>
-                    <div class="table-wrapper">
-                        <table class="projects-table">
-                            <thead>
-                                <tr>
-                                    <th>Title</th>
-                                    <th>Category</th>
-                                    <th>Tech Stack</th>
-                                    <th>Link</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="projects-table-body">
-                                <!-- Projects will be loaded here -->
-                            </tbody>
-                        </table>
+                </div>
+
+                <!-- Blog Section -->
+                <div id="blog-section" class="tab-content">
+                    <div class="admin-header">
+                        <div>
+                            <h1 class="admin-title">Blog Management</h1>
+                            <p class="admin-subtitle">Add, edit, and manage your blog posts</p>
+                        </div>
+                        <button id="add-blog-btn" class="primary-btn">
+                            <i data-lucide="plus"></i>
+                            Add New Post
+                        </button>
                     </div>
-                    <div id="empty-state" class="empty-state" style="display: none;">
-                        <i data-lucide="folder-open"></i>
-                        <p>No projects found</p>
+
+                    <!-- Blog Table -->
+                    <div class="projects-table-container glass-card">
+                        <div class="table-header">
+                            <h2>All Posts</h2>
+                            <div class="table-actions">
+                                <input type="text" id="search-blog" placeholder="Search posts..." class="search-input">
+                            </div>
+                        </div>
+                        <div class="table-wrapper">
+                            <table class="projects-table">
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Slug</th>
+                                        <th>Category</th>
+                                        <th>Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="blog-table-body">
+                                    <!-- Blog posts will be loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="blog-empty-state" class="empty-state" style="display: none;">
+                            <i data-lucide="book-open"></i>
+                            <p>No blog posts found</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -181,6 +239,66 @@
                         <button type="submit" class="primary-btn">
                             <i data-lucide="save"></i>
                             Save Project
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blog Modal -->
+    <div id="blog-modal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-container glass-card animate-in">
+            <button class="close-modal glass-btn">
+                <i data-lucide="x"></i>
+            </button>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="blog-modal-title" class="section-title">Add New Blog Post</h2>
+                </div>
+                <form id="blog-form" class="project-form">
+                    <input type="hidden" id="blog-id">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Post Title *</label>
+                            <input type="text" id="blog-title" placeholder="The Future of AI" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Slug *</label>
+                            <input type="text" id="blog-slug" placeholder="future-of-ai" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Excerpt (Short summary) *</label>
+                        <textarea id="blog-excerpt" rows="2" placeholder="Brief summary of the post..."
+                            required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Content (Full text) *</label>
+                        <textarea id="blog-content" rows="10" placeholder="Write your post content here..."
+                            required></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Category *</label>
+                            <input type="text" id="blog-category" placeholder="Development" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Image URL *</label>
+                            <input type="url" id="blog-image" placeholder="https://images.unsplash.com/..." required>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="secondary-btn cancel-btn">Cancel</button>
+                        <button type="submit" class="primary-btn">
+                            <i data-lucide="save"></i>
+                            Save Post
                         </button>
                     </div>
                 </form>
