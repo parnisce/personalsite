@@ -5,19 +5,15 @@
             "destination": "/admin/index.html"
         },
         {
-            "source": "/admin/",
-            "destination": "/admin/index.html"
-        },
-        {
-            "source": "/(.*\\.(css|js|png|jpg|jpeg|gif|svg|ico|json|map))",
-            "destination": "/$1"
-        },
-        {
             "source": "/admin/(.*)",
             "destination": "/admin/index.html"
         },
         {
-            "source": "/((?!api/|admin/|.*\\..*).*)",
+            "source": "/api/(.*)",
+            "destination": "/api/$1"
+        },
+        {
+            "source": "/(.*)",
             "destination": "/index.html"
         }
     ],
