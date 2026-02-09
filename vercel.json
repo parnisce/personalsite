@@ -13,7 +13,23 @@
             "destination": "/admin/index.html"
         },
         {
-            "source": "/((?!api/|admin/|.*\\.).*)",
+            "source": "/about",
+            "destination": "/about/index.html"
+        },
+        {
+            "source": "/about/",
+            "destination": "/about/index.html"
+        },
+        {
+            "source": "/blog",
+            "destination": "/blog/index.html"
+        },
+        {
+            "source": "/blog/",
+            "destination": "/blog/index.html"
+        },
+        {
+            "source": "/((?!api/|admin/|about/|blog/|.*\\.).*)",
             "destination": "/index.html"
         }
     ],

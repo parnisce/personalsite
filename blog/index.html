@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Cyryl Bitangcol Portfolio</title>
+    <meta name="description"
+        content="Read the latest insights on web development, artistic engineering, and design systems from Cyryl Bitangcol.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="../main.css">
+    <link rel="stylesheet" href="../blog.css">
+</head>
+
+<body class="dark-mode">
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <div id="blob-container">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="glass-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="/" class="logo-text">Cyryl<span class="accent-text">.Bitangcol</span></a>
+            </div>
+            <div class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/#projects" class="nav-link">Projects</a>
+                <a href="/#services" class="nav-link">Services</a>
+                <a href="/blog/" class="nav-link active">Blog</a>
+                <a href="/about/" class="nav-link">About</a>
+                <a href="/#contact" class="nav-link contact-btn">Let's talk</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="glass-btn icon-btn" title="Toggle Light/Dark Mode">
+                    <i data-lucide="moon" class="dark-icon"></i>
+                    <i data-lucide="sun" class="light-icon"></i>
+                </button>
+                <button class="mobile-menu-btn glass-btn icon-btn md:hidden">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Blog Hero Section -->
+        <section class="blog-hero">
+            <div class="container">
+                <p class="section-tag centered-tag">INSIGHTS & ARTICLES</p>
+                <h1 class="hero-title">Latest from the <span class="gradient-text">Blog</span></h1>
+                <p class="section-desc">Thoughts, tutorials, and insights on modern web development and creative
+                    design.</p>
+            </div>
+        </section>
+
+        <!-- Blog Posts Grid -->
+        <section class="blog-posts-section">
+            <div class="container">
+                <div class="blog-grid">
+                    <!-- Blog Post 1 -->
+                    <article class="blog-card glass-card animate-in">
+                        <div class="blog-image"
+                            style="background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80');">
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span>Feb 09, 2026</span>
+                                <span>Design</span>
+                            </div>
+                            <h3>The Future of Artistic Engineering in Web Design</h3>
+                            <p class="blog-excerpt">Exploring how we bridge the gap between technical resilience and
+                                high-end aesthetic value in modern digital products.</p>
+                            <a href="#" class="read-more-link">Read Article <i data-lucide="arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <!-- Blog Post 2 -->
+                    <article class="blog-card glass-card animate-in">
+                        <div class="blog-image"
+                            style="background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80');">
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span>Feb 05, 2026</span>
+                                <span>Development</span>
+                            </div>
+                            <h3>Mastering Serverless Database Connections</h3>
+                            <p class="blog-excerpt">A deep dive into optimizing MySQL connections for serverless
+                                environments like Vercel and AWS Lambda.</p>
+                            <a href="#" class="read-more-link">Read Article <i data-lucide="arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <!-- Blog Post 3 -->
+                    <article class="blog-card glass-card animate-in">
+                        <div class="blog-image"
+                            style="background-image: url('https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=800&q=80');">
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span>Jan 28, 2026</span>
+                                <span>UI/UX</span>
+                            </div>
+                            <h3>Glassmorphism: Why It's More Than Just a Trend</h3>
+                            <p class="blog-excerpt">Understanding the principles of transparency and depth in modern
+                                interface design systems for a premium feel.</p>
+                            <a href="#" class="read-more-link">Read Article <i data-lucide="arrow-right"></i></a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <div class="contact-card glass-card">
+                    <div class="contact-grid">
+                        <div class="contact-info-panel">
+                            <h2 class="section-title text-left text-white">Stay in the <span
+                                    class="gradient-text">loop</span>.</h2>
+                            <p class="text-gray-300 mt-4">Subscribe to the newsletter to get the latest articles and
+                                creative tips delivered straight to your inbox.</p>
+
+                            <div class="social-links mt-8">
+                                <a href="#" class="social-link"><i data-lucide="github"></i> GitHub</a>
+                                <a href="#" class="social-link"><i data-lucide="linkedin"></i> LinkedIn</a>
+                            </div>
+                        </div>
+
+                        <form class="contact-form">
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input type="email" placeholder="your@email.com" required>
+                            </div>
+                            <button type="submit" class="submit-btn primary-btn w-full">Subscribe Now</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="glass-footer">
+        <div class="container">
+            <div class="footer-wrap">
+                <p>&copy; 2026 Cyryl Bitangcol. All Rights Reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../main.js"></script>
+</body>
+
+</html>
