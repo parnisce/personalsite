@@ -19,6 +19,16 @@
 </head>
 
 <body class="dark-mode">
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <div id="blob-container">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Navigation -->
     <nav class="glass-nav">
         <div class="nav-container">
             <div class="logo">
@@ -26,8 +36,20 @@
             </div>
             <div class="nav-links">
                 <a href="/" class="nav-link">Home</a>
+                <a href="/#projects" class="nav-link">Projects</a>
+                <a href="/#services" class="nav-link">Services</a>
                 <a href="/blog/" class="nav-link active">Blog</a>
                 <a href="/about/" class="nav-link">About</a>
+                <a href="/#contact" class="nav-link contact-btn">Let's talk</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="glass-btn icon-btn" title="Toggle Light/Dark Mode">
+                    <i data-lucide="moon" class="dark-icon"></i>
+                    <i data-lucide="sun" class="light-icon"></i>
+                </button>
+                <button class="mobile-menu-btn glass-btn icon-btn md:hidden">
+                    <i data-lucide="menu"></i>
+                </button>
             </div>
         </div>
     </nav>
