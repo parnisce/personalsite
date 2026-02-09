@@ -13,10 +13,6 @@
             "destination": "/admin/index.html"
         },
         {
-            "source": "/admin/((?!.*\\.).*)",
-            "destination": "/admin/index.html"
-        },
-        {
             "source": "/((?!api/|admin/|.*\\.).*)",
             "destination": "/index.html"
         }
@@ -24,6 +20,7 @@
     "env": {
         "DB_HOST": "srv1518.hstgr.io",
         "DB_USER": "u323771957_cyrylprousr",
+        "DB_PASSWORD": "w*v0D6kO^OOkUpur",
         "DB_NAME": "u323771957_cyrylprojectdb"
     }
 }
