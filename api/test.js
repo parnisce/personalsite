@@ -1,26 +1,25 @@
-// api/test.js
-const mysql = require('mysql2/promise');
+const query = require('./db.js');
 
 module.exports = async function handler(req, res) {
     try {
-        const connection = await mysql.createConnection({
-            host: process.env.DB_HOST || 'srv1518.hstgr.io',
-            user: process.env.DB_USER || 'u323771957_cyrylprousr',
-            password: process.env.DB_PASSWORD || 'yourpassword', // Vercel ENV VAR takes priority
-            database: process.env.DB_NAME || 'u323771957_cyrylprojectdb',
-            port: 3306 // Standard MySQL port
+        // Simple query to test connection
+        const rows = await query('SELECT 1 + 1 AS result');
+
+        res.status(200).json({
+            success: true,
+            message: 'Database Connection Successful!',
+            db_host: process.env.DB_HOST,
+            result: rows[0].result
         });
 
-        await connection.end();
-        res.status(200).json({ success: true, message: 'Database Connection Successful!' });
-
     } catch (error) {
-        console.error(error);
+        console.error('Test DB Connection Error:', error);
         res.status(500).json({
             success: false,
             message: 'Database Connection Failed',
             error: error.message,
-            code: error.code
+            code: error.code,
+            db_host: process.env.DB_HOST
         });
     }
 };

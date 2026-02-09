@@ -1,19 +1,23 @@
 {
     "rewrites": [
         {
-            "source": "/admin",
-            "destination": "/admin/index.html"
-        },
-        {
-            "source": "/admin/(.*)",
-            "destination": "/admin/index.html"
-        },
-        {
             "source": "/api/(.*)",
             "destination": "/api/$1"
         },
         {
-            "source": "/(.*)",
+            "source": "/admin",
+            "destination": "/admin/index.html"
+        },
+        {
+            "source": "/admin/",
+            "destination": "/admin/index.html"
+        },
+        {
+            "source": "/admin/((?!.*\\.).*)",
+            "destination": "/admin/index.html"
+        },
+        {
+            "source": "/((?!api/|admin/|.*\\.).*)",
             "destination": "/index.html"
         }
     ],
