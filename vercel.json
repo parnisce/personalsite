@@ -29,16 +29,8 @@
             "destination": "/blog/index.html"
         },
         {
-            "source": "/blog/future-of-artistic-engineering",
-            "destination": "/blog/future-of-artistic-engineering.html"
-        },
-        {
-            "source": "/blog/mastering-serverless-database-connections",
-            "destination": "/blog/mastering-serverless-database-connections.html"
-        },
-        {
-            "source": "/blog/glassmorphism-trend",
-            "destination": "/blog/glassmorphism-trend.html"
+            "source": "/blog/((?!index\\.html|post\\.html|.*\\.css|.*\\.js$).*)",
+            "destination": "/blog/post.html"
         },
         {
             "source": "/((?!api/|admin/|about/|blog/|.*\\.).*)",

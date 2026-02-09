@@ -73,69 +73,55 @@
         <!-- Blog Posts Grid -->
         <section class="blog-posts-section">
             <div class="container">
-                <div class="blog-grid">
-                    <!-- Blog Post 1 -->
-                    <article class="blog-card glass-card animate-in">
-                        <div class="blog-image"
-                            style="background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80');">
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-meta">
-                                <span>Feb 09, 2026</span>
-                                <span>Design</span>
-                            </div>
-                            <h3><a href="/blog/future-of-artistic-engineering"
-                                    style="text-decoration: none; color: inherit;">The Future of Artistic Engineering in
-                                    Web Design</a></h3>
-                            <p class="blog-excerpt">Exploring how we bridge the gap between technical resilience and
-                                high-end aesthetic value in modern digital products.</p>
-                            <a href="/blog/future-of-artistic-engineering" class="read-more-link">Read Article <i
-                                    data-lucide="arrow-right"></i></a>
-                        </div>
-                    </article>
-
-                    <!-- Blog Post 2 -->
-                    <article class="blog-card glass-card animate-in">
-                        <div class="blog-image"
-                            style="background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80');">
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-meta">
-                                <span>Feb 05, 2026</span>
-                                <span>Development</span>
-                            </div>
-                            <h3><a href="/blog/mastering-serverless-database-connections"
-                                    style="text-decoration: none; color: inherit;">Mastering Serverless Database
-                                    Connections</a></h3>
-                            <p class="blog-excerpt">A deep dive into optimizing MySQL connections for serverless
-                                environments like Vercel and AWS Lambda.</p>
-                            <a href="/blog/mastering-serverless-database-connections" class="read-more-link">Read
-                                Article <i data-lucide="arrow-right"></i></a>
-                        </div>
-                    </article>
-
-                    <!-- Blog Post 3 -->
-                    <article class="blog-card glass-card animate-in">
-                        <div class="blog-image"
-                            style="background-image: url('https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=800&q=80');">
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-meta">
-                                <span>Jan 28, 2026</span>
-                                <span>UI/UX</span>
-                            </div>
-                            <h3><a href="/blog/glassmorphism-trend"
-                                    style="text-decoration: none; color: inherit;">Glassmorphism: Why It's More Than
-                                    Just a Trend</a></h3>
-                            <p class="blog-excerpt">Understanding the principles of transparency and depth in modern
-                                interface design systems for a premium feel.</p>
-                            <a href="/blog/glassmorphism-trend" class="read-more-link">Read Article <i
-                                    data-lucide="arrow-right"></i></a>
-                        </div>
-                    </article>
+                <div class="blog-grid" id="blog-posts-container">
+                    <!-- Loading State -->
+                    <div class="loading-state" style="grid-column: 1/-1; text-align: center; padding: 4rem;">
+                        <p>Loading the latest insights...</p>
+                    </div>
                 </div>
             </div>
         </section>
+
+        <script>
+            async function loadBlogPosts() {
+                const container = document.getElementById('blog-posts-container');
+                try {
+                    const response = await fetch('/api/blog');
+                    if (!response.ok) throw new Error('Failed to fetch');
+                    const posts = await response.json();
+
+                    if (!posts || posts.length === 0) {
+                        container.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 4rem;"><p>No blog posts found yet. Check back soon!</p></div>';
+                        return;
+                    }
+
+                    container.innerHTML = posts.map(post => `
+                        <article class="blog-card glass-card animate-in">
+                            <div class="blog-image"
+                                style="background-image: url('${post.image_url || 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80'}');">
+                            </div>
+                            <div class="blog-content">
+                                <div class="blog-meta">
+                                    <span>${new Date(post.published_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                                    <span>${post.category || 'Insights'}</span>
+                                </div>
+                                <h3><a href="/blog/${post.slug}" style="text-decoration: none; color: inherit;">${post.title}</a></h3>
+                                <p class="blog-excerpt">${post.excerpt || ''}</p>
+                                <a href="/blog/${post.slug}" class="read-more-link">Read Article <i data-lucide="arrow-right"></i></a>
+                            </div>
+                        </article>
+                    `).join('');
+
+                    // Re-initialize icons
+                    if (window.lucide) window.lucide.createIcons();
+                } catch (error) {
+                    console.error('Error loading posts:', error);
+                    container.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 4rem; color: #ef4444;"><p>Error loading blog posts. Please try again later.</p></div>';
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded', loadBlogPosts);
+        </script>
 
         <!-- Newsletter Section -->
         <section id="contact" class="contact-section">
