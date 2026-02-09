@@ -347,46 +347,124 @@
                 </div>
             </div>
         </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="contact-section">
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="testimonials-section">
             <div class="container">
-                <div class="contact-card glass-card">
-                    <div class="contact-grid">
-                        <div class="contact-info-panel">
-                            <h2 class="section-title text-left text-white">Let's build something <span
-                                    class="gradient-text">delightful</span>.</h2>
-                            <p class="text-gray-300 mt-4">Ready for new assessments, freelance engagements, or casual
-                                conversations. Drop a message and I'll respond within 24 hours.</p>
+                <div class="section-header">
+                    <p class="section-tag">TESTIMONIALS</p>
+                    <h2 class="section-title">Client <span class="gradient-text">Success Stories</span></h2>
+                </div>
 
-                            <div class="social-links mt-8">
-                                <a href="#" class="social-link"><i data-lucide="github"></i> GitHub</a>
-                                <a href="#" class="social-link"><i data-lucide="linkedin"></i> LinkedIn</a>
-                                <a href="#" class="social-link"><i class="fab fa-tiktok"></i> TikTok</a>
+                <div class="testimonials-slider">
+                    <div class="slider-wrapper">
+                        <div class="slider-track" id="testimonial-track">
+                            <!-- Testimonial 1 -->
+                            <div class="slider-slide">
+                                <div class="testimonial-card glass-card">
+                                    <div class="quote-icon"><i data-lucide="quote"></i></div>
+                                    <p class="testimonial-text">"Nextminds transformed our lead generation process.
+                                        Their AI agents are more accurate than any humans we've hired, and the
+                                        integration was seamless."</p>
+                                    <div class="testimonial-author">
+                                        <div class="author-avatar">SJ</div>
+                                        <div class="author-info">
+                                            <div class="author-name">Sarah Jenkins</div>
+                                            <div class="author-role">Marketing Director @ TechFlow</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Testimonial 2 -->
+                            <div class="slider-slide">
+                                <div class="testimonial-card glass-card">
+                                    <div class="quote-icon"><i data-lucide="quote"></i></div>
+                                    <p class="testimonial-text">"The cinematic property tours they produced for our
+                                        luxury listings were game-changers. We sold three properties within a week of
+                                        posting the videos."</p>
+                                    <div class="testimonial-author">
+                                        <div class="author-avatar">MC</div>
+                                        <div class="author-info">
+                                            <div class="author-name">Michael Chen</div>
+                                            <div class="author-role">Founder of Urban Real Estate</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Testimonial 3 -->
+                            <div class="slider-slide">
+                                <div class="testimonial-card glass-card">
+                                    <div class="quote-icon"><i data-lucide="quote"></i></div>
+                                    <p class="testimonial-text">"20 years of experience really shows. Their
+                                        strategic approach to our digital transformation saved us months of trial and
+                                        error."</p>
+                                    <div class="testimonial-author">
+                                        <div class="author-avatar">ER</div>
+                                        <div class="author-info">
+                                            <div class="author-name">Elena Rodriguez</div>
+                                            <div class="author-role">CEO of Visionary Media</div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                    </div>
 
-                        <form class="contact-form">
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label>Name</label>
-                                    <input type="text" placeholder="Your Name" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Email</label>
-                                    <input type="email" placeholder="email@example.com" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>Message</label>
-                                <textarea rows="4" placeholder="How can I help you?"></textarea>
-                            </div>
-                            <button type="submit" class="submit-btn primary-btn w-full">Send Message</button>
-                        </form>
+                    <div class="slider-controls">
+                        <button class="slider-arrow prev" id="prev-testimonial">
+                            <i data-lucide="chevron-left"></i>
+                        </button>
+                        <div class="slider-dots" id="slider-dots">
+                            <button class="slider-dot active"></button>
+                            <button class="slider-dot"></button>
+                            <button class="slider-dot"></button>
+                        </div>
+                        <button class="slider-arrow next" id="next-testimonial">
+                            <i data-lucide="chevron-right"></i>
+                        </button>
                     </div>
                 </div>
             </div>
-        </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="contact-section">
+                <div class="container">
+                    <div class="contact-card glass-card">
+                        <div class="contact-grid">
+                            <div class="contact-info-panel">
+                                <h2 class="section-title text-left text-white">Let's build something <span
+                                        class="gradient-text">delightful</span>.</h2>
+                                <p class="text-gray-300 mt-4">Ready for new assessments, freelance engagements, or
+                                    casual
+                                    conversations. Drop a message and I'll respond within 24 hours.</p>
+
+                                <div class="social-links mt-8">
+                                    <a href="#" class="social-link"><i data-lucide="github"></i> GitHub</a>
+                                    <a href="#" class="social-link"><i data-lucide="linkedin"></i> LinkedIn</a>
+                                    <a href="#" class="social-link"><i class="fab fa-tiktok"></i> TikTok</a>
+                                </div>
+                            </div>
+
+                            <form class="contact-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Name</label>
+                                        <input type="text" placeholder="Your Name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Email</label>
+                                        <input type="email" placeholder="email@example.com" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Message</label>
+                                    <textarea rows="4" placeholder="How can I help you?"></textarea>
+                                </div>
+                                <button type="submit" class="submit-btn primary-btn w-full">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
     </main>
 
     <footer class="glass-footer">

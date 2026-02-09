@@ -239,3 +239,48 @@ if (contactForm) {
         }, 1500);
     });
 }
+
+// Testimonial Slider Logic
+const testimonialTrack = document.getElementById('testimonial-track');
+const dotsContainer = document.getElementById('slider-dots');
+const prevBtn = document.getElementById('prev-testimonial');
+const nextBtn = document.getElementById('next-testimonial');
+const slides = document.querySelectorAll('.slider-slide');
+const dots = document.querySelectorAll('.slider-dot');
+
+let currentSlideIndex = 0;
+
+const updateSlider = () => {
+    testimonialTrack.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+
+    // Update dots
+    dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlideIndex);
+    });
+};
+
+if (nextBtn && prevBtn && testimonialTrack) {
+    nextBtn.addEventListener('click', () => {
+        currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+        updateSlider();
+    });
+
+    prevBtn.addEventListener('click', () => {
+        currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+        updateSlider();
+    });
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            currentSlideIndex = index;
+            updateSlider();
+        });
+    });
+
+    // Auto-slide every 5 seconds
+    setInterval(() => {
+        currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+        updateSlider();
+    }, 5000);
+}
+
