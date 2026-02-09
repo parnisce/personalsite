@@ -22,10 +22,21 @@ module.exports = async function handler(req, res) {
 
         // --- AUTHENTICATION CHECK ---
         const authHeader = req.headers.authorization;
-        const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'yourpassword';
+        if (!authHeader || !authHeader.startsWith('Bearer ')) {
+            return res.status(401).json({ error: 'Unauthorized: Missing token' });
+        }
 
-        if (!authHeader || authHeader !== `Bearer ${ADMIN_PASSWORD}`) {
-            return res.status(401).json({ error: 'Unauthorized: Invalid or missing token' });
+        const token = authHeader.split(' ')[1];
+        try {
+            const decoded = Buffer.from(token, 'base64').toString('ascii');
+            const [id, email, timestamp] = decoded.split(':');
+
+            // Check if token is older than 24 hours
+            if (Date.now() - parseInt(timestamp) > 24 * 60 * 60 * 1000) {
+                return res.status(401).json({ error: 'Unauthorized: Token expired' });
+            }
+        } catch (e) {
+            return res.status(401).json({ error: 'Unauthorized: Invalid token format' });
         }
         // -----------------------------
 
