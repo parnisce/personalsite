@@ -376,6 +376,7 @@ a {
 .gradient-text {
     background: linear-gradient(to right, var(--accent-primary), #fcd34d);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -860,12 +861,12 @@ p.text-gray-300.mt-4 {
 }
 
 .testimonial-text {
-    font-size: 2rem;
-    line-height: 1.5;
+    font-size: 1.5rem;
+    line-height: 1.6;
     color: var(--text-primary);
     font-weight: 500;
     font-style: italic;
-    max-width: 800px;
+    max-width: 700px;
 }
 
 .testimonial-author {
