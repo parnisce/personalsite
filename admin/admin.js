@@ -21,6 +21,14 @@ const blogTableBody = document.getElementById('blog-table-body');
 const blogEmptyState = document.getElementById('blog-empty-state');
 const blogSearchInput = document.getElementById('search-blog');
 
+// Testimonial Elements
+const addTestimonialBtn = document.getElementById('add-testimonial-btn');
+const testimonialModal = document.getElementById('testimonial-modal');
+const testimonialForm = document.getElementById('testimonial-form');
+const testimonialsTableBody = document.getElementById('testimonials-table-body');
+const testimonialEmptyState = document.getElementById('testimonial-empty-state');
+const testimonialSearchInput = document.getElementById('search-testimonials');
+
 // Tabs
 const tabBtns = document.querySelectorAll('.admin-tab');
 const tabContents = document.querySelectorAll('.tab-content');
@@ -31,6 +39,7 @@ const API_BASE = '/api';
 let currentUser = null;
 let allProjects = [];
 let allBlogPosts = [];
+let allTestimonials = [];
 
 // Initialize Lucide icons
 lucide.createIcons();
@@ -82,6 +91,7 @@ function showDashboard() {
 function loadAllData() {
     loadProjects();
     loadBlogPosts();
+    loadTestimonials();
 }
 
 // Login Handler
@@ -356,6 +366,106 @@ blogForm.addEventListener('submit', async (e) => {
     } catch (e) { alert('Error saving blog post'); }
 });
 
+// --- TESTIMONIAL MANAGEMENT ---
+
+async function loadTestimonials() {
+    try {
+        const response = await fetch(`${API_BASE}/testimonials`);
+        const data = await response.json();
+        if (Array.isArray(data)) {
+            allTestimonials = data;
+            renderTestimonials(allTestimonials);
+        }
+    } catch (error) {
+        console.error('Error loading testimonials:', error);
+    }
+}
+
+function renderTestimonials(items) {
+    if (items.length === 0) {
+        testimonialsTableBody.innerHTML = '';
+        testimonialEmptyState.style.display = 'block';
+    } else {
+        testimonialEmptyState.style.display = 'none';
+        testimonialsTableBody.innerHTML = items.map(item => `
+            <tr>
+                <td><strong>${item.name}</strong></td>
+                <td>${item.role}</td>
+                <td class="tech-list">${item.text.substring(0, 50)}...</td>
+                <td>
+                    <div class="table-actions-cell">
+                        <button class="icon-btn-small edit-testimonial-btn" data-id="${item.id}"><i data-lucide="edit"></i></button>
+                        <button class="icon-btn-small delete delete-testimonial-btn" data-id="${item.id}"><i data-lucide="trash-2"></i></button>
+                    </div>
+                </td>
+            </tr>
+        `).join('');
+    }
+    lucide.createIcons();
+    attachTestimonialEvents();
+}
+
+function attachTestimonialEvents() {
+    document.querySelectorAll('.edit-testimonial-btn').forEach(btn => btn.addEventListener('click', () => editTestimonial(btn.dataset.id)));
+    document.querySelectorAll('.delete-testimonial-btn').forEach(btn => btn.addEventListener('click', () => deleteTestimonial(btn.dataset.id)));
+}
+
+testimonialSearchInput.addEventListener('input', (e) => {
+    const term = e.target.value.toLowerCase();
+    const filtered = allTestimonials.filter(t => t.name.toLowerCase().includes(term) || t.text.toLowerCase().includes(term));
+    renderTestimonials(filtered);
+});
+
+addTestimonialBtn.addEventListener('click', () => {
+    document.getElementById('testimonial-modal-title').textContent = 'Add New Testimonial';
+    testimonialForm.reset();
+    document.getElementById('testimonial-id').value = '';
+    openModal(testimonialModal);
+});
+
+function editTestimonial(id) {
+    const t = allTestimonials.find(item => item.id == id);
+    if (!t) return;
+    document.getElementById('testimonial-modal-title').textContent = 'Edit Testimonial';
+    document.getElementById('testimonial-id').value = t.id;
+    document.getElementById('testimonial-name').value = t.name;
+    document.getElementById('testimonial-role').value = t.role;
+    document.getElementById('testimonial-text').value = t.text;
+    document.getElementById('testimonial-avatar').value = t.avatar_url;
+    openModal(testimonialModal);
+}
+
+async function deleteTestimonial(id) {
+    if (!confirm('Delete this testimonial?')) return;
+    try {
+        const response = await authFetch(`${API_BASE}/testimonials?id=${id}`, { method: 'DELETE' });
+        if ((await response.json()).success) loadTestimonials();
+    } catch (e) { alert('Error deleting testimonial'); }
+}
+
+testimonialForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const id = document.getElementById('testimonial-id').value;
+    const data = {
+        name: document.getElementById('testimonial-name').value,
+        role: document.getElementById('testimonial-role').value,
+        text: document.getElementById('testimonial-text').value,
+        avatar_url: document.getElementById('testimonial-avatar').value
+    };
+    if (id) data.id = id;
+    try {
+        const res = await authFetch(`${API_BASE}/testimonials`, {
+            method: id ? 'PUT' : 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+        if ((await res.json()).success) {
+            closeModal(testimonialModal);
+            loadTestimonials();
+        }
+    } catch (e) { alert('Error saving testimonial'); }
+});
+
 // --- MODAL CONTROLS ---
 
 function openModal(modal) {
@@ -373,6 +483,7 @@ document.querySelectorAll('.close-modal, .cancel-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         closeModal(projectModal);
         closeModal(blogModal);
+        closeModal(testimonialModal);
     });
 });
 
@@ -380,6 +491,7 @@ document.querySelectorAll('.modal-overlay').forEach(overlay => {
     overlay.addEventListener('click', () => {
         closeModal(projectModal);
         closeModal(blogModal);
+        closeModal(testimonialModal);
     });
 });
 
@@ -387,5 +499,6 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         closeModal(projectModal);
         closeModal(blogModal);
+        closeModal(testimonialModal);
     }
 });

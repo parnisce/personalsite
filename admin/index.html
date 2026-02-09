@@ -81,6 +81,10 @@
                         <i data-lucide="book-open"></i>
                         Blog Posts
                     </button>
+                    <button class="admin-tab" data-tab="testimonials">
+                        <i data-lucide="message-square"></i>
+                        Testimonials
+                    </button>
                 </div>
 
                 <!-- Projects Section -->
@@ -171,6 +175,50 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Testimonials Section -->
+                <div id="testimonials-section" class="tab-content">
+                    <div class="admin-header">
+                        <div>
+                            <h1 class="admin-title">Testimonial Management</h1>
+                            <p class="admin-subtitle">Manage client reviews and testimonials</p>
+                        </div>
+                        <button id="add-testimonial-btn" class="primary-btn">
+                            <i data-lucide="plus"></i>
+                            Add New Testimonial
+                        </button>
+                    </div>
+
+                    <!-- Testimonials Table -->
+                    <div class="projects-table-container glass-card">
+                        <div class="table-header">
+                            <h2>All Testimonials</h2>
+                            <div class="table-actions">
+                                <input type="text" id="search-testimonials" placeholder="Search testimonials..."
+                                    class="search-input">
+                            </div>
+                        </div>
+                        <div class="table-wrapper">
+                            <table class="projects-table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Role</th>
+                                        <th>Text Preview</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="testimonials-table-body">
+                                    <!-- Testimonials will be loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="testimonial-empty-state" class="empty-state" style="display: none;">
+                            <i data-lucide="message-square"></i>
+                            <p>No testimonials found</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
     </div>
@@ -208,7 +256,7 @@
 
                     <div class="form-group">
                         <label>Full Description *</label>
-                        <textarea id="project-description" rows="4" placeholder="Detailed project description..."
+                        <textarea id="project-description" rows="3" placeholder="Detailed project description..."
                             required></textarea>
                     </div>
 
@@ -279,7 +327,7 @@
 
                     <div class="form-group">
                         <label>Content (Full text) *</label>
-                        <textarea id="blog-content" rows="10" placeholder="Write your post content here..."
+                        <textarea id="blog-content" rows="6" placeholder="Write your post content here..."
                             required></textarea>
                     </div>
 
@@ -305,6 +353,55 @@
             </div>
         </div>
     </div>
+
+    <!-- Testimonial Modal -->
+    <div id="testimonial-modal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-container glass-card animate-in">
+            <button class="close-modal glass-btn">
+                <i data-lucide="x"></i>
+            </button>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="testimonial-modal-title" class="section-title">Add New Testimonial</h2>
+                </div>
+                <form id="testimonial-form" class="project-form">
+                    <input type="hidden" id="testimonial-id">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Client Name *</label>
+                            <input type="text" id="testimonial-name" placeholder="John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Role/Company *</label>
+                            <input type="text" id="testimonial-role" placeholder="CEO, TechCorp" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Testimonial Content *</label>
+                        <textarea id="testimonial-text" rows="4" placeholder="What did they say about your work?"
+                            required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Avatar URL (Optional)</label>
+                        <input type="url" id="testimonial-avatar" placeholder="https://images.unsplash.com/...">
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="secondary-btn cancel-btn">Cancel</button>
+                        <button type="submit" class="primary-btn">
+                            <i data-lucide="save"></i>
+                            Save Testimonial
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 
     <script src="/admin/admin.js"></script>
 </body>

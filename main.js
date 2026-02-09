@@ -234,53 +234,103 @@ if (contactForm) {
             setTimeout(() => {
                 submitBtn.innerHTML = originalText;
                 submitBtn.style.background = 'var(--accent-primary)';
-                submitBtn.disabled = false;
             }, 3000);
         }, 1500);
     });
 }
 
-// Testimonial Slider Logic
-const testimonialTrack = document.getElementById('testimonial-track');
-const dotsContainer = document.getElementById('slider-dots');
-const prevBtn = document.getElementById('prev-testimonial');
-const nextBtn = document.getElementById('next-testimonial');
-const slides = document.querySelectorAll('.slider-slide');
-const dots = document.querySelectorAll('.slider-dot');
+// Dynamic Testimonials Logic
+async function loadTestimonials() {
+    const track = document.getElementById('testimonial-track');
+    const dotsContainer = document.getElementById('slider-dots');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
 
-let currentSlideIndex = 0;
+    if (!track) return;
 
-const updateSlider = () => {
-    testimonialTrack.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+    try {
+        const response = await fetch('/api/testimonials');
+        const testimonials = await response.json();
 
-    // Update dots
-    dots.forEach((dot, index) => {
-        dot.classList.toggle('active', index === currentSlideIndex);
-    });
-};
+        if (!testimonials || testimonials.length === 0) {
+            track.innerHTML = '<div class="slider-slide"><div class="testimonial-card"><p class="testimonial-text">No testimonials yet. Be the first!</p></div></div>';
+            return;
+        }
 
-if (nextBtn && prevBtn && testimonialTrack) {
-    nextBtn.addEventListener('click', () => {
-        currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+        // Render slides
+        track.innerHTML = testimonials.map(t => `
+            <div class="slider-slide">
+                <div class="testimonial-card">
+                    <div class="quote-icon"><i data-lucide="quote"></i></div>
+                    <p class="testimonial-text">"${t.text}"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">${t.avatar_url ? `<img src="${t.avatar_url}" alt="${t.name}">` : (t.name.split(' ').map(n => n[0]).join('') || 'U')}</div>
+                        <div class="author-info">
+                            <div class="author-name">${t.name}</div>
+                            <div class="author-role">${t.role || ''}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+
+        // Render dots
+        dotsContainer.innerHTML = testimonials.map((_, i) => `
+            <button class="slider-dot ${i === 0 ? 'active' : ''}" data-index="${i}"></button>
+        `).join('');
+
+        if (window.lucide) window.lucide.createIcons();
+
+        // Initialize Slider Logic
+        initSlider(testimonials.length);
+
+    } catch (error) {
+        console.error('Error loading testimonials:', error);
+    }
+}
+
+function initSlider(slideCount) {
+    const track = document.getElementById('testimonial-track');
+    const dots = document.querySelectorAll('.slider-dot');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    let currentSlide = 0;
+
+    const updateSlider = () => {
+        track.style.transform = `translateX(-${currentSlide * 100}%)`;
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === currentSlide);
+        });
+    };
+
+    nextBtn?.addEventListener('click', () => {
+        currentSlide = (currentSlide + 1) % slideCount;
         updateSlider();
     });
 
-    prevBtn.addEventListener('click', () => {
-        currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+    prevBtn?.addEventListener('click', () => {
+        currentSlide = (currentSlide - 1 + slideCount) % slideCount;
         updateSlider();
     });
 
-    dots.forEach((dot, index) => {
+    dots.forEach(dot => {
         dot.addEventListener('click', () => {
-            currentSlideIndex = index;
+            currentSlide = parseInt(dot.dataset.index);
             updateSlider();
         });
     });
 
-    // Auto-slide every 5 seconds
+    // Auto-play
     setInterval(() => {
-        currentSlideIndex = (currentSlideIndex + 1) % slides.length;
-        updateSlider();
-    }, 5000);
+        if (slideCount > 1) {
+            currentSlide = (currentSlide + 1) % slideCount;
+            updateSlider();
+        }
+    }, 8000);
 }
+
+// Call on load
+document.addEventListener('DOMContentLoaded', () => {
+    loadTestimonials();
+});
 
