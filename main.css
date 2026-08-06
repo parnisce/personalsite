@@ -415,9 +415,7 @@ a {
     height: 78%;
     border-radius: 2rem;
     overflow: hidden;
-    background:
-        linear-gradient(115deg, rgba(10, 11, 16, 0.15) 0%, rgba(10, 11, 16, 0.72) 58%, rgba(10, 11, 16, 0.92) 100%),
-        url('assets/images/hero.png') center / cover no-repeat;
+    background: #12141c;
     border: 1px solid var(--glass-border);
     box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
     z-index: 1;
@@ -427,46 +425,17 @@ a {
     content: '';
     position: absolute;
     inset: 0;
-    background:
-        radial-gradient(ellipse at 20% 30%, rgba(255, 107, 43, 0.35), transparent 55%),
-        radial-gradient(ellipse at 80% 70%, rgba(56, 189, 248, 0.22), transparent 50%);
+    background: url('https://cyrylbitangcol.com/wp-content/uploads/2024/07/326096513_499701325654707_8166315754205694577_n.jpg') center / cover no-repeat;
+    opacity: 0.45;
     pointer-events: none;
-    animation: backdropPulse 8s ease-in-out infinite;
 }
 
 .portrait-backdrop::after {
     content: '';
     position: absolute;
     inset: 0;
-    background-image:
-        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-    background-size: 28px 28px;
-    opacity: 0.35;
+    background: linear-gradient(115deg, rgba(10, 11, 16, 0.25) 0%, rgba(10, 11, 16, 0.55) 100%);
     pointer-events: none;
-}
-
-@keyframes backdropPulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.75; }
-}
-
-.portrait-wordmark {
-    position: absolute;
-    left: 6%;
-    top: 50%;
-    transform: translateY(-55%);
-    font-family: 'Outfit', sans-serif;
-    font-size: clamp(2.8rem, 7vw, 4.2rem);
-    font-weight: 800;
-    letter-spacing: -0.04em;
-    line-height: 0.9;
-    color: rgba(255, 255, 255, 0.88);
-    text-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
-    z-index: 2;
-    max-width: 46%;
-    pointer-events: none;
-    user-select: none;
 }
 
 .portrait-photo {
@@ -1245,10 +1214,6 @@ p.text-gray-300.mt-4 {
 
     .portrait-stage {
         height: 380px;
-    }
-
-    .portrait-wordmark {
-        font-size: 2.4rem;
     }
 
     .portrait-photo {
