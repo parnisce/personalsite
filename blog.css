@@ -219,7 +219,13 @@
 
 @media (max-width: 768px) {
     .blog-hero {
-        padding-top: 8rem;
+        padding-top: 7.5rem;
+        padding-bottom: 1rem;
+    }
+
+    .blog-posts-section {
+        padding-top: 1rem;
+        padding-bottom: 3rem;
     }
 
     .blog-grid {
