@@ -1,17 +1,22 @@
 /* Blog Page Specific Styles */
 
 .blog-hero {
-    padding-top: 10rem;
-    padding-bottom: 5rem;
+    padding-top: 9rem;
+    padding-bottom: 1.5rem;
     text-align: center;
+}
+
+.blog-posts-section {
+    padding-top: 1.5rem;
+    padding-bottom: 4rem;
 }
 
 .blog-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2.5rem;
-    margin-top: 4rem;
-    margin-bottom: 8rem;
+    margin-top: 0;
+    margin-bottom: 2rem;
 }
 
 /* Single Post Styles */
