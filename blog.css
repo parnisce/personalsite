@@ -382,6 +382,10 @@
     border-top: 1px solid var(--glass-border);
 }
 
+.post-footer.post-shell {
+    width: min(980px, calc(100% - 2.5rem));
+}
+
 .post-share-row {
     display: flex;
     flex-wrap: wrap;
@@ -393,6 +397,7 @@
     background: linear-gradient(135deg, rgba(255, 107, 43, 0.1), rgba(255, 107, 43, 0.02));
     border: 1px solid rgba(255, 107, 43, 0.22);
     margin-bottom: 2.75rem;
+    width: min(720px, 100%);
 }
 
 .post-share-row span {
@@ -561,7 +566,8 @@
     }
 
     .post-shell,
-    .post-cover-wrap {
+    .post-cover-wrap,
+    .post-footer.post-shell {
         width: calc(100% - 2rem);
     }
 
@@ -582,6 +588,7 @@
         flex-direction: column;
         align-items: flex-start;
         padding: 1.2rem;
+        width: 100%;
     }
 
     .related-grid {
