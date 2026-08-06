@@ -248,11 +248,6 @@
     border-color: rgba(255, 107, 43, 0.35);
 }
 
-.edu-card:last-child:nth-child(odd) {
-    grid-column: 1 / -1;
-    max-width: calc(50% - 0.75rem);
-}
-
 .edu-year {
     font-size: 0.78rem;
     font-weight: 700;
