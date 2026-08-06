@@ -29,10 +29,6 @@
             "destination": "/blog/index.html"
         },
         {
-            "source": "/blog/((?!index\\.html|post\\.html|.*\\.css|.*\\.js$).*)",
-            "destination": "/blog/post.html"
-        },
-        {
             "source": "/portfolio",
             "destination": "/portfolio/index.html"
         },

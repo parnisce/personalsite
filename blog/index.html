@@ -65,8 +65,7 @@
             <div class="container">
                 <p class="section-tag centered-tag">INSIGHTS & ARTICLES</p>
                 <h1 class="hero-title">Latest from the <span class="gradient-text">Blog</span></h1>
-                <p class="section-desc">Thoughts, tutorials, and insights on modern web development and creative
-                    design.</p>
+                <p class="section-desc">Practical guides for freelancers — pricing, clients, proposals, portfolios, and productivity.</p>
             </div>
         </section>
 
@@ -74,54 +73,110 @@
         <section class="blog-posts-section">
             <div class="container">
                 <div class="blog-grid" id="blog-posts-container">
-                    <!-- Loading State -->
-                    <div class="loading-state" style="grid-column: 1/-1; text-align: center; padding: 4rem;">
-                        <p>Loading the latest insights...</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <script>
-            async function loadBlogPosts() {
-                const container = document.getElementById('blog-posts-container');
-                try {
-                    const response = await fetch('/api/blog');
-                    if (!response.ok) throw new Error('Failed to fetch');
-                    const posts = await response.json();
-
-                    if (!posts || posts.length === 0) {
-                        container.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 4rem;"><p>No blog posts found yet. Check back soon!</p></div>';
-                        return;
-                    }
-
-                    container.innerHTML = posts.map(post => `
-                        <article class="blog-card glass-card animate-in">
+                    <article class="blog-card glass-card animate-in">
+                        <a href="/blog/price-freelance-work/" class="blog-card-link">
                             <div class="blog-image"
-                                style="background-image: url('${post.image_url || 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80'}');">
+                                style="background-image: url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1400&q=80');">
                             </div>
                             <div class="blog-content">
                                 <div class="blog-meta">
-                                    <span>${new Date(post.published_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
-                                    <span>${post.category || 'Insights'}</span>
+                                    <span>July 12, 2026</span>
+                                    <span>Freelance Business</span>
                                 </div>
-                                <h3><a href="/blog/${post.slug}" style="text-decoration: none; color: inherit;">${post.title}</a></h3>
-                                <p class="blog-excerpt">${post.excerpt || ''}</p>
-                                <a href="/blog/${post.slug}" class="read-more-link">Read Article <i data-lucide="arrow-right"></i></a>
+                                <h3>How to Price Your Freelance Work Without Undervaluing Yourself</h3>
+                                <p class="blog-excerpt">Stop guessing your rates. A practical framework for pricing projects with confidence — and protecting your profit.</p>
+                                <span class="read-more-link">Read Article <i data-lucide="arrow-right"></i></span>
                             </div>
-                        </article>
-                    `).join('');
+                        </a>
+                    </article>
 
-                    // Re-initialize icons
-                    if (window.lucide) window.lucide.createIcons();
-                } catch (error) {
-                    console.error('Error loading posts:', error);
-                    container.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 4rem; color: #ef4444;"><p>Error loading blog posts. Please try again later.</p></div>';
-                }
-            }
+                    <article class="blog-card glass-card animate-in">
+                        <a href="/blog/find-first-freelance-clients/" class="blog-card-link">
+                            <div class="blog-image"
+                                style="background-image: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1400&q=80');">
+                            </div>
+                            <div class="blog-content">
+                                <div class="blog-meta">
+                                    <span>July 18, 2026</span>
+                                    <span>Client Acquisition</span>
+                                </div>
+                                <h3>How to Find Your First Freelance Clients (Without Cold Spam)</h3>
+                                <p class="blog-excerpt">A realistic playbook for landing early freelance work through relationships, clarity, and consistent outreach.</p>
+                                <span class="read-more-link">Read Article <i data-lucide="arrow-right"></i></span>
+                            </div>
+                        </a>
+                    </article>
 
-            document.addEventListener('DOMContentLoaded', loadBlogPosts);
-        </script>
+                    <article class="blog-card glass-card animate-in">
+                        <a href="/blog/win-with-freelance-proposals/" class="blog-card-link">
+                            <div class="blog-image"
+                                style="background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1400&q=80');">
+                            </div>
+                            <div class="blog-content">
+                                <div class="blog-meta">
+                                    <span>July 24, 2026</span>
+                                    <span>Sales</span>
+                                </div>
+                                <h3>Writing Freelance Proposals That Actually Win Projects</h3>
+                                <p class="blog-excerpt">A proposal is not a brochure. It’s a decision tool. Structure yours so clients say yes faster.</p>
+                                <span class="read-more-link">Read Article <i data-lucide="arrow-right"></i></span>
+                            </div>
+                        </a>
+                    </article>
+
+                    <article class="blog-card glass-card animate-in">
+                        <a href="/blog/manage-scope-creep/" class="blog-card-link">
+                            <div class="blog-image"
+                                style="background-image: url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1400&q=80');">
+                            </div>
+                            <div class="blog-content">
+                                <div class="blog-meta">
+                                    <span>August 1, 2026</span>
+                                    <span>Client Management</span>
+                                </div>
+                                <h3>How Freelancers Can Manage Scope Creep Without Burning Bridges</h3>
+                                <p class="blog-excerpt">Scope creep is not always malicious — but unmanaged change requests will destroy your margins and energy.</p>
+                                <span class="read-more-link">Read Article <i data-lucide="arrow-right"></i></span>
+                            </div>
+                        </a>
+                    </article>
+
+                    <article class="blog-card glass-card animate-in">
+                        <a href="/blog/freelance-portfolio-that-converts/" class="blog-card-link">
+                            <div class="blog-image"
+                                style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1400&q=80');">
+                            </div>
+                            <div class="blog-content">
+                                <div class="blog-meta">
+                                    <span>August 3, 2026</span>
+                                    <span>Portfolio</span>
+                                </div>
+                                <h3>Build a Freelance Portfolio That Converts Visitors into Clients</h3>
+                                <p class="blog-excerpt">Pretty work is not enough. Your portfolio should answer: Can you solve my problem, and can I trust you?</p>
+                                <span class="read-more-link">Read Article <i data-lucide="arrow-right"></i></span>
+                            </div>
+                        </a>
+                    </article>
+
+                    <article class="blog-card glass-card animate-in">
+                        <a href="/blog/freelance-productivity-systems/" class="blog-card-link">
+                            <div class="blog-image"
+                                style="background-image: url('https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&w=1400&q=80');">
+                            </div>
+                            <div class="blog-content">
+                                <div class="blog-meta">
+                                    <span>August 5, 2026</span>
+                                    <span>Productivity</span>
+                                </div>
+                                <h3>Productivity Systems Every Solo Freelancer Needs</h3>
+                                <p class="blog-excerpt">When you’re the marketer, designer, developer, and accountant, systems are the only way to stay consistent.</p>
+                                <span class="read-more-link">Read Article <i data-lucide="arrow-right"></i></span>
+                            </div>
+                        </a>
+                    </article>
+                </div>
+            </div>
+        </section>
 
         <!-- Newsletter Section -->
         <section id="contact" class="contact-section">
