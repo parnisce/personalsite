@@ -368,7 +368,7 @@ a {
 .hero-subtitle {
     font-size: 1.5rem;
     font-weight: 400;
-    line-height: 1.35;
+    line-height: 1.55;
     color: var(--text-secondary);
     max-width: 600px;
     margin: 0;
@@ -376,7 +376,7 @@ a {
 
 .hero-description {
     font-size: 1.1rem;
-    line-height: 1.6;
+    line-height: 1.85;
     color: var(--text-secondary);
     max-width: 500px;
     margin: 0.15rem 0 0.35rem;
