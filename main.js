@@ -133,7 +133,6 @@ document.querySelectorAll('.glass-card, .section-header, .hero-content, .hero-ca
 
 // Project Filtering Logic
 const filterBtns = document.querySelectorAll('.filter-btn');
-const projectCards = document.querySelectorAll('.project-grid .project-card, .projects-grid .project-card'); // Supporting both naming conventions if any
 
 filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -142,6 +141,7 @@ filterBtns.forEach(btn => {
         btn.classList.add('active');
 
         const filterValue = btn.getAttribute('data-filter');
+        const projectCards = document.querySelectorAll('.projects-grid .project-card, .project-grid .project-card');
 
         projectCards.forEach(card => {
             const categories = card.getAttribute('data-category') ? card.getAttribute('data-category').split(' ') : [];
@@ -164,11 +164,12 @@ filterBtns.forEach(btn => {
 
 // Project Modal Logic
 const modal = document.getElementById('project-modal');
-const closeModalBtn = modal.querySelector('.close-modal');
-const modalOverlay = modal.querySelector('.modal-overlay');
+const closeModalBtn = modal ? modal.querySelector('.close-modal') : null;
+const modalOverlay = modal ? modal.querySelector('.modal-overlay') : null;
 const projectBtns = document.querySelectorAll('.view-project-btn');
 
 const openModal = (projectCard) => {
+    if (!modal) return;
     const title = projectCard.getAttribute('data-title');
     const desc = projectCard.getAttribute('data-desc');
     const tech = projectCard.getAttribute('data-tech').split(',');
@@ -192,6 +193,7 @@ const openModal = (projectCard) => {
 };
 
 const closeModal = () => {
+    if (!modal) return;
     modal.classList.remove('active');
     body.style.overflow = 'auto';
 };
@@ -203,12 +205,12 @@ projectBtns.forEach(btn => {
     });
 });
 
-closeModalBtn.addEventListener('click', closeModal);
-modalOverlay.addEventListener('click', closeModal);
+if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+if (modalOverlay) modalOverlay.addEventListener('click', closeModal);
 
 // Close on Escape key
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('active')) {
+    if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
         closeModal();
     }
 });

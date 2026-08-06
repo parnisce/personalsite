@@ -33,7 +33,15 @@
             "destination": "/blog/post.html"
         },
         {
-            "source": "/((?!api/|admin/|about/|blog/|.*\\.).*)",
+            "source": "/portfolio",
+            "destination": "/portfolio/index.html"
+        },
+        {
+            "source": "/portfolio/",
+            "destination": "/portfolio/index.html"
+        },
+        {
+            "source": "/((?!api/|admin/|about/|blog/|portfolio/|.*\\.).*)",
             "destination": "/index.html"
         }
     ],

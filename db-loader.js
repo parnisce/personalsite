@@ -8,8 +8,9 @@ async function loadProjectsFromDatabase() {
         const data = await response.json();
 
         if (Array.isArray(data) && data.length > 0) {
-            // Homepage shows a curated 6; full list lives on cyrylbitangcol.com/portfolio
-            renderDatabaseProjects(data.slice(0, 6));
+            // Full archive on /portfolio/; homepage shows a curated six
+            const onPortfolioPage = window.location.pathname.includes('/portfolio');
+            renderDatabaseProjects(onPortfolioPage ? data : data.slice(0, 6));
         } else {
             console.error('Error loading projects:', data.error);
         }
