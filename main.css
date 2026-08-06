@@ -894,6 +894,13 @@ section {
     gap: 0.5rem;
 }
 
+.social-link i {
+    width: 1.1rem;
+    text-align: center;
+    font-size: 1.05rem;
+    line-height: 1;
+}
+
 .social-link:hover {
     color: var(--text-primary);
 }
