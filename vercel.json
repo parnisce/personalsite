@@ -45,6 +45,8 @@
             "destination": "/index.html"
         }
     ],
+    "trailingSlash": true,
+
     "env": {
         "DB_HOST": "srv1518.hstgr.io",
         "DB_USER": "u323771957_cyrylprousr",

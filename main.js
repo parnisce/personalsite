@@ -1,5 +1,7 @@
 // Initialize Lucide icons
-lucide.createIcons();
+if (window.lucide) {
+    lucide.createIcons();
+}
 
 // Theme Toggle Logic
 const themeToggle = document.getElementById('theme-toggle');
@@ -11,35 +13,40 @@ if (savedTheme) {
     body.className = savedTheme;
 }
 
-themeToggle.addEventListener('click', () => {
-    if (body.classList.contains('dark-mode')) {
-        body.classList.replace('dark-mode', 'light-mode');
-        localStorage.setItem('theme', 'light-mode');
-    } else {
-        body.classList.replace('light-mode', 'dark-mode');
-        localStorage.setItem('theme', 'dark-mode');
-    }
-    // Refresh icons if needed
-    lucide.createIcons();
-});
+if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+        if (body.classList.contains('dark-mode')) {
+            body.classList.replace('dark-mode', 'light-mode');
+            localStorage.setItem('theme', 'light-mode');
+        } else {
+            body.classList.replace('light-mode', 'dark-mode');
+            localStorage.setItem('theme', 'dark-mode');
+        }
+        if (window.lucide) lucide.createIcons();
+    });
+}
 
 // Mobile Menu Toggle
 const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-const mobileMenuIcon = mobileMenuBtn.querySelector('i');
+const mobileMenuIcon = mobileMenuBtn ? mobileMenuBtn.querySelector('i') : null;
 
-mobileMenuBtn.addEventListener('click', () => {
-    body.classList.toggle('mobile-menu-active');
-    const isActive = body.classList.contains('mobile-menu-active');
-    mobileMenuIcon.setAttribute('data-lucide', isActive ? 'x' : 'menu');
-    lucide.createIcons();
-});
+if (mobileMenuBtn && mobileMenuIcon) {
+    mobileMenuBtn.addEventListener('click', () => {
+        body.classList.toggle('mobile-menu-active');
+        const isActive = body.classList.contains('mobile-menu-active');
+        mobileMenuIcon.setAttribute('data-lucide', isActive ? 'x' : 'menu');
+        if (window.lucide) lucide.createIcons();
+    });
+}
 
 // Close menu on link click
 document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', () => {
         body.classList.remove('mobile-menu-active');
-        mobileMenuIcon.setAttribute('data-lucide', 'menu');
-        lucide.createIcons();
+        if (mobileMenuIcon) {
+            mobileMenuIcon.setAttribute('data-lucide', 'menu');
+            if (window.lucide) lucide.createIcons();
+        }
     });
 });
 
@@ -105,8 +112,12 @@ window.addEventListener('scroll', () => {
     });
 
     navLinks.forEach(link => {
+        const href = link.getAttribute('href') || '';
+        // Only update in-page section links (e.g. #services), not routes like /portfolio/
+        if (!href.startsWith('#') && !href.includes('/#')) return;
         link.classList.remove('active');
-        if (link.getAttribute('href').slice(1) === current) {
+        const hash = href.includes('#') ? href.split('#').pop() : '';
+        if (hash && hash === current) {
             link.classList.add('active');
         }
     });

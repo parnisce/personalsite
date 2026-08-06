@@ -5,6 +5,17 @@ const API_URL = '/api/projects';
 async function loadProjectsFromDatabase() {
     try {
         const response = await fetch(API_URL);
+        if (!response.ok) {
+            console.warn('Projects API unavailable, keeping static projects.');
+            return;
+        }
+
+        const contentType = response.headers.get('content-type') || '';
+        if (!contentType.includes('application/json')) {
+            console.warn('Projects API returned non-JSON, keeping static projects.');
+            return;
+        }
+
         const data = await response.json();
 
         if (Array.isArray(data) && data.length > 0) {
@@ -12,10 +23,10 @@ async function loadProjectsFromDatabase() {
             const onPortfolioPage = window.location.pathname.includes('/portfolio');
             renderDatabaseProjects(onPortfolioPage ? data : data.slice(0, 6));
         } else {
-            console.error('Error loading projects:', data.error);
+            console.warn('No projects from API, keeping static projects.');
         }
     } catch (error) {
-        console.error('Network error loading projects:', error);
+        console.warn('Network error loading projects, keeping static projects:', error.message);
     }
 }
 
