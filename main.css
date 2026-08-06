@@ -394,7 +394,7 @@ a {
 
 .hero-portrait {
     width: 100%;
-    max-width: 420px;
+    max-width: 460px;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -403,8 +403,20 @@ a {
 .portrait-stage {
     position: relative;
     width: 100%;
-    height: 480px;
+    height: 520px;
     overflow: visible;
+    animation: portraitStageIn 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes portraitStageIn {
+    from {
+        opacity: 0;
+        transform: translateY(28px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 .portrait-backdrop {
@@ -412,7 +424,7 @@ a {
     left: 0;
     right: 0;
     bottom: 0;
-    height: 78%;
+    height: 76%;
     border-radius: 2rem;
     overflow: hidden;
     background: #12141c;
@@ -424,38 +436,76 @@ a {
 .portrait-backdrop::before {
     content: '';
     position: absolute;
-    inset: 0;
-    background: url('https://cyrylbitangcol.com/wp-content/uploads/2024/07/326096513_499701325654707_8166315754205694577_n.jpg') center / cover no-repeat;
-    opacity: 0.45;
+    inset: -8%;
+    background: url('assets/images/hero-backdrop.jpg') center / cover no-repeat;
+    opacity: 0.5;
     pointer-events: none;
+    transform-origin: center center;
+    animation: backdropDrift 14s ease-in-out infinite alternate;
 }
 
 .portrait-backdrop::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(115deg, rgba(10, 11, 16, 0.25) 0%, rgba(10, 11, 16, 0.55) 100%);
+    background:
+        linear-gradient(160deg, rgba(10, 11, 16, 0.2) 0%, rgba(10, 11, 16, 0.55) 70%, rgba(10, 11, 16, 0.7) 100%),
+        radial-gradient(ellipse at 70% 100%, rgba(255, 107, 43, 0.18), transparent 55%);
     pointer-events: none;
+}
+
+@keyframes backdropDrift {
+    from { transform: scale(1) translate(0, 0); }
+    to { transform: scale(1.08) translate(-1.5%, 1%); }
 }
 
 .portrait-photo {
     position: absolute;
-    right: -4%;
+    right: -2%;
     bottom: -2%;
-    width: 92%;
+    width: 94%;
     height: auto;
-    max-height: 108%;
+    max-height: 112%;
     object-fit: contain;
     object-position: bottom center;
     z-index: 3;
-    filter: drop-shadow(0 18px 35px rgba(0, 0, 0, 0.45));
-    animation: portraitFloat 5.5s ease-in-out infinite;
+    filter: drop-shadow(0 22px 40px rgba(0, 0, 0, 0.5));
+    transform-origin: 50% 100%;
+    animation:
+        portraitRise 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both,
+        portraitBreathe 7s ease-in-out 1.2s infinite;
     pointer-events: none;
+    image-rendering: -webkit-optimize-contrast;
 }
 
-@keyframes portraitFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+@keyframes portraitRise {
+    from {
+        opacity: 0;
+        transform: translateY(36px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes portraitBreathe {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+        filter: drop-shadow(0 22px 40px rgba(0, 0, 0, 0.5));
+    }
+    50% {
+        transform: translateY(-8px) scale(1.015);
+        filter: drop-shadow(0 28px 48px rgba(0, 0, 0, 0.42));
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .portrait-stage,
+    .portrait-photo,
+    .portrait-backdrop::before {
+        animation: none !important;
+    }
 }
 
 .skill-tags {
@@ -1209,16 +1259,20 @@ p.text-gray-300.mt-4 {
     }
 
     .hero-portrait {
-        max-width: 320px;
+        max-width: 340px;
     }
 
     .portrait-stage {
-        height: 380px;
+        height: 400px;
     }
 
     .portrait-photo {
         right: -2%;
         width: 95%;
+        animation: portraitRise 1s ease both;
+    }
+
+    .portrait-backdrop::before {
         animation: none;
     }
 
