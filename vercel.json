@@ -1,4 +1,6 @@
 {
+    "buildCommand": "npm run build",
+    "outputDirectory": "dist",
     "rewrites": [
         {
             "source": "/api/(.*)",
@@ -29,14 +31,27 @@
             "destination": "/blog/index.html"
         },
         {
-            "source": "/blog/((?!index\\.html|post\\.html|.*\\.css|.*\\.js$).*)",
-            "destination": "/blog/post.html"
+            "source": "/portfolio",
+            "destination": "/portfolio/index.html"
         },
         {
-            "source": "/((?!api/|admin/|about/|blog/|.*\\.).*)",
+            "source": "/portfolio/",
+            "destination": "/portfolio/index.html"
+        },
+        {
+            "source": "/experience",
+            "destination": "/experience/index.html"
+        },
+        {
+            "source": "/experience/",
+            "destination": "/experience/index.html"
+        },
+        {
+            "source": "/((?!api/|admin/|about/|blog/|portfolio/|experience/|.*\\.).*)",
             "destination": "/index.html"
         }
     ],
+    "trailingSlash": true,
     "env": {
         "DB_HOST": "srv1518.hstgr.io",
         "DB_USER": "u323771957_cyrylprousr",

@@ -1,0 +1,18 @@
+/* Portfolio page — builds on main.css projects section */
+
+.portfolio-page-section {
+    padding-top: 8rem;
+    padding-bottom: 6rem;
+    min-height: 80vh;
+}
+
+.portfolio-page-header .section-title {
+    font-size: clamp(2.5rem, 5vw, 3.75rem);
+}
+
+@media (max-width: 768px) {
+    .portfolio-page-section {
+        padding-top: 6.5rem;
+        padding-bottom: 4rem;
+    }
+}

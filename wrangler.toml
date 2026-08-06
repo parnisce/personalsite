@@ -1,0 +1,5 @@
+name = "personalsite"
+compatibility_date = "2024-11-01"
+
+# Cloudflare Pages publishes this directory (produced by `npm run build`).
+pages_build_output_dir = "dist"
