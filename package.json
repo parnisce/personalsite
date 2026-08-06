@@ -6,6 +6,7 @@
     "scripts": {
         "start": "npx live-server .",
         "dev": "node dev-server.js",
+        "build": "echo \"No build step required - static site served as-is\"",
         "deploy": "npx vercel --prod"
     },
     "keywords": [],
