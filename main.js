@@ -241,51 +241,92 @@ if (contactForm) {
     });
 }
 
-// Dynamic Testimonials Logic
-async function loadTestimonials() {
+// Dynamic Testimonials Logic — real recommendations from cyrylbitangcol.com
+const DEFAULT_TESTIMONIALS = [
+    {
+        name: 'Christine Litera',
+        role: 'Founder of Chrysallis - Business Lock In',
+        text: "I've collaborated with Cyryl Bitangcol for several years. Cyryl has consistently supported me remotely, achieving excellent results for my online presentations. From website updates and plugin management to layout and copy updates, he tackles diverse tasks with ease.",
+        avatar_url: 'https://cyrylbitangcol.com/wp-content/uploads/2024/07/1680494213655-280x280.jpg'
+    },
+    {
+        name: 'Roger Valdez',
+        role: 'Founder & CEO at Webnotik',
+        text: 'Cyryl is a well-rounded web developer and excellent team member! He brings a diverse skill set to the table, proficiently handling everything from front-end design to back-end development.',
+        avatar_url: 'https://cyrylbitangcol.com/wp-content/uploads/2024/07/1539587399525-280x280.jpg'
+    },
+    {
+        name: 'Carlos Ramirez',
+        role: 'CEO at Nextminds.com',
+        text: 'Cyryl is not just a developer; he is also an incredibly talented graphic artist. His proficiency in creating a wide array of designs and logos is remarkable. His creative imagination and ability to translate ideas into beautiful graphics were invaluable.',
+        avatar_url: 'https://cyrylbitangcol.com/wp-content/uploads/2024/07/11894063_10152948556856594_1712293888269170565_o-280x280.jpg'
+    },
+    {
+        name: 'Henry Law',
+        role: 'CEO at Skin Check WA',
+        text: 'I highly recommend Cyryl Bitangcol for creating and developing websites and apps. His expertise in web and app development is exceptional, ensuring user-friendly interfaces and robust functionalities tailored to specific needs.',
+        avatar_url: 'https://cyrylbitangcol.com/wp-content/uploads/2024/07/1516892674012-280x280.jpg'
+    }
+];
+
+function renderStars() {
+    return `<div class="testimonial-stars" aria-label="5 out of 5 stars">
+        ${'<i class="fas fa-star"></i>'.repeat(5)}
+    </div>`;
+}
+
+function renderTestimonialSlide(t, index) {
+    const initials = (t.name || 'U').split(' ').filter(Boolean).map(n => n[0]).join('').slice(0, 2);
+    const avatar = t.avatar_url
+        ? `<img src="${t.avatar_url}" alt="${t.name}" loading="lazy">`
+        : initials;
+
+    return `
+        <div class="slider-slide${index === 0 ? ' is-active' : ''}" data-index="${index}">
+            <div class="testimonial-card glass-card">
+                <div class="quote-icon"><i data-lucide="quote"></i></div>
+                ${renderStars()}
+                <p class="testimonial-text">"${t.text}"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">${avatar}</div>
+                    <div class="author-info">
+                        <div class="author-name">${t.name}</div>
+                        <div class="author-role">${t.role || ''}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+function renderTestimonials(testimonials) {
     const track = document.getElementById('testimonial-track');
     const dotsContainer = document.getElementById('slider-dots');
-    const prevBtn = document.getElementById('prev-btn');
-    const nextBtn = document.getElementById('next-btn');
+    if (!track || !dotsContainer) return;
 
+    track.innerHTML = testimonials.map((t, i) => renderTestimonialSlide(t, i)).join('');
+    dotsContainer.innerHTML = testimonials.map((_, i) => `
+        <button type="button" class="slider-dot ${i === 0 ? 'active' : ''}" data-index="${i}" aria-label="Go to testimonial ${i + 1}"></button>
+    `).join('');
+
+    if (window.lucide) window.lucide.createIcons();
+    initSlider(testimonials.length);
+}
+
+async function loadTestimonials() {
+    const track = document.getElementById('testimonial-track');
     if (!track) return;
+
+    // Show real recommendations immediately, then upgrade from API if available
+    renderTestimonials(DEFAULT_TESTIMONIALS);
 
     try {
         const response = await fetch('/api/testimonials');
         const testimonials = await response.json();
 
-        if (!testimonials || testimonials.length === 0) {
-            track.innerHTML = '<div class="slider-slide"><div class="testimonial-card"><p class="testimonial-text">No testimonials yet. Be the first!</p></div></div>';
-            return;
+        if (Array.isArray(testimonials) && testimonials.length > 0) {
+            renderTestimonials(testimonials);
         }
-
-        // Render slides
-        track.innerHTML = testimonials.map(t => `
-            <div class="slider-slide">
-                <div class="testimonial-card">
-                    <div class="quote-icon"><i data-lucide="quote"></i></div>
-                    <p class="testimonial-text">"${t.text}"</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">${t.avatar_url ? `<img src="${t.avatar_url}" alt="${t.name}">` : (t.name.split(' ').map(n => n[0]).join('') || 'U')}</div>
-                        <div class="author-info">
-                            <div class="author-name">${t.name}</div>
-                            <div class="author-role">${t.role || ''}</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `).join('');
-
-        // Render dots
-        dotsContainer.innerHTML = testimonials.map((_, i) => `
-            <button class="slider-dot ${i === 0 ? 'active' : ''}" data-index="${i}"></button>
-        `).join('');
-
-        if (window.lucide) window.lucide.createIcons();
-
-        // Initialize Slider Logic
-        initSlider(testimonials.length);
-
     } catch (error) {
         console.error('Error loading testimonials:', error);
     }
@@ -293,42 +334,105 @@ async function loadTestimonials() {
 
 function initSlider(slideCount) {
     const track = document.getElementById('testimonial-track');
+    const slider = document.querySelector('.testimonials-slider');
     const dots = document.querySelectorAll('.slider-dot');
     const prevBtn = document.getElementById('prev-btn');
     const nextBtn = document.getElementById('next-btn');
+    const progress = document.getElementById('slider-progress');
     let currentSlide = 0;
+    let autoplayTimer = null;
+    let progressTimer = null;
+    const AUTOPLAY_MS = 6000;
 
-    const updateSlider = () => {
+    if (!track || slideCount < 1) return;
+
+    // Replace previous listeners by cloning controls
+    const bindOnce = (btn, handler) => {
+        if (!btn) return null;
+        const clone = btn.cloneNode(true);
+        btn.parentNode.replaceChild(clone, btn);
+        clone.addEventListener('click', handler);
+        return clone;
+    };
+
+    const updateSlider = (animate = true) => {
+        if (animate) track.classList.add('is-animating');
         track.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+        track.querySelectorAll('.slider-slide').forEach((slide, i) => {
+            slide.classList.toggle('is-active', i === currentSlide);
+        });
+
         dots.forEach((dot, i) => {
             dot.classList.toggle('active', i === currentSlide);
         });
+
+        restartProgress();
     };
 
-    nextBtn?.addEventListener('click', () => {
-        currentSlide = (currentSlide + 1) % slideCount;
-        updateSlider();
-    });
+    const goTo = (index) => {
+        currentSlide = ((index % slideCount) + slideCount) % slideCount;
+        updateSlider(true);
+    };
 
-    prevBtn?.addEventListener('click', () => {
-        currentSlide = (currentSlide - 1 + slideCount) % slideCount;
-        updateSlider();
-    });
+    const next = () => goTo(currentSlide + 1);
+    const prev = () => goTo(currentSlide - 1);
+
+    bindOnce(document.getElementById('next-btn'), next);
+    bindOnce(document.getElementById('prev-btn'), prev);
 
     dots.forEach(dot => {
-        dot.addEventListener('click', () => {
-            currentSlide = parseInt(dot.dataset.index);
-            updateSlider();
-        });
+        dot.addEventListener('click', () => goTo(parseInt(dot.dataset.index, 10)));
     });
 
-    // Auto-play
-    setInterval(() => {
-        if (slideCount > 1) {
-            currentSlide = (currentSlide + 1) % slideCount;
-            updateSlider();
+    const clearAutoplay = () => {
+        if (autoplayTimer) clearInterval(autoplayTimer);
+        if (progressTimer) clearInterval(progressTimer);
+        autoplayTimer = null;
+        progressTimer = null;
+    };
+
+    const restartProgress = () => {
+        if (!progress) return;
+        progress.style.transition = 'none';
+        progress.style.width = '0%';
+        // Force reflow then animate
+        void progress.offsetWidth;
+        progress.style.transition = `width ${AUTOPLAY_MS}ms linear`;
+        progress.style.width = '100%';
+    };
+
+    const startAutoplay = () => {
+        clearAutoplay();
+        if (slideCount <= 1) return;
+        restartProgress();
+        autoplayTimer = setInterval(next, AUTOPLAY_MS);
+    };
+
+    if (slider) {
+        slider.addEventListener('mouseenter', clearAutoplay);
+        slider.addEventListener('mouseleave', startAutoplay);
+        slider.addEventListener('focusin', clearAutoplay);
+        slider.addEventListener('focusout', startAutoplay);
+    }
+
+    // Touch / swipe
+    let touchStartX = 0;
+    track.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        clearAutoplay();
+    }, { passive: true });
+
+    track.addEventListener('touchend', (e) => {
+        const delta = e.changedTouches[0].screenX - touchStartX;
+        if (Math.abs(delta) > 50) {
+            delta < 0 ? next() : prev();
         }
-    }, 8000);
+        startAutoplay();
+    }, { passive: true });
+
+    updateSlider(false);
+    startAutoplay();
 }
 
 // Call on load

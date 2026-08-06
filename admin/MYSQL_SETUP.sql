@@ -43,3 +43,21 @@ INSERT INTO projects (title, short_description, description, tech_stack, image_u
 ('Offer Charm', 'A responsive platform offering exclusive deals and discounts for users in Orlando, FL.', 'Explore the Offer Charm website, designed by Cyryl Bitangcol using Divi Theme and Photoshop. A responsive platform offering exclusive deals and discounts for users in Orlando, FL.', 'WordPress, Divi Theme, Photoshop', 'https://cyrylbitangcol.com/wp-content/uploads/2020/09/Offer-Charm-scaled.png', 'https://cyrylbitangcol.com/portfolio/offer-charm/', 'web-design web-development', 'Divi, Web Dev'),
 ('Grandma Scones', 'A responsive, visually stunning online store for scone lovers in Tsim Sha Tsui, HK.', 'Explore the Grandma Scones website designed by Cyryl Bitangcol using Elementor Pro, Figma, and Photoshop. A responsive, visually stunning online store for scone lovers in Tsim Sha Tsui, HK.', 'WordPress, Elementor Pro, Figma, Photoshop, WooCommerce', 'https://cyrylbitangcol.com/wp-content/uploads/2020/09/Grandma-Scones-scaled.png', 'https://cyrylbitangcol.com/portfolio/grandma-scones/', 'web-design web-development', 'Figma, Elementor, Web Dev'),
 ('Blue Halo Homes', 'Experience a luxurious, responsive site that showcases exceptional craftsmanship.', 'Discover the Blue Halo Homes website, designed by Cyryl Bitangcol using Divi Theme and Photoshop. Experience a luxurious, responsive site that showcases exceptional craftsmanship.', 'WordPress, Divi Theme, Photoshop', 'https://cyrylbitangcol.com/wp-content/uploads/2020/09/Blue-Halo-scaled.png', 'https://cyrylbitangcol.com/portfolio/blue-halo-homes/', 'web-design web-development', 'Divi, Web Dev');
+
+-- 4. Testimonials Table
+CREATE TABLE IF NOT EXISTS testimonials (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    role VARCHAR(255),
+    text TEXT NOT NULL,
+    avatar_url VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- 5. Seed real recommendations from cyrylbitangcol.com
+INSERT INTO testimonials (name, role, text, avatar_url) VALUES
+('Christine Litera', 'Founder of Chrysallis - Business Lock In', 'I''ve collaborated with Cyryl Bitangcol for several years. Cyryl has consistently supported me remotely, achieving excellent results for my online presentations. From website updates and plugin management to layout and copy updates, he tackles diverse tasks with ease.', 'https://cyrylbitangcol.com/wp-content/uploads/2024/07/1680494213655-280x280.jpg'),
+('Roger Valdez', 'Founder & CEO at Webnotik', 'Cyryl is a well-rounded web developer and excellent team member! He brings a diverse skill set to the table, proficiently handling everything from front-end design to back-end development.', 'https://cyrylbitangcol.com/wp-content/uploads/2024/07/1539587399525-280x280.jpg'),
+('Carlos Ramirez', 'CEO at Nextminds.com', 'Cyryl is not just a developer; he is also an incredibly talented graphic artist. His proficiency in creating a wide array of designs and logos is remarkable. His creative imagination and ability to translate ideas into beautiful graphics were invaluable.', 'https://cyrylbitangcol.com/wp-content/uploads/2024/07/11894063_10152948556856594_1712293888269170565_o-280x280.jpg'),
+('Henry Law', 'CEO at Skin Check WA', 'I highly recommend Cyryl Bitangcol for creating and developing websites and apps. His expertise in web and app development is exceptional, ensuring user-friendly interfaces and robust functionalities tailored to specific needs.', 'https://cyrylbitangcol.com/wp-content/uploads/2024/07/1516892674012-280x280.jpg');
