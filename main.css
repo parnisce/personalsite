@@ -513,6 +513,16 @@ section {
     gap: 2rem;
 }
 
+.projects-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+.projects-cta .view-more-portfolio {
+    text-decoration: none;
+}
+
 .project-card {
     transition: opacity 0.4s ease, transform 0.4s ease, background 0.4s ease;
 }

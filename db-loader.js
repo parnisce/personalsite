@@ -7,8 +7,9 @@ async function loadProjectsFromDatabase() {
         const response = await fetch(API_URL);
         const data = await response.json();
 
-        if (Array.isArray(data)) {
-            renderDatabaseProjects(data);
+        if (Array.isArray(data) && data.length > 0) {
+            // Homepage shows a curated 6; full list lives on cyrylbitangcol.com/portfolio
+            renderDatabaseProjects(data.slice(0, 6));
         } else {
             console.error('Error loading projects:', data.error);
         }
