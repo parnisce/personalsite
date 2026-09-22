@@ -29,7 +29,8 @@ const INCLUDE = [
     'blog',
     'portfolio',
     'experience',
-    'admin'
+    'admin',
+    'report-audit'
 ];
 
 // Files that should never be published even if they live inside an included dir.

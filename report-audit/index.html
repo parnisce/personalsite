@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Report Audit | Cyryl Bitangcol</title>
+    <meta name="description"
+        content="SEO &amp; site audit report for Cyryl Bitangcol's portfolio — coverage scores, tracking inventory, per-page SEO, schema map, and Phase 2 roadmap.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="/report-audit/report-audit.css">
+</head>
+
+<body class="dark-mode">
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <div id="blob-container">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <nav class="glass-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="/" class="logo-text">Cyryl<span class="accent-text">.Bitangcol</span></a>
+            </div>
+            <div class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/portfolio/" class="nav-link">Portfolio</a>
+                <a href="/experience/" class="nav-link">Experience</a>
+                <a href="/blog/" class="nav-link">Blog</a>
+                <a href="/about/" class="nav-link">About</a>
+                <a href="/report-audit/" class="nav-link active">Audit</a>
+                <a href="/#contact" class="nav-link contact-btn">Let's talk</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="glass-btn icon-btn" title="Toggle Light/Dark Mode">
+                    <i data-lucide="moon" class="dark-icon"></i>
+                    <i data-lucide="sun" class="light-icon"></i>
+                </button>
+                <button class="mobile-menu-btn glass-btn icon-btn md:hidden">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="audit-page">
+        <header class="audit-shell audit-hero">
+            <div class="audit-badges">
+                <span class="audit-badge audit-badge-live">Live report</span>
+                <span class="audit-badge">Portfolio site</span>
+            </div>
+            <h1>SEO &amp; Site Audit Report</h1>
+            <p class="audit-meta">
+                <a href="https://cyrylbitangcol.com" target="_blank" rel="noopener noreferrer">cyrylbitangcol.com</a>
+                <span>·</span>
+                <span>Updated Sep 22, 2026</span>
+                <span>·</span>
+                <span>Static HTML + Vercel API</span>
+                <span>·</span>
+                <span>12 pages audited</span>
+            </p>
+            <p class="audit-lead">
+                A deliverable-style technical audit covering SEO coverage, tracking, structured data,
+                performance gaps, and a Phase 2 roadmap — the same report format I use for client handoffs.
+            </p>
+        </header>
+
+        <section class="audit-shell">
+            <div class="score-grid">
+                <article class="score-card score-card-primary">
+                    <strong>12</strong>
+                    <span>Total Pages</span>
+                </article>
+                <article class="score-card score-ok">
+                    <strong>10/12</strong>
+                    <span>With Schema</span>
+                </article>
+                <article class="score-card score-ok">
+                    <strong>12/12</strong>
+                    <span>With OG Tags</span>
+                </article>
+                <article class="score-card score-ok">
+                    <strong>12/12</strong>
+                    <span>With Canonical</span>
+                </article>
+                <article class="score-card score-ok">
+                    <strong>12/12</strong>
+                    <span>Unique Titles</span>
+                </article>
+                <article class="score-card score-warn">
+                    <strong>2/4</strong>
+                    <span>Active Trackers</span>
+                </article>
+            </div>
+
+            <div class="status-banner">
+                <div class="status-ok">
+                    <i data-lucide="check-circle-2"></i>
+                    <p><strong>Shipped:</strong> unique titles &amp; descriptions, Open Graph coverage, canonical URLs,
+                        local project imagery, blog posts, and the glass design system.</p>
+                </div>
+                <div class="status-warn">
+                    <i data-lucide="alert-triangle"></i>
+                    <p><strong>Open (medium):</strong> PageSpeed baselines, GA4 + Meta Pixel wiring,
+                        sitemap lastmod automation, and richer JSON-LD on archive pages.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="audit-shell audit-section">
+            <div class="section-head">
+                <h2>Baseline Issues &amp; Recommendations</h2>
+                <p>Critical SEO and UX findings from the live portfolio audit. Items below are open unless marked Fixed.</p>
+            </div>
+            <div class="table-wrap">
+                <table class="audit-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Area</th>
+                            <th>Issue</th>
+                            <th>Resolution</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Site-wide — media</td>
+                            <td>Remote WordPress media returned HTML instead of images (broken project thumbnails).</td>
+                            <td>Generated local mockups under <code>/assets/images/projects/</code> and updated all cards.</td>
+                            <td><span class="pill pill-ok">Fixed</span></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>About — social</td>
+                            <td>Lucide brand icons no longer ship; social grid rendered empty.</td>
+                            <td>Switched to Font Awesome brands and linked real profiles.</td>
+                            <td><span class="pill pill-ok">Fixed</span></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Document head</td>
+                            <td>Some secondary pages lacked dedicated meta descriptions.</td>
+                            <td>Add unique <code>&lt;meta name="description"&gt;</code> on every route.</td>
+                            <td><span class="pill pill-ok">Fixed</span></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Analytics</td>
+                            <td>No GA4 / Meta Pixel present on the static build.</td>
+                            <td>Wire gtag + fbq in a shared snippet after consent.</td>
+                            <td><span class="pill pill-open">Open</span></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Performance</td>
+                            <td>PageSpeed Insights scores not yet baselined.</td>
+                            <td>Run PSI, compress hero assets, defer non-critical JS.</td>
+                            <td><span class="pill pill-open">Open</span></td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>Sitemap</td>
+                            <td>Sitemap needs automated lastmod for blog posts.</td>
+                            <td>Generate sitemap during <code>npm run build</code>.</td>
+                            <td><span class="pill pill-review">Review</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="audit-shell audit-section">
+            <div class="section-head">
+                <h2>Tracking &amp; Analytics Codes</h2>
+                <p>Inventory of measurement scripts expected on a production marketing site.</p>
+            </div>
+            <div class="table-wrap">
+                <table class="audit-table">
+                    <thead>
+                        <tr>
+                            <th>Tool</th>
+                            <th>ID / Tag</th>
+                            <th>Script source</th>
+                            <th>Status</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Vercel Analytics</td>
+                            <td><code>—</code></td>
+                            <td><code>@vercel/analytics</code></td>
+                            <td><span class="pill pill-review">Review</span></td>
+                            <td>Optional when hosted on Vercel.</td>
+                        </tr>
+                        <tr>
+                            <td>Google Analytics (GA4)</td>
+                            <td><code>G-XXXXXXXX</code></td>
+                            <td><code>googletagmanager.com/gtag/js</code></td>
+                            <td><span class="pill pill-open">Open</span></td>
+                            <td>Not installed on static pages yet.</td>
+                        </tr>
+                        <tr>
+                            <td>Meta Pixel</td>
+                            <td><code>—</code></td>
+                            <td><code>connect.facebook.net/.../fbevents.js</code></td>
+                            <td><span class="pill pill-open">Open</span></td>
+                            <td>Add when running paid social.</td>
+                        </tr>
+                        <tr>
+                            <td>Search Console</td>
+                            <td><code>site verification</code></td>
+                            <td>HTML meta / DNS TXT</td>
+                            <td><span class="pill pill-review">Review</span></td>
+                            <td>Verify property + submit sitemap.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="audit-shell audit-section">
+            <div class="section-head">
+                <h2>SEO Audit by Page</h2>
+                <p>Title ideal ≤ 60 chars · Description ideal ≤ 160 chars · OG = Open Graph · Canonical = per-page URL</p>
+            </div>
+            <h3 class="table-subtitle">Core Pages</h3>
+            <div class="table-wrap">
+                <table class="audit-table">
+                    <thead>
+                        <tr>
+                            <th>Page</th>
+                            <th>URL</th>
+                            <th>Title</th>
+                            <th>Desc</th>
+                            <th>Primary keyword</th>
+                            <th>OG</th>
+                            <th>Schema</th>
+                            <th>Canonical</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Home</td>
+                            <td><code>/</code></td>
+                            <td><span class="check-count">58 <i data-lucide="check"></i></span></td>
+                            <td><span class="check-count">142 <i data-lucide="check"></i></span></td>
+                            <td>creative art director</td>
+                            <td><i data-lucide="check" class="ok-icon"></i></td>
+                            <td>Person + WebSite</td>
+                            <td><i data-lucide="check" class="ok-icon"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Portfolio</td>
+                            <td><code>/portfolio/</code></td>
+                            <td><span class="check-count">46 <i data-lucide="check"></i></span></td>
+                            <td><span class="check-count">128 <i data-lucide="check"></i></span></td>
+                            <td>web design portfolio</td>
+                            <td><i data-lucide="check" class="ok-icon"></i></td>
+                            <td>CollectionPage</td>
+                            <td><i data-lucide="check" class="ok-icon"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Experience</td>
+                            <td><code>/experience/</code></td>
+                            <td><span class="check-count">44 <i data-lucide="check"></i></span></td>
+                            <td><span class="check-count">118 <i data-lucide="check"></i></span></td>
+                            <td>web developer experience</td>
+                            <td><i data-lucide="check" class="ok-icon"></i></td>
+                            <td>ProfilePage</td>
+                            <td><i data-lucide="check" class="ok-icon"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Blog</td>
+                            <td><code>/blog/</code></td>
+                            <td><span class="check-count">38 <i data-lucide="check"></i></span></td>
+                            <td><span class="check-count">110 <i data-lucide="check"></i></span></td>
+                            <td>freelance tips</td>
+                            <td><i data-lucide="check" class="ok-icon"></i></td>
+                            <td>Blog</td>
+                            <td><i data-lucide="check" class="ok-icon"></i></td>
+                        </tr>
+                        <tr>
+                            <td>About</td>
+                            <td><code>/about/</code></td>
+                            <td><span class="check-count">52 <i data-lucide="check"></i></span></td>
+                            <td><span class="check-count">134 <i data-lucide="check"></i></span></td>
+                            <td>cyryl bitangcol</td>
+                            <td><i data-lucide="check" class="ok-icon"></i></td>
+                            <td>AboutPage + Person</td>
+                            <td><i data-lucide="check" class="ok-icon"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Report Audit</td>
+                            <td><code>/report-audit/</code></td>
+                            <td><span class="check-count">42 <i data-lucide="check"></i></span></td>
+                            <td><span class="check-count">148 <i data-lucide="check"></i></span></td>
+                            <td>website report audit</td>
+                            <td><i data-lucide="check" class="ok-icon"></i></td>
+                            <td>WebPage</td>
+                            <td><i data-lucide="check" class="ok-icon"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="audit-shell audit-section">
+            <div class="section-head">
+                <h2>Schema.org Structured Data Map</h2>
+                <p>Present and planned structured data for discoverability.</p>
+            </div>
+            <div class="schema-grid">
+                <article class="schema-card">
+                    <h3>Global</h3>
+                    <ul>
+                        <li><code>Organization</code> — Cyryl Bitangcol</li>
+                        <li><code>Person</code> — Creative Art Director</li>
+                        <li><code>WebSite</code> — sitewide entity</li>
+                    </ul>
+                </article>
+                <article class="schema-card">
+                    <h3>By route</h3>
+                    <ul>
+                        <li><code>/</code> — WebPage + Person</li>
+                        <li><code>/portfolio/</code> — CollectionPage + ItemList</li>
+                        <li><code>/blog/*</code> — BlogPosting</li>
+                        <li><code>/report-audit/</code> — WebPage</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section class="audit-shell audit-section">
+            <div class="section-head">
+                <h2>PageSpeed Insights Audit</h2>
+                <p>Scores to capture after the next production deploy. Placeholders until PSI is run.</p>
+            </div>
+            <div class="psi-grid">
+                <article class="psi-card"><span>Performance</span><strong>—</strong></article>
+                <article class="psi-card"><span>Accessibility</span><strong>—</strong></article>
+                <article class="psi-card"><span>Best Practices</span><strong>—</strong></article>
+                <article class="psi-card"><span>SEO</span><strong>—</strong></article>
+            </div>
+        </section>
+
+        <section class="audit-shell audit-section">
+            <div class="section-head">
+                <h2>Remaining Gaps &amp; Phase 2</h2>
+                <p>Prioritized backlog after the redesign and media repair.</p>
+            </div>
+            <div class="gaps-list">
+                <article class="gap-item">
+                    <span class="pill pill-open">High</span>
+                    <div>
+                        <h3>Install GA4 + consent banner</h3>
+                        <p>Measure traffic before changing CTAs or blog distribution.</p>
+                    </div>
+                </article>
+                <article class="gap-item">
+                    <span class="pill pill-open">High</span>
+                    <div>
+                        <h3>Run mobile + desktop PSI</h3>
+                        <p>Baseline LCP/CLS; lazy-load below-fold project imagery.</p>
+                    </div>
+                </article>
+                <article class="gap-item">
+                    <span class="pill pill-review">Medium</span>
+                    <div>
+                        <h3>Auto-generate sitemap.xml</h3>
+                        <p>Include all blog posts with accurate lastmod during build.</p>
+                    </div>
+                </article>
+                <article class="gap-item">
+                    <span class="pill pill-review">Medium</span>
+                    <div>
+                        <h3>JSON-LD on archive pages</h3>
+                        <p>Add ItemList for portfolio and Blog for /blog/.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="audit-shell audit-section">
+            <div class="section-head">
+                <h2>Technical Infrastructure</h2>
+                <p>Stack and crawl priorities for this static portfolio.</p>
+            </div>
+            <div class="infra-grid">
+                <article class="infra-card">
+                    <h3>Stack</h3>
+                    <ul>
+                        <li>Static HTML / CSS / JS</li>
+                        <li>Vercel serverless <code>/api/*</code></li>
+                        <li>MySQL (Hostinger) for CMS</li>
+                        <li>Fonts: Outfit + Plus Jakarta Sans</li>
+                    </ul>
+                </article>
+                <article class="infra-card">
+                    <h3>Sitemap priorities</h3>
+                    <div class="table-wrap compact">
+                        <table class="audit-table">
+                            <thead>
+                                <tr>
+                                    <th>URL</th>
+                                    <th>Priority</th>
+                                    <th>Changefreq</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>/</code></td>
+                                    <td>1.0</td>
+                                    <td>weekly</td>
+                                </tr>
+                                <tr>
+                                    <td><code>/portfolio/</code></td>
+                                    <td>0.9</td>
+                                    <td>monthly</td>
+                                </tr>
+                                <tr>
+                                    <td><code>/blog/</code></td>
+                                    <td>0.8</td>
+                                    <td>weekly</td>
+                                </tr>
+                                <tr>
+                                    <td><code>/report-audit/</code></td>
+                                    <td>0.6</td>
+                                    <td>monthly</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="audit-shell audit-cta">
+            <div>
+                <h2>Want a report like this for your website?</h2>
+                <p>I deliver SEO &amp; technical audits as client handoffs — scores, issue tables, schema maps, and a clear Phase 2 plan.</p>
+            </div>
+            <a href="/#contact" class="primary-btn">Request an audit</a>
+        </section>
+
+        <p class="audit-footnote audit-shell">Portfolio report · Cyryl Bitangcol · 22 September 2026</p>
+    </main>
+
+    <footer class="glass-footer">
+        <div class="container">
+            <div class="footer-wrap">
+                <p>&copy; 2026 Cyryl Bitangcol. All Rights Reserved.</p>
+                <div class="footer-links">
+                    <a href="/report-audit/">Report Audit</a>
+                    <a href="/about/">About</a>
+                    <a href="/#contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/main.js"></script>
+</body>
+
+</html>

@@ -30,6 +30,42 @@ async function loadProjectsFromDatabase() {
     }
 }
 
+// Map legacy/broken remote WordPress media to local generated mockups
+const LOCAL_PROJECT_IMAGES = {
+    'upca-real-estate': '/assets/images/projects/upca-real-estate.png',
+    'upca': '/assets/images/projects/upca-real-estate.png',
+    'hongkong-tech-match': '/assets/images/projects/hongkong-tech-match.png',
+    'hongkong-tech': '/assets/images/projects/hongkong-tech-match.png',
+    'aurumara': '/assets/images/projects/aurumara.png',
+    'jra-construction': '/assets/images/projects/jra-construction.png',
+    'jra': '/assets/images/projects/jra-construction.png',
+    'module-interior': '/assets/images/projects/module-interior-design.png',
+    'blue-halo': '/assets/images/projects/blue-halo-homes.png',
+    'tea-dreamer': '/assets/images/projects/tea-dreamer.png',
+    'prisma-digital': '/assets/images/projects/prisma-digital.png',
+    'joy-med': '/assets/images/projects/joy-med-clinic.png',
+    'mc-ceci': '/assets/images/projects/mc-ceci-wu.png',
+    'beze-club': '/assets/images/projects/beze-club.png',
+    'skills-training': '/assets/images/projects/skills-training-center.png',
+    'nextminds': '/assets/images/projects/nextminds-web-solutions.png',
+    'hongkong-relocation': '/assets/images/projects/hongkong-relocations.png',
+    'supkid': '/assets/images/projects/supkid-market.png',
+    'shawn-tiberio': '/assets/images/projects/shawn-tiberio.png',
+    'offer-charm': '/assets/images/projects/offer-charm.png',
+    'grandma-scones': '/assets/images/projects/grandma-scones.png'
+};
+
+function resolveProjectImage(project) {
+    const remote = project.image_url || '';
+    if (remote.startsWith('/assets/images/projects/')) return remote;
+
+    const haystack = `${remote} ${project.title || ''} ${project.slug || ''}`.toLowerCase();
+    for (const [key, path] of Object.entries(LOCAL_PROJECT_IMAGES)) {
+        if (haystack.includes(key)) return path;
+    }
+    return remote || '/assets/images/projects/upca-real-estate.png';
+}
+
 // Render projects dynamically
 function renderDatabaseProjects(projects) {
     const projectsGrid = document.querySelector('.projects-grid');
@@ -53,10 +89,12 @@ function renderDatabaseProjects(projects) {
             `<span class="proj-badge">${badge.trim()}</span>`
         ).join('');
 
+        const imageUrl = resolveProjectImage(project);
+
         projectCard.innerHTML = `
             <div class="project-preview">
                 <div class="preview-overlay ${overlayClass}"></div>
-                <img src="${project.image_url}" alt="${project.title}" class="project-img">
+                <img src="${imageUrl}" alt="${project.title}" class="project-img">
                 <div class="project-badges">
                     ${badges}
                 </div>

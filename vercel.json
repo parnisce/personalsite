@@ -47,7 +47,15 @@
             "destination": "/experience/index.html"
         },
         {
-            "source": "/((?!api/|admin/|about/|blog/|portfolio/|experience/|.*\\.).*)",
+            "source": "/report-audit",
+            "destination": "/report-audit/index.html"
+        },
+        {
+            "source": "/report-audit/",
+            "destination": "/report-audit/index.html"
+        },
+        {
+            "source": "/((?!api/|admin/|about/|blog/|portfolio/|experience/|report-audit/|.*\\.).*)",
             "destination": "/index.html"
         }
     ],
