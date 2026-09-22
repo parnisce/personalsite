@@ -30,7 +30,11 @@ const INCLUDE = [
     'portfolio',
     'experience',
     'admin',
-    'report-audit'
+    'report-audit',
+    'privacy',
+    'terms',
+    'sitemap.xml',
+    'robots.txt'
 ];
 
 // Files that should never be published even if they live inside an included dir.
