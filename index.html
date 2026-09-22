@@ -25,10 +25,11 @@
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap"></noscript>
 
     <!-- Icons -->
-    <script src="https://unpkg.com/lucide@latest" defer></script>
+    <script src="https://unpkg.com/lucide@0.469.0" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
 
+    <link rel="preload" as="image" type="image/webp" href="assets/images/cyryl-hero.webp" imagesrcset="assets/images/cyryl-hero-520.webp 520w, assets/images/cyryl-hero.webp 828w" imagesizes="(max-width: 768px) 70vw, 420px">
     <link rel="stylesheet" href="main.css">
 </head>
 
@@ -106,9 +107,9 @@
                         <div class="portrait-stage">
                             <div class="portrait-backdrop" aria-hidden="true"></div>
                             <picture>
-                                <source srcset="assets/images/cyryl-hero.webp" type="image/webp">
+                                <source type="image/webp" srcset="assets/images/cyryl-hero-520.webp 520w, assets/images/cyryl-hero.webp 828w" sizes="(max-width: 768px) 70vw, 420px">
                                 <img src="assets/images/cyryl-hero.png" alt="Cyryl Bitangcol"
-                                    class="portrait-photo" width="1035" height="1400" fetchpriority="high" decoding="async">
+                                    class="portrait-photo" width="828" height="1120" fetchpriority="high" decoding="async">
                             </picture>
                         </div>
                         <div class="skill-tags">
@@ -140,8 +141,10 @@
                         data-link="https://cyrylbitangcol.com/portfolio/upca-real-estate-marketing-media/">
                         <div class="project-preview">
                             <div class="preview-overlay"></div>
-                            <img src="/assets/images/projects/upca-real-estate.png"
-                                alt="UPCA Real Estate Marketing & Media" class="project-img" loading="lazy" decoding="async">
+                            <picture>
+                                <source srcset="/assets/images/projects/upca-real-estate.webp" type="image/webp">
+                                <img src="/assets/images/projects/upca-real-estate.png" alt="UPCA Real Estate Marketing & Media" class="project-img" loading="lazy" decoding="async">
+                            </picture>
                             <div class="project-badges">
                                 <span class="proj-badge">Figma</span>
                                 <span class="proj-badge">Elementor</span>
@@ -163,8 +166,10 @@
                         data-link="https://cyrylbitangcol.com/portfolio/hongkong-tech-match/">
                         <div class="project-preview">
                             <div class="preview-overlay"></div>
-                            <img src="/assets/images/projects/hongkong-tech-match.png"
-                                alt="Hongkong Tech Match" class="project-img" loading="lazy" decoding="async">
+                            <picture>
+                                <source srcset="/assets/images/projects/hongkong-tech-match.webp" type="image/webp">
+                                <img src="/assets/images/projects/hongkong-tech-match.png" alt="Hongkong Tech Match" class="project-img" loading="lazy" decoding="async">
+                            </picture>
                             <div class="project-badges">
                                 <span class="proj-badge">Figma</span>
                                 <span class="proj-badge">Elementor</span>
@@ -186,8 +191,10 @@
                         data-link="https://cyrylbitangcol.com/portfolio/aurumara/">
                         <div class="project-preview">
                             <div class="preview-overlay"></div>
-                            <img src="/assets/images/projects/aurumara.png"
-                                alt="Aurumara" class="project-img" loading="lazy" decoding="async">
+                            <picture>
+                                <source srcset="/assets/images/projects/aurumara.webp" type="image/webp">
+                                <img src="/assets/images/projects/aurumara.png" alt="Aurumara" class="project-img" loading="lazy" decoding="async">
+                            </picture>
                             <div class="project-badges">
                                 <span class="proj-badge">E-Commerce</span>
                                 <span class="proj-badge">Figma</span>
@@ -209,8 +216,10 @@
                         data-link="https://cyrylbitangcol.com/portfolio/jra-construction/">
                         <div class="project-preview">
                             <div class="preview-overlay overlay-3"></div>
-                            <img src="/assets/images/projects/jra-construction.png"
-                                alt="JRA Construction" class="project-img" loading="lazy" decoding="async">
+                            <picture>
+                                <source srcset="/assets/images/projects/jra-construction.webp" type="image/webp">
+                                <img src="/assets/images/projects/jra-construction.png" alt="JRA Construction" class="project-img" loading="lazy" decoding="async">
+                            </picture>
                             <div class="project-badges">
                                 <span class="proj-badge">Figma</span>
                                 <span class="proj-badge">Elementor</span>
@@ -232,8 +241,10 @@
                         data-link="https://cyrylbitangcol.com/portfolio/module-interior-design/">
                         <div class="project-preview">
                             <div class="preview-overlay overlay-3"></div>
-                            <img src="/assets/images/projects/module-interior-design.png"
-                                alt="Module Interior Design" class="project-img" loading="lazy" decoding="async">
+                            <picture>
+                                <source srcset="/assets/images/projects/module-interior-design.webp" type="image/webp">
+                                <img src="/assets/images/projects/module-interior-design.png" alt="Module Interior Design" class="project-img" loading="lazy" decoding="async">
+                            </picture>
                             <div class="project-badges">
                                 <span class="proj-badge">E-Commerce</span>
                                 <span class="proj-badge">Figma</span>
@@ -255,8 +266,10 @@
                         data-link="https://cyrylbitangcol.com/portfolio/blue-halo-homes/">
                         <div class="project-preview">
                             <div class="preview-overlay overlay-3"></div>
-                            <img src="/assets/images/projects/blue-halo-homes.png"
-                                alt="Blue Halo Homes" class="project-img" loading="lazy" decoding="async">
+                            <picture>
+                                <source srcset="/assets/images/projects/blue-halo-homes.webp" type="image/webp">
+                                <img src="/assets/images/projects/blue-halo-homes.png" alt="Blue Halo Homes" class="project-img" loading="lazy" decoding="async">
+                            </picture>
                             <div class="project-badges">
                                 <span class="proj-badge">Divi</span>
                                 <span class="proj-badge">Web Dev</span>
@@ -452,6 +465,9 @@
 
     <script src="db-loader.js" defer></script>
     <script src="main.js" defer></script>
+    <!-- Cloudflare Web Analytics -->
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "64872ef7-7d2f-4f94-9fee-fb33a04302d4"}'></script>
+    <!-- End Cloudflare Web Analytics -->
 </body>
 
 </html>
