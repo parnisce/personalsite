@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Website Report Audit | Cyryl Bitangcol</title>
-    <meta name="description"
-        content="SEO &amp; site audit report for Cyryl Bitangcol's portfolio — meta titles, baseline issues, PageSpeed Insights, blog audit, broken links, and Phase 2 recommendations.">
+    <meta name="description" content="SEO and technical site audit for Cyryl Bitangcol's portfolio — meta titles, PageSpeed scores, baseline issues, and Phase 2 recommendations.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -110,13 +109,13 @@
             <div class="status-banner">
                 <div class="status-ok">
                     <i data-lucide="check-circle-2"></i>
-                    <p><strong>Shipped:</strong> unique titles &amp; descriptions, Open Graph coverage, canonical URLs,
-                        local project imagery, blog posts, and the glass design system.</p>
+                    <p><strong>Shipped:</strong> unique titles &amp; descriptions, Open Graph coverage, canonical URLs, SEO-safe meta titles/descriptions,
+                        sitemap.xml, privacy/terms pages, local project imagery, and the glass design system.</p>
                 </div>
                 <div class="status-warn">
                     <i data-lucide="alert-triangle"></i>
-                    <p><strong>Open (medium):</strong> GA4 + Meta Pixel wiring, sitemap lastmod automation,
-                        richer JSON-LD on archive pages, and a few thin meta descriptions.</p>
+                    <p><strong>Open (medium):</strong> GA4 + Meta Pixel wiring, richer JSON-LD on archive pages,
+                        and further PageSpeed LCP optimizations.</p>
                 </div>
             </div>
         </section>
@@ -155,9 +154,9 @@
                         <tr>
                             <td>3</td>
                             <td>Portfolio — meta</td>
-                            <td>Portfolio meta description is only 22 characters (“Browse Cyryl Bitangcol”).</td>
-                            <td>Expand to a unique 120–155 character description with primary keywords.</td>
-                            <td><span class="pill pill-open">Open</span></td>
+                            <td>Portfolio meta description was only 22 characters.</td>
+                            <td>Expanded to a unique 132-character description with primary keywords.</td>
+                            <td><span class="pill pill-ok">Fixed</span></td>
                         </tr>
                         <tr>
                             <td>4</td>
@@ -176,16 +175,16 @@
                         <tr>
                             <td>6</td>
                             <td>Sitemap</td>
-                            <td>Sitemap needs automated lastmod for blog posts.</td>
-                            <td>Generate sitemap during <code>npm run build</code>.</td>
-                            <td><span class="pill pill-review">Review</span></td>
+                            <td>No public sitemap.xml / robots.txt.</td>
+                            <td>Added <code>/sitemap.xml</code> and <code>/robots.txt</code> covering core, blog, legal, and audit routes.</td>
+                            <td><span class="pill pill-ok">Fixed</span></td>
                         </tr>
                         <tr>
                             <td>7</td>
-                            <td>Blog — internal links</td>
-                            <td>Some related-post and CTA hrefs still point to <code>#</code> placeholders.</td>
-                            <td>See <a href="/report-audit/broken-links/">Broken Links</a> audit and wire real destinations.</td>
-                            <td><span class="pill pill-open">Open</span></td>
+                            <td>Footer / legal links</td>
+                            <td>Privacy Policy and Terms of Use used <code>href="#"</code> placeholders.</td>
+                            <td>Created <code>/privacy/</code> and <code>/terms/</code> and updated all footers. Modal Visit Project now hides when no valid URL.</td>
+                            <td><span class="pill pill-ok">Fixed</span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -227,12 +226,12 @@
                                 <code>/portfolio/</code>
                             </td>
                             <td>
-                                Portfolio | Cyryl Bitangcol
-                                <span class="char-count ok">27 chars</span>
+                                Portfolio | Cyryl Bitangcol — Web Design &amp; Development
+                                <span class="char-count ok">54 chars</span>
                             </td>
                             <td>
-                                Browse Cyryl Bitangcol
-                                <span class="char-count bad">22 chars — too short</span>
+                                Browse web design, WordPress, and eCommerce case studies by Cyryl Bitangcol — real client work across Hong Kong, the US, and beyond.
+                                <span class="char-count ok">132 chars</span>
                             </td>
                         </tr>
                         <tr>
@@ -241,12 +240,12 @@
                                 <code>/experience/</code>
                             </td>
                             <td>
-                                Experience | Cyryl Bitangcol
-                                <span class="char-count ok">28 chars</span>
+                                Experience | Cyryl Bitangcol — Work &amp; Education
+                                <span class="char-count ok">47 chars</span>
                             </td>
                             <td>
-                                Work history and education of Cyryl Bitangcol — Senior Website Developer and Creative Designer with experience across startups and agencies.
-                                <span class="char-count warn">162 chars — slightly long</span>
+                                Work history and education of Cyryl Bitangcol — Senior Website Developer and Creative Designer across startups, real estate, and agencies.
+                                <span class="char-count ok">138 chars</span>
                             </td>
                         </tr>
                         <tr>
@@ -255,12 +254,12 @@
                                 <code>/blog/</code>
                             </td>
                             <td>
-                                Blog | Cyryl Bitangcol Portfolio
-                                <span class="char-count ok">32 chars</span>
+                                Blog | Freelance Tips by Cyryl Bitangcol
+                                <span class="char-count ok">40 chars</span>
                             </td>
                             <td>
-                                Read the latest insights on web development, artistic engineering, and design systems from Cyryl Bitangcol.
-                                <span class="char-count ok">107 chars</span>
+                                Practical freelance advice from Cyryl Bitangcol — pricing, clients, proposals, portfolios, productivity, and scope management.
+                                <span class="char-count ok">126 chars</span>
                             </td>
                         </tr>
                         <tr>
@@ -269,12 +268,12 @@
                                 <code>/about/</code>
                             </td>
                             <td>
-                                About Cyryl Bitangcol | Creative Art Director &amp; Web Developer
-                                <span class="char-count warn">61 chars</span>
+                                About Cyryl Bitangcol | Art Director &amp; Web Developer
+                                <span class="char-count ok">52 chars</span>
                             </td>
                             <td>
-                                Learn more about Cyryl Bitangcol - Experience Website Developer and Graphics Designer living in the Philippines.
-                                <span class="char-count ok">112 chars</span>
+                                Learn about Cyryl Bitangcol — Creative Art Director and Web Developer based in the Philippines, freelancing since 2011.
+                                <span class="char-count ok">119 chars</span>
                             </td>
                         </tr>
                         <tr>
@@ -287,8 +286,8 @@
                                 <span class="char-count ok">38 chars</span>
                             </td>
                             <td>
-                                SEO &amp; site audit report for Cyryl Bitangcol's portfolio — meta titles, baseline issues, PageSpeed Insights, and Phase 2 recommendations.
-                                <span class="char-count ok">148 chars</span>
+                                SEO and technical site audit for Cyryl Bitangcol's portfolio — meta titles, PageSpeed scores, baseline issues, and Phase 2 recommendations.
+                                <span class="char-count ok">139 chars</span>
                             </td>
                         </tr>
                     </tbody>
@@ -427,16 +426,16 @@
                             <td>Optimize LCP image, defer lucide/font-awesome where possible, lazy-load cards.</td>
                         </tr>
                         <tr>
-                            <td><span class="pill pill-open">Medium</span></td>
+                            <td><span class="pill pill-ok">Fixed</span></td>
                             <td>Portfolio</td>
-                            <td>Thin meta description (22 chars)</td>
-                            <td>Write a 120–155 character summary of portfolio niches and tech.</td>
+                            <td>Thin meta description (was 22 chars)</td>
+                            <td>Updated to a 132-character keyword-rich description.</td>
                         </tr>
                         <tr>
-                            <td><span class="pill pill-review">Medium</span></td>
-                            <td>Build pipeline</td>
-                            <td>Sitemap lastmod not automated</td>
-                            <td>Generate <code>sitemap.xml</code> during <code>npm run build</code> with blog dates.</td>
+                            <td><span class="pill pill-ok">Fixed</span></td>
+                            <td>Site-wide</td>
+                            <td>Missing sitemap.xml / robots.txt</td>
+                            <td>Published <code>/sitemap.xml</code> and <code>/robots.txt</code>.</td>
                         </tr>
                         <tr>
                             <td><span class="pill pill-review">Medium</span></td>
@@ -445,10 +444,10 @@
                             <td>Add archive schema; keep BlogPosting on individual posts.</td>
                         </tr>
                         <tr>
-                            <td><span class="pill pill-review">Phase 2</span></td>
-                            <td>Blog</td>
-                            <td>Related posts / CTAs with placeholder links</td>
-                            <td>Complete destinations listed in the <a href="/report-audit/broken-links/">Broken Links</a> report.</td>
+                            <td><span class="pill pill-ok">Fixed</span></td>
+                            <td>Footer / legal</td>
+                            <td>Privacy / Terms used placeholder <code>#</code> links</td>
+                            <td>Shipped <code>/privacy/</code> + <code>/terms/</code> and updated all footers.</td>
                         </tr>
                         <tr>
                             <td><span class="pill pill-review">Phase 2</span></td>
@@ -539,6 +538,8 @@
                 <div class="footer-links">
                     <a href="/report-audit/">Report Audit</a>
                     <a href="/about/">About</a>
+                    <a href="/privacy/">Privacy Policy</a>
+                    <a href="/terms/">Terms of Use</a>
                     <a href="/#contact">Contact</a>
                 </div>
             </div>
