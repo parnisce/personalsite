@@ -188,7 +188,18 @@ const openModal = (projectCard) => {
 
     document.getElementById('modal-title').textContent = title;
     document.getElementById('modal-description').textContent = desc;
-    document.getElementById('modal-link').setAttribute('href', link);
+    const modalLink = document.getElementById('modal-link');
+    if (modalLink) {
+        if (link && link !== '#' && /^https?:\/\//i.test(link)) {
+            modalLink.setAttribute('href', link);
+            modalLink.style.display = '';
+            modalLink.removeAttribute('aria-disabled');
+        } else {
+            modalLink.removeAttribute('href');
+            modalLink.style.display = 'none';
+            modalLink.setAttribute('aria-disabled', 'true');
+        }
+    }
 
     const techStackWrap = document.getElementById('modal-tech-stack');
     techStackWrap.innerHTML = '';

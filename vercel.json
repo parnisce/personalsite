@@ -71,7 +71,23 @@
             "destination": "/report-audit/index.html"
         },
         {
-            "source": "/((?!api/|admin/|about/|blog/|portfolio/|experience/|report-audit/|.*\\.).*)",
+            "source": "/privacy",
+            "destination": "/privacy/index.html"
+        },
+        {
+            "source": "/privacy/",
+            "destination": "/privacy/index.html"
+        },
+        {
+            "source": "/terms",
+            "destination": "/terms/index.html"
+        },
+        {
+            "source": "/terms/",
+            "destination": "/terms/index.html"
+        },
+        {
+            "source": "/((?!api/|admin/|about/|blog/|portfolio/|experience/|report-audit/|privacy/|terms/|.*\\.).*)",
             "destination": "/index.html"
         }
     ],

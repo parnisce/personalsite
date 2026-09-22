@@ -78,19 +78,15 @@
 
         <section class="audit-shell">
             <div class="score-grid score-grid-4">
-                <article class="score-card score-card-primary"><strong>10</strong><span>Placeholder links</span></article>
+                <article class="score-card score-card-primary"><strong>0</strong><span>Open placeholder links</span></article>
                 <article class="score-card score-ok"><strong>0</strong><span>HTTP 404 routes</span></article>
-                <article class="score-card score-warn"><strong>8</strong><span>Footer stubs</span></article>
-                <article class="score-card score-warn"><strong>2</strong><span>Modal stubs</span></article>
+                <article class="score-card score-ok"><strong>0</strong><span>Footer stubs</span></article>
+                <article class="score-card score-ok"><strong>0</strong><span>Modal stubs</span></article>
             </div>
             <div class="status-banner">
                 <div class="status-ok">
                     <i data-lucide="check-circle-2"></i>
-                    <p><strong>Good:</strong> Primary nav, portfolio routes, blog posts, and report-audit subpages resolve.</p>
-                </div>
-                <div class="status-warn">
-                    <i data-lucide="alert-triangle"></i>
-                    <p><strong>Open:</strong> Privacy / Terms footers and modal “Visit Project” defaults still use <code>href="#"</code>.</p>
+                    <p><strong>Fixed:</strong> Primary nav, portfolio routes, blog posts, privacy/terms pages, and report-audit subpages resolve. Modal Visit Project hides when no valid URL is set.</p>
                 </div>
             </div>
         </section>
@@ -117,73 +113,73 @@
                             <td>1</td>
                             <td><code>/</code></td>
                             <td>Footer — Privacy Policy</td>
-                            <td><code>#</code></td>
-                            <td>Create <code>/privacy/</code> or link to a hosted policy.</td>
-                            <td><span class="pill pill-open">Open</span></td>
+                            <td><code>/privacy/</code></td>
+                            <td>Linked to live <code>/privacy/</code> page.</td>
+                            <td><span class="pill pill-ok">Fixed</span></td>
                         </tr>
                         <tr>
                             <td>2</td>
                             <td><code>/</code></td>
                             <td>Footer — Terms of Use</td>
-                            <td><code>#</code></td>
-                            <td>Create <code>/terms/</code> or link to a hosted terms page.</td>
-                            <td><span class="pill pill-open">Open</span></td>
+                            <td><code>/terms/</code></td>
+                            <td>Linked to live <code>/terms/</code> page.</td>
+                            <td><span class="pill pill-ok">Fixed</span></td>
                         </tr>
                         <tr>
                             <td>3</td>
                             <td><code>/</code></td>
                             <td>Project modal — Visit Project</td>
-                            <td><code>#</code> (filled by JS)</td>
-                            <td>Ensure every project has a real <code>data-link</code>; hide button if missing.</td>
-                            <td><span class="pill pill-review">Review</span></td>
+                            <td>JS-gated</td>
+                            <td>Button hidden unless <code>data-link</code> is a valid http(s) URL.</td>
+                            <td><span class="pill pill-ok">Fixed</span></td>
                         </tr>
                         <tr>
                             <td>4</td>
                             <td><code>/portfolio/</code></td>
                             <td>Footer — Privacy Policy</td>
-                            <td><code>#</code></td>
-                            <td>Same as homepage footer.</td>
-                            <td><span class="pill pill-open">Open</span></td>
+                            <td><code>/privacy/</code></td>
+                            <td>Linked to live <code>/privacy/</code> page.</td>
+                            <td><span class="pill pill-ok">Fixed</span></td>
                         </tr>
                         <tr>
                             <td>5</td>
                             <td><code>/portfolio/</code></td>
                             <td>Footer — Terms of Use</td>
-                            <td><code>#</code></td>
-                            <td>Same as homepage footer.</td>
-                            <td><span class="pill pill-open">Open</span></td>
+                            <td><code>/terms/</code></td>
+                            <td>Linked to live <code>/terms/</code> page.</td>
+                            <td><span class="pill pill-ok">Fixed</span></td>
                         </tr>
                         <tr>
                             <td>6</td>
                             <td><code>/portfolio/</code></td>
                             <td>Project modal — Visit Project</td>
-                            <td><code>#</code> (filled by JS)</td>
-                            <td>Validate modal link assignment for all 18 projects.</td>
-                            <td><span class="pill pill-review">Review</span></td>
+                            <td>JS-gated</td>
+                            <td>Same hide-when-invalid behavior as homepage modal.</td>
+                            <td><span class="pill pill-ok">Fixed</span></td>
                         </tr>
                         <tr>
                             <td>7</td>
-                            <td><code>/blog/</code></td>
+                            <td><code>/blog/</code> + posts</td>
                             <td>Footer — Privacy / Terms</td>
-                            <td><code>#</code></td>
-                            <td>Shared footer component with real legal URLs.</td>
-                            <td><span class="pill pill-open">Open</span></td>
+                            <td><code>/privacy/</code> · <code>/terms/</code></td>
+                            <td>Index and all 6 post footers link to live legal pages.</td>
+                            <td><span class="pill pill-ok">Fixed</span></td>
                         </tr>
                         <tr>
                             <td>8</td>
                             <td><code>/experience/</code></td>
                             <td>Footer — Privacy / Terms</td>
-                            <td><code>#</code></td>
-                            <td>Shared footer component with real legal URLs.</td>
-                            <td><span class="pill pill-open">Open</span></td>
+                            <td><code>/privacy/</code> · <code>/terms/</code></td>
+                            <td>Linked to live legal pages.</td>
+                            <td><span class="pill pill-ok">Fixed</span></td>
                         </tr>
                         <tr>
                             <td>9</td>
                             <td><code>/about/</code></td>
                             <td>Footer — Privacy / Terms</td>
-                            <td><code>#</code></td>
-                            <td>Shared footer component with real legal URLs.</td>
-                            <td><span class="pill pill-open">Open</span></td>
+                            <td><code>/privacy/</code> · <code>/terms/</code></td>
+                            <td>Linked to live legal pages.</td>
+                            <td><span class="pill pill-ok">Fixed</span></td>
                         </tr>
                         <tr>
                             <td>10</td>
@@ -204,10 +200,10 @@
             </div>
             <div class="gaps-list">
                 <article class="gap-item">
-                    <span class="pill pill-open">High</span>
+                    <span class="pill pill-ok">Fixed</span>
                     <div>
-                        <h3>Ship Privacy + Terms pages</h3>
-                        <p>Replace every footer <code>#</code> with real legal routes.</p>
+                        <h3>Privacy + Terms pages shipped</h3>
+                        <p>Footers now link to <code>/privacy/</code> and <code>/terms/</code>.</p>
                     </div>
                 </article>
                 <article class="gap-item">
@@ -237,6 +233,8 @@
                 <div class="footer-links">
                     <a href="/report-audit/">Report Audit</a>
                     <a href="/about/">About</a>
+                    <a href="/privacy/">Privacy Policy</a>
+                    <a href="/terms/">Terms of Use</a>
                     <a href="/#contact">Contact</a>
                 </div>
             </div>
