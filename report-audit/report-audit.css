@@ -1,7 +1,7 @@
 /* Website Report Audit — Cyryl Bitangcol */
 
 .audit-page {
-    padding: 6.75rem 0 4rem;
+    padding: 5rem 0 3.5rem;
     background:
         radial-gradient(ellipse 70% 40% at 50% 0%, rgba(255, 107, 43, 0.1), transparent 55%);
 }
@@ -12,7 +12,39 @@
 }
 
 .audit-hero {
-    margin-bottom: 2rem;
+    margin-bottom: 1.25rem;
+}
+
+.audit-subnav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+}
+
+.audit-subnav-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 700;
+    transition: var(--transition);
+}
+
+.audit-subnav-link:hover,
+.audit-subnav-link.active {
+    color: var(--text-primary);
+    border-color: rgba(255, 107, 43, 0.45);
+    background: rgba(255, 107, 43, 0.12);
+}
+
+.score-grid-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .audit-badges {
@@ -373,6 +405,60 @@ body.light-mode .audit-table code {
     color: var(--text-secondary);
 }
 
+.psi-card strong.psi-good { color: #34d399; }
+.psi-card strong.psi-ok { color: #fbbf24; }
+.psi-card strong.psi-poor { color: #f87171; }
+.psi-card strong.psi-muted,
+.psi-card strong.psi-loading { color: var(--text-secondary); }
+
+.char-count {
+    display: block;
+    margin-top: 0.35rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.char-count.ok { color: #34d399; }
+.char-count.warn { color: #fbbf24; }
+.char-count.bad { color: #f87171; }
+
+.meta-table td strong {
+    display: block;
+    margin-bottom: 0.2rem;
+}
+
+.meta-table td code {
+    display: inline-block;
+    margin-top: 0.15rem;
+}
+
+.section-note {
+    margin-top: 0.85rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.section-note a {
+    color: var(--accent-primary);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.section-note a:hover {
+    text-decoration: underline;
+}
+
+.audit-table a {
+    color: var(--accent-primary);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.audit-table a:hover {
+    text-decoration: underline;
+}
+
 .gaps-list {
     display: grid;
     gap: 0.85rem;
@@ -446,7 +532,7 @@ body.light-mode .audit-table code {
 
 @media (max-width: 768px) {
     .audit-page {
-        padding-top: 5.75rem;
+        padding-top: 4.5rem;
     }
 
     .audit-shell {
@@ -454,6 +540,7 @@ body.light-mode .audit-table code {
     }
 
     .score-grid,
+    .score-grid-4,
     .schema-grid,
     .infra-grid,
     .psi-grid {

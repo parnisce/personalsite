@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Website Report Audit | Cyryl Bitangcol</title>
     <meta name="description"
-        content="SEO &amp; site audit report for Cyryl Bitangcol's portfolio — coverage scores, tracking inventory, per-page SEO, schema map, and Phase 2 roadmap.">
+        content="SEO &amp; site audit report for Cyryl Bitangcol's portfolio — meta titles, baseline issues, PageSpeed Insights, blog audit, broken links, and Phase 2 recommendations.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,7 +41,6 @@
                 <a href="/experience/" class="nav-link">Experience</a>
                 <a href="/blog/" class="nav-link">Blog</a>
                 <a href="/about/" class="nav-link">About</a>
-                <a href="/report-audit/" class="nav-link active">Audit</a>
                 <a href="/#contact" class="nav-link contact-btn">Let's talk</a>
             </div>
             <div class="nav-actions">
@@ -72,10 +71,12 @@
                 <span>·</span>
                 <span>12 pages audited</span>
             </p>
-            <p class="audit-lead">
-                A deliverable-style technical audit covering SEO coverage, tracking, structured data,
-                performance gaps, and a Phase 2 roadmap — the same report format I use for client handoffs.
-            </p>
+
+            <nav class="audit-subnav" aria-label="Audit sections">
+                <a class="audit-subnav-link active" href="/report-audit/">Overview</a>
+                <a class="audit-subnav-link" href="/report-audit/blog/">Blog Audit</a>
+                <a class="audit-subnav-link" href="/report-audit/broken-links/">Broken Links</a>
+            </nav>
         </header>
 
         <section class="audit-shell">
@@ -114,13 +115,13 @@
                 </div>
                 <div class="status-warn">
                     <i data-lucide="alert-triangle"></i>
-                    <p><strong>Open (medium):</strong> PageSpeed baselines, GA4 + Meta Pixel wiring,
-                        sitemap lastmod automation, and richer JSON-LD on archive pages.</p>
+                    <p><strong>Open (medium):</strong> GA4 + Meta Pixel wiring, sitemap lastmod automation,
+                        richer JSON-LD on archive pages, and a few thin meta descriptions.</p>
                 </div>
             </div>
         </section>
 
-        <section class="audit-shell audit-section">
+        <section class="audit-shell audit-section" id="baseline">
             <div class="section-head">
                 <h2>Baseline Issues &amp; Recommendations</h2>
                 <p>Critical SEO and UX findings from the live portfolio audit. Items below are open unless marked Fixed.</p>
@@ -153,10 +154,10 @@
                         </tr>
                         <tr>
                             <td>3</td>
-                            <td>Document head</td>
-                            <td>Some secondary pages lacked dedicated meta descriptions.</td>
-                            <td>Add unique <code>&lt;meta name="description"&gt;</code> on every route.</td>
-                            <td><span class="pill pill-ok">Fixed</span></td>
+                            <td>Portfolio — meta</td>
+                            <td>Portfolio meta description is only 22 characters (“Browse Cyryl Bitangcol”).</td>
+                            <td>Expand to a unique 120–155 character description with primary keywords.</td>
+                            <td><span class="pill pill-open">Open</span></td>
                         </tr>
                         <tr>
                             <td>4</td>
@@ -168,8 +169,8 @@
                         <tr>
                             <td>5</td>
                             <td>Performance</td>
-                            <td>PageSpeed Insights scores not yet baselined.</td>
-                            <td>Run PSI, compress hero assets, defer non-critical JS.</td>
+                            <td>Mobile performance sits mid-60s in Lighthouse (LCP/unused JS opportunities).</td>
+                            <td>Compress hero assets, defer non-critical JS, lazy-load below-fold imagery.</td>
                             <td><span class="pill pill-open">Open</span></td>
                         </tr>
                         <tr>
@@ -179,12 +180,124 @@
                             <td>Generate sitemap during <code>npm run build</code>.</td>
                             <td><span class="pill pill-review">Review</span></td>
                         </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Blog — internal links</td>
+                            <td>Some related-post and CTA hrefs still point to <code>#</code> placeholders.</td>
+                            <td>See <a href="/report-audit/broken-links/">Broken Links</a> audit and wire real destinations.</td>
+                            <td><span class="pill pill-open">Open</span></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
         </section>
 
-        <section class="audit-shell audit-section">
+        <section class="audit-shell audit-section" id="meta-titles">
+            <div class="section-head">
+                <h2>Meta Titles &amp; Descriptions</h2>
+                <p>Source of truth is each page’s <code>&lt;title&gt;</code> and <code>&lt;meta name="description"&gt;</code>. Ideal title ≤ 60 chars · description ≤ 160 chars.</p>
+            </div>
+            <div class="table-wrap">
+                <table class="audit-table meta-table">
+                    <thead>
+                        <tr>
+                            <th>Page</th>
+                            <th>Meta Title</th>
+                            <th>Meta Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <strong>Home</strong>
+                                <code>/</code>
+                            </td>
+                            <td>
+                                Cyryl Bitangcol | Creative Art Director &amp; Web Developer
+                                <span class="char-count ok">55 chars</span>
+                            </td>
+                            <td>
+                                Portfolio of Cyryl Bitangcol - Creative Art Director, Web Developer, and UI/UX Designer specialized in glassmorphism and premium digital experiences.
+                                <span class="char-count ok">149 chars</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Portfolio</strong>
+                                <code>/portfolio/</code>
+                            </td>
+                            <td>
+                                Portfolio | Cyryl Bitangcol
+                                <span class="char-count ok">27 chars</span>
+                            </td>
+                            <td>
+                                Browse Cyryl Bitangcol
+                                <span class="char-count bad">22 chars — too short</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Experience</strong>
+                                <code>/experience/</code>
+                            </td>
+                            <td>
+                                Experience | Cyryl Bitangcol
+                                <span class="char-count ok">28 chars</span>
+                            </td>
+                            <td>
+                                Work history and education of Cyryl Bitangcol — Senior Website Developer and Creative Designer with experience across startups and agencies.
+                                <span class="char-count warn">162 chars — slightly long</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Blog</strong>
+                                <code>/blog/</code>
+                            </td>
+                            <td>
+                                Blog | Cyryl Bitangcol Portfolio
+                                <span class="char-count ok">32 chars</span>
+                            </td>
+                            <td>
+                                Read the latest insights on web development, artistic engineering, and design systems from Cyryl Bitangcol.
+                                <span class="char-count ok">107 chars</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>About</strong>
+                                <code>/about/</code>
+                            </td>
+                            <td>
+                                About Cyryl Bitangcol | Creative Art Director &amp; Web Developer
+                                <span class="char-count warn">61 chars</span>
+                            </td>
+                            <td>
+                                Learn more about Cyryl Bitangcol - Experience Website Developer and Graphics Designer living in the Philippines.
+                                <span class="char-count ok">112 chars</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Report Audit</strong>
+                                <code>/report-audit/</code>
+                            </td>
+                            <td>
+                                Website Report Audit | Cyryl Bitangcol
+                                <span class="char-count ok">38 chars</span>
+                            </td>
+                            <td>
+                                SEO &amp; site audit report for Cyryl Bitangcol's portfolio — meta titles, baseline issues, PageSpeed Insights, and Phase 2 recommendations.
+                                <span class="char-count ok">148 chars</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="section-note">Blog post metas are detailed on the <a href="/report-audit/blog/">Blog Audit</a> sub-report.</p>
+        </section>
+
+        <section class="audit-shell audit-section" id="tracking">
             <div class="section-head">
                 <h2>Tracking &amp; Analytics Codes</h2>
                 <p>Inventory of measurement scripts expected on a production marketing site.</p>
@@ -234,93 +347,32 @@
             </div>
         </section>
 
-        <section class="audit-shell audit-section">
+        <section class="audit-shell audit-section" id="pagespeed">
             <div class="section-head">
-                <h2>SEO Audit by Page</h2>
-                <p>Title ideal ≤ 60 chars · Description ideal ≤ 160 chars · OG = Open Graph · Canonical = per-page URL</p>
+                <h2>PageSpeed Insights Audit</h2>
+                <p id="psi-note">Loading live PageSpeed Insights scores for <code>cyrylbitangcol.com</code>…</p>
             </div>
-            <h3 class="table-subtitle">Core Pages</h3>
-            <div class="table-wrap">
-                <table class="audit-table">
-                    <thead>
-                        <tr>
-                            <th>Page</th>
-                            <th>URL</th>
-                            <th>Title</th>
-                            <th>Desc</th>
-                            <th>Primary keyword</th>
-                            <th>OG</th>
-                            <th>Schema</th>
-                            <th>Canonical</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Home</td>
-                            <td><code>/</code></td>
-                            <td><span class="check-count">58 <i data-lucide="check"></i></span></td>
-                            <td><span class="check-count">142 <i data-lucide="check"></i></span></td>
-                            <td>creative art director</td>
-                            <td><i data-lucide="check" class="ok-icon"></i></td>
-                            <td>Person + WebSite</td>
-                            <td><i data-lucide="check" class="ok-icon"></i></td>
-                        </tr>
-                        <tr>
-                            <td>Portfolio</td>
-                            <td><code>/portfolio/</code></td>
-                            <td><span class="check-count">46 <i data-lucide="check"></i></span></td>
-                            <td><span class="check-count">128 <i data-lucide="check"></i></span></td>
-                            <td>web design portfolio</td>
-                            <td><i data-lucide="check" class="ok-icon"></i></td>
-                            <td>CollectionPage</td>
-                            <td><i data-lucide="check" class="ok-icon"></i></td>
-                        </tr>
-                        <tr>
-                            <td>Experience</td>
-                            <td><code>/experience/</code></td>
-                            <td><span class="check-count">44 <i data-lucide="check"></i></span></td>
-                            <td><span class="check-count">118 <i data-lucide="check"></i></span></td>
-                            <td>web developer experience</td>
-                            <td><i data-lucide="check" class="ok-icon"></i></td>
-                            <td>ProfilePage</td>
-                            <td><i data-lucide="check" class="ok-icon"></i></td>
-                        </tr>
-                        <tr>
-                            <td>Blog</td>
-                            <td><code>/blog/</code></td>
-                            <td><span class="check-count">38 <i data-lucide="check"></i></span></td>
-                            <td><span class="check-count">110 <i data-lucide="check"></i></span></td>
-                            <td>freelance tips</td>
-                            <td><i data-lucide="check" class="ok-icon"></i></td>
-                            <td>Blog</td>
-                            <td><i data-lucide="check" class="ok-icon"></i></td>
-                        </tr>
-                        <tr>
-                            <td>About</td>
-                            <td><code>/about/</code></td>
-                            <td><span class="check-count">52 <i data-lucide="check"></i></span></td>
-                            <td><span class="check-count">134 <i data-lucide="check"></i></span></td>
-                            <td>cyryl bitangcol</td>
-                            <td><i data-lucide="check" class="ok-icon"></i></td>
-                            <td>AboutPage + Person</td>
-                            <td><i data-lucide="check" class="ok-icon"></i></td>
-                        </tr>
-                        <tr>
-                            <td>Report Audit</td>
-                            <td><code>/report-audit/</code></td>
-                            <td><span class="check-count">42 <i data-lucide="check"></i></span></td>
-                            <td><span class="check-count">148 <i data-lucide="check"></i></span></td>
-                            <td>website report audit</td>
-                            <td><i data-lucide="check" class="ok-icon"></i></td>
-                            <td>WebPage</td>
-                            <td><i data-lucide="check" class="ok-icon"></i></td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="psi-grid">
+                <article class="psi-card">
+                    <span>Performance</span>
+                    <strong id="psi-performance" class="psi-loading">…</strong>
+                </article>
+                <article class="psi-card">
+                    <span>Accessibility</span>
+                    <strong id="psi-accessibility" class="psi-loading">…</strong>
+                </article>
+                <article class="psi-card">
+                    <span>Best Practices</span>
+                    <strong id="psi-best-practices" class="psi-loading">…</strong>
+                </article>
+                <article class="psi-card">
+                    <span>SEO</span>
+                    <strong id="psi-seo" class="psi-loading">…</strong>
+                </article>
             </div>
         </section>
 
-        <section class="audit-shell audit-section">
+        <section class="audit-shell audit-section" id="schema">
             <div class="section-head">
                 <h2>Schema.org Structured Data Map</h2>
                 <p>Present and planned structured data for discoverability.</p>
@@ -346,57 +398,76 @@
             </div>
         </section>
 
-        <section class="audit-shell audit-section">
+        <section class="audit-shell audit-section" id="gaps">
             <div class="section-head">
-                <h2>PageSpeed Insights Audit</h2>
-                <p>Scores to capture after the next production deploy. Placeholders until PSI is run.</p>
-            </div>
-            <div class="psi-grid">
-                <article class="psi-card"><span>Performance</span><strong>—</strong></article>
-                <article class="psi-card"><span>Accessibility</span><strong>—</strong></article>
-                <article class="psi-card"><span>Best Practices</span><strong>—</strong></article>
-                <article class="psi-card"><span>SEO</span><strong>—</strong></article>
-            </div>
-        </section>
-
-        <section class="audit-shell audit-section">
-            <div class="section-head">
-                <h2>Remaining Gaps &amp; Phase 2</h2>
+                <h2>Remaining Gaps &amp; Phase 2 Recommendations</h2>
                 <p>Prioritized backlog after the redesign and media repair.</p>
             </div>
-            <div class="gaps-list">
-                <article class="gap-item">
-                    <span class="pill pill-open">High</span>
-                    <div>
-                        <h3>Install GA4 + consent banner</h3>
-                        <p>Measure traffic before changing CTAs or blog distribution.</p>
-                    </div>
-                </article>
-                <article class="gap-item">
-                    <span class="pill pill-open">High</span>
-                    <div>
-                        <h3>Run mobile + desktop PSI</h3>
-                        <p>Baseline LCP/CLS; lazy-load below-fold project imagery.</p>
-                    </div>
-                </article>
-                <article class="gap-item">
-                    <span class="pill pill-review">Medium</span>
-                    <div>
-                        <h3>Auto-generate sitemap.xml</h3>
-                        <p>Include all blog posts with accurate lastmod during build.</p>
-                    </div>
-                </article>
-                <article class="gap-item">
-                    <span class="pill pill-review">Medium</span>
-                    <div>
-                        <h3>JSON-LD on archive pages</h3>
-                        <p>Add ItemList for portfolio and Blog for /blog/.</p>
-                    </div>
-                </article>
+            <div class="table-wrap">
+                <table class="audit-table">
+                    <thead>
+                        <tr>
+                            <th>Priority</th>
+                            <th>Page / Scope</th>
+                            <th>Issue</th>
+                            <th>Recommended fix</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="pill pill-open">High</span></td>
+                            <td>Site-wide</td>
+                            <td>No GA4 / consent banner</td>
+                            <td>Install GA4 + consent before changing CTAs or blog distribution.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="pill pill-open">High</span></td>
+                            <td>Home / Portfolio</td>
+                            <td>Mobile performance ~65</td>
+                            <td>Optimize LCP image, defer lucide/font-awesome where possible, lazy-load cards.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="pill pill-open">Medium</span></td>
+                            <td>Portfolio</td>
+                            <td>Thin meta description (22 chars)</td>
+                            <td>Write a 120–155 character summary of portfolio niches and tech.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="pill pill-review">Medium</span></td>
+                            <td>Build pipeline</td>
+                            <td>Sitemap lastmod not automated</td>
+                            <td>Generate <code>sitemap.xml</code> during <code>npm run build</code> with blog dates.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="pill pill-review">Medium</span></td>
+                            <td>Blog / Portfolio archives</td>
+                            <td>Missing ItemList / Blog JSON-LD</td>
+                            <td>Add archive schema; keep BlogPosting on individual posts.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="pill pill-review">Phase 2</span></td>
+                            <td>Blog</td>
+                            <td>Related posts / CTAs with placeholder links</td>
+                            <td>Complete destinations listed in the <a href="/report-audit/broken-links/">Broken Links</a> report.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="pill pill-review">Phase 2</span></td>
+                            <td>Search Console</td>
+                            <td>Property verification + sitemap submit</td>
+                            <td>Verify domain, submit sitemap, monitor coverage.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="pill pill-review">Low</span></td>
+                            <td>Accessibility</td>
+                            <td>Score ~81 — contrast / icon button labels</td>
+                            <td>Audit focus states and aria-labels on icon-only controls.</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </section>
 
-        <section class="audit-shell audit-section">
+        <section class="audit-shell audit-section" id="infra">
             <div class="section-head">
                 <h2>Technical Infrastructure</h2>
                 <p>Stack and crawl priorities for this static portfolio.</p>
@@ -475,6 +546,7 @@
     </footer>
 
     <script src="/main.js"></script>
+    <script src="/report-audit/report-audit.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Broken Links Audit | Website Report Audit | Cyryl Bitangcol</title>
+    <meta name="description"
+        content="Broken and placeholder link audit for Cyryl Bitangcol's portfolio — href=# footers, modal stubs, and recommended fixes.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="/report-audit/report-audit.css">
+</head>
+
+<body class="dark-mode">
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <div id="blob-container">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <nav class="glass-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="/" class="logo-text">Cyryl<span class="accent-text">.Bitangcol</span></a>
+            </div>
+            <div class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/portfolio/" class="nav-link">Portfolio</a>
+                <a href="/experience/" class="nav-link">Experience</a>
+                <a href="/blog/" class="nav-link">Blog</a>
+                <a href="/about/" class="nav-link">About</a>
+                <a href="/#contact" class="nav-link contact-btn">Let's talk</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="glass-btn icon-btn" title="Toggle Light/Dark Mode">
+                    <i data-lucide="moon" class="dark-icon"></i>
+                    <i data-lucide="sun" class="light-icon"></i>
+                </button>
+                <button class="mobile-menu-btn glass-btn icon-btn md:hidden">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="audit-page">
+        <header class="audit-shell audit-hero">
+            <div class="audit-badges">
+                <span class="audit-badge">Sub-report</span>
+                <span class="audit-badge audit-badge-live">Links</span>
+            </div>
+            <h1>Broken Links Audit</h1>
+            <p class="audit-meta">
+                <a href="/report-audit/">← Back to overview</a>
+                <span>·</span>
+                <span>Placeholder <code>href="#"</code> scan</span>
+                <span>·</span>
+                <span>Updated Sep 22, 2026</span>
+            </p>
+            <nav class="audit-subnav" aria-label="Audit sections">
+                <a class="audit-subnav-link" href="/report-audit/">Overview</a>
+                <a class="audit-subnav-link" href="/report-audit/blog/">Blog Audit</a>
+                <a class="audit-subnav-link active" href="/report-audit/broken-links/">Broken Links</a>
+            </nav>
+        </header>
+
+        <section class="audit-shell">
+            <div class="score-grid score-grid-4">
+                <article class="score-card score-card-primary"><strong>10</strong><span>Placeholder links</span></article>
+                <article class="score-card score-ok"><strong>0</strong><span>HTTP 404 routes</span></article>
+                <article class="score-card score-warn"><strong>8</strong><span>Footer stubs</span></article>
+                <article class="score-card score-warn"><strong>2</strong><span>Modal stubs</span></article>
+            </div>
+            <div class="status-banner">
+                <div class="status-ok">
+                    <i data-lucide="check-circle-2"></i>
+                    <p><strong>Good:</strong> Primary nav, portfolio routes, blog posts, and report-audit subpages resolve.</p>
+                </div>
+                <div class="status-warn">
+                    <i data-lucide="alert-triangle"></i>
+                    <p><strong>Open:</strong> Privacy / Terms footers and modal “Visit Project” defaults still use <code>href="#"</code>.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="audit-shell audit-section">
+            <div class="section-head">
+                <h2>Placeholder &amp; Broken Links</h2>
+                <p>Static scan for empty or hash-only hrefs that should become real destinations.</p>
+            </div>
+            <div class="table-wrap">
+                <table class="audit-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Page</th>
+                            <th>Link text / context</th>
+                            <th>Current href</th>
+                            <th>Recommended fix</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><code>/</code></td>
+                            <td>Footer — Privacy Policy</td>
+                            <td><code>#</code></td>
+                            <td>Create <code>/privacy/</code> or link to a hosted policy.</td>
+                            <td><span class="pill pill-open">Open</span></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><code>/</code></td>
+                            <td>Footer — Terms of Use</td>
+                            <td><code>#</code></td>
+                            <td>Create <code>/terms/</code> or link to a hosted terms page.</td>
+                            <td><span class="pill pill-open">Open</span></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><code>/</code></td>
+                            <td>Project modal — Visit Project</td>
+                            <td><code>#</code> (filled by JS)</td>
+                            <td>Ensure every project has a real <code>data-link</code>; hide button if missing.</td>
+                            <td><span class="pill pill-review">Review</span></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td><code>/portfolio/</code></td>
+                            <td>Footer — Privacy Policy</td>
+                            <td><code>#</code></td>
+                            <td>Same as homepage footer.</td>
+                            <td><span class="pill pill-open">Open</span></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td><code>/portfolio/</code></td>
+                            <td>Footer — Terms of Use</td>
+                            <td><code>#</code></td>
+                            <td>Same as homepage footer.</td>
+                            <td><span class="pill pill-open">Open</span></td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td><code>/portfolio/</code></td>
+                            <td>Project modal — Visit Project</td>
+                            <td><code>#</code> (filled by JS)</td>
+                            <td>Validate modal link assignment for all 18 projects.</td>
+                            <td><span class="pill pill-review">Review</span></td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td><code>/blog/</code></td>
+                            <td>Footer — Privacy / Terms</td>
+                            <td><code>#</code></td>
+                            <td>Shared footer component with real legal URLs.</td>
+                            <td><span class="pill pill-open">Open</span></td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td><code>/experience/</code></td>
+                            <td>Footer — Privacy / Terms</td>
+                            <td><code>#</code></td>
+                            <td>Shared footer component with real legal URLs.</td>
+                            <td><span class="pill pill-open">Open</span></td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td><code>/about/</code></td>
+                            <td>Footer — Privacy / Terms</td>
+                            <td><code>#</code></td>
+                            <td>Shared footer component with real legal URLs.</td>
+                            <td><span class="pill pill-open">Open</span></td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>Legacy media</td>
+                            <td>Old WordPress image URLs</td>
+                            <td>HTML 200 (not image)</td>
+                            <td>Already replaced with local mockups — keep monitoring API seeds.</td>
+                            <td><span class="pill pill-ok">Fixed</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="audit-shell audit-section">
+            <div class="section-head">
+                <h2>Recommended Phase 2</h2>
+            </div>
+            <div class="gaps-list">
+                <article class="gap-item">
+                    <span class="pill pill-open">High</span>
+                    <div>
+                        <h3>Ship Privacy + Terms pages</h3>
+                        <p>Replace every footer <code>#</code> with real legal routes.</p>
+                    </div>
+                </article>
+                <article class="gap-item">
+                    <span class="pill pill-review">Medium</span>
+                    <div>
+                        <h3>Centralize footer markup</h3>
+                        <p>One shared footer include so legal links stay in sync sitewide.</p>
+                    </div>
+                </article>
+                <article class="gap-item">
+                    <span class="pill pill-review">Low</span>
+                    <div>
+                        <h3>Automated link crawl</h3>
+                        <p>Add a CI step that flags <code>href="#"</code> and 404 responses on each deploy.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <p class="audit-footnote audit-shell">Broken links sub-report · Cyryl Bitangcol · 22 September 2026</p>
+    </main>
+
+    <footer class="glass-footer">
+        <div class="container">
+            <div class="footer-wrap">
+                <p>&copy; 2026 Cyryl Bitangcol. All Rights Reserved.</p>
+                <div class="footer-links">
+                    <a href="/report-audit/">Report Audit</a>
+                    <a href="/about/">About</a>
+                    <a href="/#contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/main.js"></script>
+</body>
+
+</html>
