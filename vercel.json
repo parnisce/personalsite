@@ -47,6 +47,22 @@
             "destination": "/experience/index.html"
         },
         {
+            "source": "/report-audit/blog",
+            "destination": "/report-audit/blog/index.html"
+        },
+        {
+            "source": "/report-audit/blog/",
+            "destination": "/report-audit/blog/index.html"
+        },
+        {
+            "source": "/report-audit/broken-links",
+            "destination": "/report-audit/broken-links/index.html"
+        },
+        {
+            "source": "/report-audit/broken-links/",
+            "destination": "/report-audit/broken-links/index.html"
+        },
+        {
             "source": "/report-audit",
             "destination": "/report-audit/index.html"
         },
