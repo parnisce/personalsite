@@ -1,11 +1,15 @@
-// Initialize Lucide icons
-if (window.lucide) {
-    lucide.createIcons();
+const body = document.body;
+
+function refreshIcons() {
+    if (window.lucide && typeof window.lucide.createIcons === 'function') {
+        window.lucide.createIcons();
+    }
 }
+
+refreshIcons();
 
 // Theme Toggle Logic
 const themeToggle = document.getElementById('theme-toggle');
-const body = document.body;
 
 // Check for saved theme
 const savedTheme = localStorage.getItem('theme');
@@ -22,7 +26,7 @@ if (themeToggle) {
             body.classList.replace('light-mode', 'dark-mode');
             localStorage.setItem('theme', 'dark-mode');
         }
-        if (window.lucide) lucide.createIcons();
+        refreshIcons();
     });
 }
 
@@ -34,8 +38,10 @@ if (mobileMenuBtn && mobileMenuIcon) {
     mobileMenuBtn.addEventListener('click', () => {
         body.classList.toggle('mobile-menu-active');
         const isActive = body.classList.contains('mobile-menu-active');
+        mobileMenuBtn.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+        mobileMenuBtn.setAttribute('aria-label', isActive ? 'Close menu' : 'Open menu');
         mobileMenuIcon.setAttribute('data-lucide', isActive ? 'x' : 'menu');
-        if (window.lucide) lucide.createIcons();
+        refreshIcons();
     });
 }
 
@@ -45,7 +51,7 @@ document.querySelectorAll('.nav-link').forEach(link => {
         body.classList.remove('mobile-menu-active');
         if (mobileMenuIcon) {
             mobileMenuIcon.setAttribute('data-lucide', 'menu');
-            if (window.lucide) lucide.createIcons();
+            refreshIcons();
         }
     });
 });
@@ -331,7 +337,7 @@ function renderTestimonials(testimonials) {
         <button type="button" class="slider-dot ${i === 0 ? 'active' : ''}" data-index="${i}" aria-label="Go to testimonial ${i + 1}"></button>
     `).join('');
 
-    if (window.lucide) window.lucide.createIcons();
+    refreshIcons();
     initSlider(testimonials.length);
 }
 

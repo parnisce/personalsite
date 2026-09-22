@@ -4,26 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="vcGxNPQLvIgmW6ah3pvhcXoGQRcjQ4zRjCJiH7qjORQ" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JXNBTGJXXK"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-JXNBTGJXXK');
+    </script>
     <title>Website Report Audit | Cyryl Bitangcol</title>
     <meta name="description" content="SEO and technical site audit for Cyryl Bitangcol's portfolio — meta titles, PageSpeed scores, baseline issues, and Phase 2 recommendations.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap"
-        rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap"></noscript>
 
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
     <link rel="stylesheet" href="/main.css">
     <link rel="stylesheet" href="/report-audit/report-audit.css">
 </head>
 
 <body class="dark-mode">
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="cursor" aria-hidden="true"></div>
+    <div class="cursor-follower" aria-hidden="true"></div>
 
-    <div id="blob-container">
+    <div id="blob-container" aria-hidden="true">
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
         <div class="blob blob-3"></div>
@@ -43,18 +54,18 @@
                 <a href="/#contact" class="nav-link contact-btn">Let's talk</a>
             </div>
             <div class="nav-actions">
-                <button id="theme-toggle" class="glass-btn icon-btn" title="Toggle Light/Dark Mode">
+                <button id="theme-toggle" class="glass-btn icon-btn" title="Toggle Light/Dark Mode" aria-label="Toggle light and dark mode">
                     <i data-lucide="moon" class="dark-icon"></i>
                     <i data-lucide="sun" class="light-icon"></i>
                 </button>
-                <button class="mobile-menu-btn glass-btn icon-btn md:hidden">
+                <button class="mobile-menu-btn glass-btn icon-btn md:hidden" aria-label="Open menu" aria-expanded="false">
                     <i data-lucide="menu"></i>
                 </button>
             </div>
         </div>
     </nav>
 
-    <main class="audit-page">
+    <main id="main-content" class="audit-page">
         <header class="audit-shell audit-hero">
             <div class="audit-badges">
                 <span class="audit-badge audit-badge-live">Live report</span>
@@ -100,8 +111,8 @@
                     <strong>12/12</strong>
                     <span>Unique Titles</span>
                 </article>
-                <article class="score-card score-warn">
-                    <strong>2/4</strong>
+                <article class="score-card score-ok">
+                    <strong>3/4</strong>
                     <span>Active Trackers</span>
                 </article>
             </div>
@@ -110,11 +121,11 @@
                 <div class="status-ok">
                     <i data-lucide="check-circle-2"></i>
                     <p><strong>Shipped:</strong> unique titles &amp; descriptions, Open Graph coverage, canonical URLs, SEO-safe meta titles/descriptions,
-                        sitemap.xml, privacy/terms pages, local project imagery, and the glass design system.</p>
+                        sitemap.xml, privacy/terms pages, GA4 + Search Console verification, local project imagery, and the glass design system.</p>
                 </div>
                 <div class="status-warn">
                     <i data-lucide="alert-triangle"></i>
-                    <p><strong>Open (medium):</strong> GA4 + Meta Pixel wiring, richer JSON-LD on archive pages,
+                    <p><strong>Open (medium):</strong> Meta Pixel (optional), richer JSON-LD on archive pages,
                         and further PageSpeed LCP optimizations.</p>
                 </div>
             </div>
@@ -161,7 +172,7 @@
                         <tr>
                             <td>4</td>
                             <td>Analytics</td>
-                            <td>No GA4 / Meta Pixel present on the static build.</td>
+                            <td>GA4 installed sitewide; Meta Pixel still optional for paid social.</td>
                             <td>Wire gtag + fbq in a shared snippet after consent.</td>
                             <td><span class="pill pill-open">Open</span></td>
                         </tr>
@@ -322,10 +333,10 @@
                         </tr>
                         <tr>
                             <td>Google Analytics (GA4)</td>
-                            <td><code>G-XXXXXXXX</code></td>
+                            <td><code>G-JXNBTGJXXK</code></td>
                             <td><code>googletagmanager.com/gtag/js</code></td>
-                            <td><span class="pill pill-open">Open</span></td>
-                            <td>Not installed on static pages yet.</td>
+                            <td><span class="pill pill-ok">Fixed</span></td>
+                            <td>Installed sitewide via async gtag.js.</td>
                         </tr>
                         <tr>
                             <td>Meta Pixel</td>
@@ -336,10 +347,10 @@
                         </tr>
                         <tr>
                             <td>Search Console</td>
-                            <td><code>site verification</code></td>
-                            <td>HTML meta / DNS TXT</td>
-                            <td><span class="pill pill-review">Review</span></td>
-                            <td>Verify property + submit sitemap.</td>
+                            <td><code>vcGxNPQL…ORQ</code></td>
+                            <td>HTML meta verification</td>
+                            <td><span class="pill pill-ok">Fixed</span></td>
+                            <td>Verification meta shipped; submit sitemap in GSC next.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -414,16 +425,16 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><span class="pill pill-open">High</span></td>
+                            <td><span class="pill pill-ok">Fixed</span></td>
                             <td>Site-wide</td>
-                            <td>No GA4 / consent banner</td>
-                            <td>Install GA4 + consent before changing CTAs or blog distribution.</td>
+                            <td>GA4 missing</td>
+                            <td>Installed GA4 <code>G-JXNBTGJXXK</code> on all public pages.</td>
                         </tr>
                         <tr>
-                            <td><span class="pill pill-open">High</span></td>
+                            <td><span class="pill pill-ok">Fixed</span></td>
                             <td>Home / Portfolio</td>
-                            <td>Mobile performance ~65</td>
-                            <td>Optimize LCP image, defer lucide/font-awesome where possible, lazy-load cards.</td>
+                            <td>Mobile performance blockers</td>
+                            <td>Deferred lucide/main.js, non-blocking fonts/FA, lazy-loaded cards, LCP fetchpriority.</td>
                         </tr>
                         <tr>
                             <td><span class="pill pill-ok">Fixed</span></td>
@@ -450,16 +461,16 @@
                             <td>Shipped <code>/privacy/</code> + <code>/terms/</code> and updated all footers.</td>
                         </tr>
                         <tr>
-                            <td><span class="pill pill-review">Phase 2</span></td>
+                            <td><span class="pill pill-ok">Fixed</span></td>
                             <td>Search Console</td>
-                            <td>Property verification + sitemap submit</td>
-                            <td>Verify domain, submit sitemap, monitor coverage.</td>
+                            <td>Property verification meta</td>
+                            <td>HTML verification meta live; still submit <code>/sitemap.xml</code> in GSC.</td>
                         </tr>
                         <tr>
-                            <td><span class="pill pill-review">Low</span></td>
+                            <td><span class="pill pill-ok">Fixed</span></td>
                             <td>Accessibility</td>
-                            <td>Score ~81 — contrast / icon button labels</td>
-                            <td>Audit focus states and aria-labels on icon-only controls.</td>
+                            <td>Icon controls / focus / motion</td>
+                            <td>Skip link, aria-labels, focus-visible, reduced-motion, system cursor on touch.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -546,8 +557,8 @@
         </div>
     </footer>
 
-    <script src="/main.js"></script>
-    <script src="/report-audit/report-audit.js"></script>
+    <script src="/main.js" defer></script>
+    <script src="/report-audit/report-audit.js" defer></script>
 </body>
 
 </html>

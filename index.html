@@ -4,6 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="vcGxNPQLvIgmW6ah3pvhcXoGQRcjQ4zRjCJiH7qjORQ" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JXNBTGJXXK"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-JXNBTGJXXK');
+    </script>
     <title>Cyryl Bitangcol | Creative Art Director & Web Developer</title>
     <meta name="description"
         content="Portfolio of Cyryl Bitangcol - Creative Art Director, Web Developer, and UI/UX Designer specialized in glassmorphism and premium digital experiences.">
@@ -11,22 +20,24 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap"
-        rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap"></noscript>
 
     <!-- Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
 
     <link rel="stylesheet" href="main.css">
 </head>
 
 <body class="dark-mode">
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="cursor" aria-hidden="true"></div>
+    <div class="cursor-follower" aria-hidden="true"></div>
 
-    <div id="blob-container">
+    <div id="blob-container" aria-hidden="true">
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
         <div class="blob blob-3"></div>
@@ -47,18 +58,18 @@
                 <a href="#contact" class="nav-link contact-btn">Let's talk</a>
             </div>
             <div class="nav-actions">
-                <button id="theme-toggle" class="glass-btn icon-btn" title="Toggle Light/Dark Mode">
+                <button id="theme-toggle" class="glass-btn icon-btn" title="Toggle Light/Dark Mode" aria-label="Toggle light and dark mode">
                     <i data-lucide="moon" class="dark-icon"></i>
                     <i data-lucide="sun" class="light-icon"></i>
                 </button>
-                <button class="mobile-menu-btn glass-btn icon-btn md:hidden">
+                <button class="mobile-menu-btn glass-btn icon-btn md:hidden" aria-label="Open menu" aria-expanded="false">
                     <i data-lucide="menu"></i>
                 </button>
             </div>
         </div>
     </nav>
 
-    <main>
+    <main id="main-content">
         <!-- Hero Section -->
         <section id="home" class="hero-section">
             <div class="container">
@@ -97,7 +108,7 @@
                             <picture>
                                 <source srcset="assets/images/cyryl-hero.webp" type="image/webp">
                                 <img src="assets/images/cyryl-hero.png" alt="Cyryl Bitangcol"
-                                    class="portrait-photo" width="1035" height="1400" decoding="async">
+                                    class="portrait-photo" width="1035" height="1400" fetchpriority="high" decoding="async">
                             </picture>
                         </div>
                         <div class="skill-tags">
@@ -130,7 +141,7 @@
                         <div class="project-preview">
                             <div class="preview-overlay"></div>
                             <img src="/assets/images/projects/upca-real-estate.png"
-                                alt="UPCA Real Estate Marketing & Media" class="project-img">
+                                alt="UPCA Real Estate Marketing & Media" class="project-img" loading="lazy" decoding="async">
                             <div class="project-badges">
                                 <span class="proj-badge">Figma</span>
                                 <span class="proj-badge">Elementor</span>
@@ -153,7 +164,7 @@
                         <div class="project-preview">
                             <div class="preview-overlay"></div>
                             <img src="/assets/images/projects/hongkong-tech-match.png"
-                                alt="Hongkong Tech Match" class="project-img">
+                                alt="Hongkong Tech Match" class="project-img" loading="lazy" decoding="async">
                             <div class="project-badges">
                                 <span class="proj-badge">Figma</span>
                                 <span class="proj-badge">Elementor</span>
@@ -176,7 +187,7 @@
                         <div class="project-preview">
                             <div class="preview-overlay"></div>
                             <img src="/assets/images/projects/aurumara.png"
-                                alt="Aurumara" class="project-img">
+                                alt="Aurumara" class="project-img" loading="lazy" decoding="async">
                             <div class="project-badges">
                                 <span class="proj-badge">E-Commerce</span>
                                 <span class="proj-badge">Figma</span>
@@ -199,7 +210,7 @@
                         <div class="project-preview">
                             <div class="preview-overlay overlay-3"></div>
                             <img src="/assets/images/projects/jra-construction.png"
-                                alt="JRA Construction" class="project-img">
+                                alt="JRA Construction" class="project-img" loading="lazy" decoding="async">
                             <div class="project-badges">
                                 <span class="proj-badge">Figma</span>
                                 <span class="proj-badge">Elementor</span>
@@ -222,7 +233,7 @@
                         <div class="project-preview">
                             <div class="preview-overlay overlay-3"></div>
                             <img src="/assets/images/projects/module-interior-design.png"
-                                alt="Module Interior Design" class="project-img">
+                                alt="Module Interior Design" class="project-img" loading="lazy" decoding="async">
                             <div class="project-badges">
                                 <span class="proj-badge">E-Commerce</span>
                                 <span class="proj-badge">Figma</span>
@@ -245,7 +256,7 @@
                         <div class="project-preview">
                             <div class="preview-overlay overlay-3"></div>
                             <img src="/assets/images/projects/blue-halo-homes.png"
-                                alt="Blue Halo Homes" class="project-img">
+                                alt="Blue Halo Homes" class="project-img" loading="lazy" decoding="async">
                             <div class="project-badges">
                                 <span class="proj-badge">Divi</span>
                                 <span class="proj-badge">Web Dev</span>
@@ -439,8 +450,8 @@
         </div>
     </div>
 
-    <script src="db-loader.js"></script>
-    <script src="main.js"></script>
+    <script src="db-loader.js" defer></script>
+    <script src="main.js" defer></script>
 </body>
 
 </html>

@@ -4,25 +4,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="vcGxNPQLvIgmW6ah3pvhcXoGQRcjQ4zRjCJiH7qjORQ" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JXNBTGJXXK"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-JXNBTGJXXK');
+    </script>
     <title>Build a Freelance Portfolio That Converts Visitors</title>
     <meta name="description" content="Pretty work is not enough. Your portfolio should answer: Can you solve my problem, and can I trust you to deliver?">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap"
-        rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap"></noscript>
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
     <link rel="stylesheet" href="/main.css">
     <link rel="stylesheet" href="/blog.css">
 </head>
 
 <body class="dark-mode">
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="cursor" aria-hidden="true"></div>
+    <div class="cursor-follower" aria-hidden="true"></div>
 
-    <div id="blob-container">
+    <div id="blob-container" aria-hidden="true">
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
         <div class="blob blob-3"></div>
@@ -42,18 +53,18 @@
                 <a href="/#contact" class="nav-link contact-btn">Let's talk</a>
             </div>
             <div class="nav-actions">
-                <button id="theme-toggle" class="glass-btn icon-btn" title="Toggle Light/Dark Mode">
+                <button id="theme-toggle" class="glass-btn icon-btn" title="Toggle Light/Dark Mode" aria-label="Toggle light and dark mode">
                     <i data-lucide="moon" class="dark-icon"></i>
                     <i data-lucide="sun" class="light-icon"></i>
                 </button>
-                <button class="mobile-menu-btn glass-btn icon-btn md:hidden">
+                <button class="mobile-menu-btn glass-btn icon-btn md:hidden" aria-label="Open menu" aria-expanded="false">
                     <i data-lucide="menu"></i>
                 </button>
             </div>
         </div>
     </nav>
 
-    <main class="post-page">
+    <main id="main-content" class="post-page">
         <article class="post-article">
             <header class="post-hero">
                 <div class="post-shell">
@@ -156,7 +167,7 @@
         </div>
     </footer>
 
-    <script src="/main.js"></script>
+    <script src="/main.js" defer></script>
 </body>
 
 </html>
