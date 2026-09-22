@@ -22,12 +22,147 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap"></noscript>
 
-    <script src="https://unpkg.com/lucide@latest" defer></script>
+    <script src="https://unpkg.com/lucide@0.469.0" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
 
     <link rel="stylesheet" href="/main.css">
     <link rel="stylesheet" href="/portfolio/portfolio.css">
+    <script type="application/ld+json" id="portfolio-archive-schema">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": "https://cyrylbitangcol.com/portfolio/#page",
+      "name": "Portfolio | Cyryl Bitangcol",
+      "description": "Web design, WordPress, and eCommerce case studies by Cyryl Bitangcol.",
+      "url": "https://cyrylbitangcol.com/portfolio/",
+      "isPartOf": {
+        "@type": "WebSite",
+        "url": "https://cyrylbitangcol.com/",
+        "name": "Cyryl Bitangcol"
+      }
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://cyrylbitangcol.com/portfolio/#itemlist",
+      "name": "Selected client projects",
+      "numberOfItems": 18,
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Hongkong Tech Match",
+          "url": "https://cyrylbitangcol.com/portfolio/#project-1"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Tea Dreamer",
+          "url": "https://cyrylbitangcol.com/portfolio/#project-2"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "JRA Construction",
+          "url": "https://cyrylbitangcol.com/portfolio/#project-3"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Prisma Digital",
+          "url": "https://cyrylbitangcol.com/portfolio/#project-4"
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "name": "Joy Med Clinic",
+          "url": "https://cyrylbitangcol.com/portfolio/#project-5"
+        },
+        {
+          "@type": "ListItem",
+          "position": 6,
+          "name": "MC Ceci Wu",
+          "url": "https://cyrylbitangcol.com/portfolio/#project-6"
+        },
+        {
+          "@type": "ListItem",
+          "position": 7,
+          "name": "Beze Club",
+          "url": "https://cyrylbitangcol.com/portfolio/#project-7"
+        },
+        {
+          "@type": "ListItem",
+          "position": 8,
+          "name": "Skills Training Center",
+          "url": "https://cyrylbitangcol.com/portfolio/#project-8"
+        },
+        {
+          "@type": "ListItem",
+          "position": 9,
+          "name": "Nextminds Web Solutions",
+          "url": "https://cyrylbitangcol.com/portfolio/#project-9"
+        },
+        {
+          "@type": "ListItem",
+          "position": 10,
+          "name": "UPCA Real Estate Marketing &amp; Media",
+          "url": "https://cyrylbitangcol.com/portfolio/#project-10"
+        },
+        {
+          "@type": "ListItem",
+          "position": 11,
+          "name": "Hongkong Relocations",
+          "url": "https://cyrylbitangcol.com/portfolio/#project-11"
+        },
+        {
+          "@type": "ListItem",
+          "position": 12,
+          "name": "Module Interior Design",
+          "url": "https://cyrylbitangcol.com/portfolio/#project-12"
+        },
+        {
+          "@type": "ListItem",
+          "position": 13,
+          "name": "Aurumara",
+          "url": "https://cyrylbitangcol.com/portfolio/#project-13"
+        },
+        {
+          "@type": "ListItem",
+          "position": 14,
+          "name": "Supkid Market",
+          "url": "https://cyrylbitangcol.com/portfolio/#project-14"
+        },
+        {
+          "@type": "ListItem",
+          "position": 15,
+          "name": "Shawn Tiberio",
+          "url": "https://cyrylbitangcol.com/portfolio/#project-15"
+        },
+        {
+          "@type": "ListItem",
+          "position": 16,
+          "name": "Offer Charm",
+          "url": "https://cyrylbitangcol.com/portfolio/#project-16"
+        },
+        {
+          "@type": "ListItem",
+          "position": 17,
+          "name": "Grandma Scones",
+          "url": "https://cyrylbitangcol.com/portfolio/#project-17"
+        },
+        {
+          "@type": "ListItem",
+          "position": 18,
+          "name": "Blue Halo Homes",
+          "url": "https://cyrylbitangcol.com/portfolio/#project-18"
+        }
+      ]
+    }
+  ]
+}
+    </script>
 </head>
 
 <body class="dark-mode">
@@ -92,8 +227,10 @@
                         data-link="https://cyrylbitangcol.com/portfolio/hongkong-tech-match/">
                         <div class="project-preview">
                             <div class="preview-overlay"></div>
-                            <img src="/assets/images/projects/hongkong-tech-match.png"
-                                alt="Hongkong Tech Match" class="project-img" loading="lazy">
+                            <picture>
+                                <source srcset="/assets/images/projects/hongkong-tech-match.webp" type="image/webp">
+                                <img src="/assets/images/projects/hongkong-tech-match.png" alt="Hongkong Tech Match" class="project-img" loading="lazy" decoding="async">
+                            </picture>
                             <div class="project-badges">
                                 <span class="proj-badge">Figma</span>
                                 <span class="proj-badge">Elementor</span>
@@ -115,8 +252,10 @@
                         data-link="https://cyrylbitangcol.com/portfolio/tea-dreamer/">
                         <div class="project-preview">
                             <div class="preview-overlay overlay-2"></div>
-                            <img src="/assets/images/projects/tea-dreamer.png"
-                                alt="Tea Dreamer" class="project-img" loading="lazy">
+                            <picture>
+                                <source srcset="/assets/images/projects/tea-dreamer.webp" type="image/webp">
+                                <img src="/assets/images/projects/tea-dreamer.png" alt="Tea Dreamer" class="project-img" loading="lazy" decoding="async">
+                            </picture>
                             <div class="project-badges">
                                 <span class="proj-badge">Figma</span>
                                 <span class="proj-badge">Elementor</span>
@@ -138,8 +277,10 @@
                         data-link="https://cyrylbitangcol.com/portfolio/jra-construction/">
                         <div class="project-preview">
                             <div class="preview-overlay overlay-3"></div>
-                            <img src="/assets/images/projects/jra-construction.png"
-                                alt="JRA Construction" class="project-img" loading="lazy">
+                            <picture>
+                                <source srcset="/assets/images/projects/jra-construction.webp" type="image/webp">
+                                <img src="/assets/images/projects/jra-construction.png" alt="JRA Construction" class="project-img" loading="lazy" decoding="async">
+                            </picture>
                             <div class="project-badges">
                                 <span class="proj-badge">Figma</span>
                                 <span class="proj-badge">Elementor</span>
@@ -161,8 +302,10 @@
                         data-link="https://cyrylbitangcol.com/portfolio/prisma-digital/">
                         <div class="project-preview">
                             <div class="preview-overlay"></div>
-                            <img src="/assets/images/projects/prisma-digital.png"
-                                alt="Prisma Digital" class="project-img" loading="lazy">
+                            <picture>
+                                <source srcset="/assets/images/projects/prisma-digital.webp" type="image/webp">
+                                <img src="/assets/images/projects/prisma-digital.png" alt="Prisma Digital" class="project-img" loading="lazy" decoding="async">
+                            </picture>
                             <div class="project-badges">
                                 <span class="proj-badge">Figma</span>
                                 <span class="proj-badge">Elementor</span>
@@ -184,8 +327,10 @@
                         data-link="https://cyrylbitangcol.com/portfolio/joy-med-clinic/">
                         <div class="project-preview">
                             <div class="preview-overlay overlay-2"></div>
-                            <img src="/assets/images/projects/joy-med-clinic.png"
-                                alt="Joy Med Clinic" class="project-img" loading="lazy">
+                            <picture>
+                                <source srcset="/assets/images/projects/joy-med-clinic.webp" type="image/webp">
+                                <img src="/assets/images/projects/joy-med-clinic.png" alt="Joy Med Clinic" class="project-img" loading="lazy" decoding="async">
+                            </picture>
                             <div class="project-badges">
                                 <span class="proj-badge">Figma</span>
                                 <span class="proj-badge">Elementor</span>
@@ -207,8 +352,10 @@
                         data-link="https://cyrylbitangcol.com/portfolio/mc-ceci-wu/">
                         <div class="project-preview">
                             <div class="preview-overlay overlay-3"></div>
-                            <img src="/assets/images/projects/mc-ceci-wu.png"
-                                alt="MC Ceci Wu" class="project-img" loading="lazy">
+                            <picture>
+                                <source srcset="/assets/images/projects/mc-ceci-wu.webp" type="image/webp">
+                                <img src="/assets/images/projects/mc-ceci-wu.png" alt="MC Ceci Wu" class="project-img" loading="lazy" decoding="async">
+                            </picture>
                             <div class="project-badges">
                                 <span class="proj-badge">Figma</span>
                                 <span class="proj-badge">Elementor</span>
@@ -230,8 +377,10 @@
                         data-link="https://cyrylbitangcol.com/portfolio/beze-club/">
                         <div class="project-preview">
                             <div class="preview-overlay"></div>
-                            <img src="/assets/images/projects/beze-club.png"
-                                alt="Beze Club" class="project-img" loading="lazy">
+                            <picture>
+                                <source srcset="/assets/images/projects/beze-club.webp" type="image/webp">
+                                <img src="/assets/images/projects/beze-club.png" alt="Beze Club" class="project-img" loading="lazy" decoding="async">
+                            </picture>
                             <div class="project-badges">
                                 <span class="proj-badge">Figma</span>
                                 <span class="proj-badge">Elementor</span>
@@ -253,8 +402,10 @@
                         data-link="https://cyrylbitangcol.com/portfolio/skills-training-center/">
                         <div class="project-preview">
                             <div class="preview-overlay overlay-2"></div>
-                            <img src="/assets/images/projects/skills-training-center.png"
-                                alt="Skills Training Center" class="project-img" loading="lazy">
+                            <picture>
+                                <source srcset="/assets/images/projects/skills-training-center.webp" type="image/webp">
+                                <img src="/assets/images/projects/skills-training-center.png" alt="Skills Training Center" class="project-img" loading="lazy" decoding="async">
+                            </picture>
                             <div class="project-badges">
                                 <span class="proj-badge">Figma</span>
                                 <span class="proj-badge">Elementor</span>
@@ -276,8 +427,10 @@
                         data-link="https://cyrylbitangcol.com/portfolio/nextminds-web-solutions/">
                         <div class="project-preview">
                             <div class="preview-overlay overlay-3"></div>
-                            <img src="/assets/images/projects/nextminds-web-solutions.png"
-                                alt="Nextminds Web Solutions" class="project-img" loading="lazy">
+                            <picture>
+                                <source srcset="/assets/images/projects/nextminds-web-solutions.webp" type="image/webp">
+                                <img src="/assets/images/projects/nextminds-web-solutions.png" alt="Nextminds Web Solutions" class="project-img" loading="lazy" decoding="async">
+                            </picture>
                             <div class="project-badges">
                                 <span class="proj-badge">Figma</span>
                                 <span class="proj-badge">Elementor</span>
@@ -299,8 +452,10 @@
                         data-link="https://cyrylbitangcol.com/portfolio/upca-real-estate-marketing-media/">
                         <div class="project-preview">
                             <div class="preview-overlay"></div>
-                            <img src="/assets/images/projects/upca-real-estate.png"
-                                alt="UPCA Real Estate Marketing &amp; Media" class="project-img" loading="lazy">
+                            <picture>
+                                <source srcset="/assets/images/projects/upca-real-estate.webp" type="image/webp">
+                                <img src="/assets/images/projects/upca-real-estate.png" alt="UPCA Real Estate Marketing &amp; Media" class="project-img" loading="lazy" decoding="async">
+                            </picture>
                             <div class="project-badges">
                                 <span class="proj-badge">Figma</span>
                                 <span class="proj-badge">Elementor</span>
@@ -322,8 +477,10 @@
                         data-link="https://cyrylbitangcol.com/portfolio/hongkong-relocations/">
                         <div class="project-preview">
                             <div class="preview-overlay overlay-2"></div>
-                            <img src="/assets/images/projects/hongkong-relocations.png"
-                                alt="Hongkong Relocations" class="project-img" loading="lazy">
+                            <picture>
+                                <source srcset="/assets/images/projects/hongkong-relocations.webp" type="image/webp">
+                                <img src="/assets/images/projects/hongkong-relocations.png" alt="Hongkong Relocations" class="project-img" loading="lazy" decoding="async">
+                            </picture>
                             <div class="project-badges">
                                 <span class="proj-badge">E-Commerce</span>
                                 <span class="proj-badge">Figma</span>
@@ -345,8 +502,10 @@
                         data-link="https://cyrylbitangcol.com/portfolio/module-interior-design/">
                         <div class="project-preview">
                             <div class="preview-overlay overlay-3"></div>
-                            <img src="/assets/images/projects/module-interior-design.png"
-                                alt="Module Interior Design" class="project-img" loading="lazy">
+                            <picture>
+                                <source srcset="/assets/images/projects/module-interior-design.webp" type="image/webp">
+                                <img src="/assets/images/projects/module-interior-design.png" alt="Module Interior Design" class="project-img" loading="lazy" decoding="async">
+                            </picture>
                             <div class="project-badges">
                                 <span class="proj-badge">E-Commerce</span>
                                 <span class="proj-badge">Figma</span>
@@ -368,8 +527,10 @@
                         data-link="https://cyrylbitangcol.com/portfolio/aurumara/">
                         <div class="project-preview">
                             <div class="preview-overlay"></div>
-                            <img src="/assets/images/projects/aurumara.png"
-                                alt="Aurumara" class="project-img" loading="lazy">
+                            <picture>
+                                <source srcset="/assets/images/projects/aurumara.webp" type="image/webp">
+                                <img src="/assets/images/projects/aurumara.png" alt="Aurumara" class="project-img" loading="lazy" decoding="async">
+                            </picture>
                             <div class="project-badges">
                                 <span class="proj-badge">E-Commerce</span>
                                 <span class="proj-badge">Figma</span>
@@ -391,8 +552,10 @@
                         data-link="https://cyrylbitangcol.com/portfolio/supkid-market/">
                         <div class="project-preview">
                             <div class="preview-overlay overlay-2"></div>
-                            <img src="/assets/images/projects/supkid-market.png"
-                                alt="Supkid Market" class="project-img" loading="lazy">
+                            <picture>
+                                <source srcset="/assets/images/projects/supkid-market.webp" type="image/webp">
+                                <img src="/assets/images/projects/supkid-market.png" alt="Supkid Market" class="project-img" loading="lazy" decoding="async">
+                            </picture>
                             <div class="project-badges">
                                 <span class="proj-badge">E-Commerce</span>
                                 <span class="proj-badge">Figma</span>
@@ -414,8 +577,10 @@
                         data-link="https://cyrylbitangcol.com/portfolio/shawn-tiberio/">
                         <div class="project-preview">
                             <div class="preview-overlay overlay-3"></div>
-                            <img src="/assets/images/projects/shawn-tiberio.png"
-                                alt="Shawn Tiberio" class="project-img" loading="lazy">
+                            <picture>
+                                <source srcset="/assets/images/projects/shawn-tiberio.webp" type="image/webp">
+                                <img src="/assets/images/projects/shawn-tiberio.png" alt="Shawn Tiberio" class="project-img" loading="lazy" decoding="async">
+                            </picture>
                             <div class="project-badges">
                                 <span class="proj-badge">Divi</span>
                                 <span class="proj-badge">Web Dev</span>
@@ -436,8 +601,10 @@
                         data-link="https://cyrylbitangcol.com/portfolio/offer-charm/">
                         <div class="project-preview">
                             <div class="preview-overlay"></div>
-                            <img src="/assets/images/projects/offer-charm.png"
-                                alt="Offer Charm" class="project-img" loading="lazy">
+                            <picture>
+                                <source srcset="/assets/images/projects/offer-charm.webp" type="image/webp">
+                                <img src="/assets/images/projects/offer-charm.png" alt="Offer Charm" class="project-img" loading="lazy" decoding="async">
+                            </picture>
                             <div class="project-badges">
                                 <span class="proj-badge">Divi</span>
                                 <span class="proj-badge">Web Dev</span>
@@ -458,8 +625,10 @@
                         data-link="https://cyrylbitangcol.com/portfolio/grandma-scones/">
                         <div class="project-preview">
                             <div class="preview-overlay overlay-2"></div>
-                            <img src="/assets/images/projects/grandma-scones.png"
-                                alt="Grandma Scones" class="project-img" loading="lazy">
+                            <picture>
+                                <source srcset="/assets/images/projects/grandma-scones.webp" type="image/webp">
+                                <img src="/assets/images/projects/grandma-scones.png" alt="Grandma Scones" class="project-img" loading="lazy" decoding="async">
+                            </picture>
                             <div class="project-badges">
                                 <span class="proj-badge">Figma</span>
                                 <span class="proj-badge">Elementor</span>
@@ -481,8 +650,10 @@
                         data-link="https://cyrylbitangcol.com/portfolio/blue-halo-homes/">
                         <div class="project-preview">
                             <div class="preview-overlay overlay-3"></div>
-                            <img src="/assets/images/projects/blue-halo-homes.png"
-                                alt="Blue Halo Homes" class="project-img" loading="lazy">
+                            <picture>
+                                <source srcset="/assets/images/projects/blue-halo-homes.webp" type="image/webp">
+                                <img src="/assets/images/projects/blue-halo-homes.png" alt="Blue Halo Homes" class="project-img" loading="lazy" decoding="async">
+                            </picture>
                             <div class="project-badges">
                                 <span class="proj-badge">Divi</span>
                                 <span class="proj-badge">Web Dev</span>
@@ -535,6 +706,9 @@
     </div>
 
     <script src="/main.js" defer></script>
+    <!-- Cloudflare Web Analytics -->
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "64872ef7-7d2f-4f94-9fee-fb33a04302d4"}'></script>
+    <!-- End Cloudflare Web Analytics -->
 </body>
 
 </html>
