@@ -35,6 +35,47 @@ body.light-mode {
     scroll-behavior: smooth;
 }
 
+/* Accessibility: skip link + visible keyboard focus */
+.skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -100px;
+    z-index: 10000;
+    padding: 0.75rem 1.1rem;
+    border-radius: 0.75rem;
+    background: var(--accent-primary);
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+    transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+    top: 1rem;
+    outline: 3px solid #fff;
+    outline-offset: 2px;
+}
+
+:focus-visible {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 3px;
+}
+
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
 body {
     font-family: 'Plus Jakarta Sans', sans-serif;
     background-color: var(--bg-primary);
@@ -42,7 +83,24 @@ body {
     overflow-x: hidden;
     line-height: 1.6;
     transition: background-color 0.5s ease;
-    cursor: none;
+}
+
+/* Custom cursor only on fine pointers; keep system cursor for touch / a11y */
+@media (hover: hover) and (pointer: fine) {
+    body {
+        cursor: none;
+    }
+}
+
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+    body {
+        cursor: auto;
+    }
+
+    .cursor,
+    .cursor-follower {
+        display: none !important;
+    }
 }
 
 /* Custom Cursor */
